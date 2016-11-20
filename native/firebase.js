@@ -16,17 +16,15 @@ export function submitCreation(username, prompt, body) {
   creations.push().set({ username, prompt, body });
 }
 
-export function fetchCreations() {
+export function fetchCreations(callback) {
   var ref = database.ref();
   var creations = ref.child('creations');
   return creations.once('value', function(data){
-    items = []
+    var items = [];
     data.forEach(function(child){
-      items.push({
-        prompt: child.val(),
-        _key: child.key
-      })
-    })
+      items.push(child.val())
+    });
+    callback(items);
   });
 }
 

@@ -14,13 +14,14 @@ import {
 
 import EditorContainer from './react/Container.js';
 import Test from './react/Test.js';
+import Community from './react/Community.js';
 
 
 export default class RoundRobin extends Component {
   render() {
 
     var component = <EditorContainer/>;
-    // var component = <Test/>;
+    var component = <Community/>;
 
     return (
       <View style={{ flex: 1 }}>
