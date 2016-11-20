@@ -4,15 +4,21 @@ import Editor from './Editor.js';
 import Header from './Header.js';
 import Scroll from './Scroll.js';
 
-import { submitCreation }  from '../firebase.js';
+import { submitCreation, getPrompt }  from '../firebase.js';
 
 export default class EditorContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prompt: 'Monkey Brains',
+      prompt: '',
       text: '',
     }
+  }
+  componentWillMount() {
+    var callback = prompt => {
+      this.setState({ prompt });
+    }
+    getPrompt(callback.bind(this));
   }
   handleSubmit() {
     submitCreation('Justin', this.state.prompt, this.state.text);

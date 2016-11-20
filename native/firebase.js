@@ -29,3 +29,14 @@ export function fetchCreations() {
     })
   });
 }
+
+/**
+ * How do we avoid these ugly callbacks?
+ */
+export function getPrompt(callback) {
+  var shortISODateString = new Date().toISOString().substring(0, 10)
+  var ref = database.ref();
+  ref.child('prompts')
+     .child(shortISODateString)
+     .on("value", snapshot => callback(snapshot.val()))
+}
