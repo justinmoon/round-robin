@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView } from 'react-native';
 import { submitCreation }  from '../firebase.js';
+import { composition as styles } from './styles';
 
 const NAV_HEIGHT = 40;  // FIXME: get correct number and put in canonical constants file
 
@@ -53,24 +54,3 @@ export default class Editor extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  page: {
-    flex: 1,
-  },
-  input: {
-    /* padding: 20,*/
-    paddingLeft: 20,
-    paddingRight: 20,
-    fontSize: 18,
-    fontFamily: 'System',
-    textAlignVertical: 'top',
-  },
-  scrollView: {
-    flex: 1,
-  },
-  contentContainerStyle: {
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-});
