@@ -1,31 +1,52 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, ScrollView, Text } from 'react-native';
+import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView, Text } from 'react-native';
+
+const NAV_HEIGHT = 40;  // FIXME: get correct number and put in canonical constants file
 
 export default class Editor extends Component {
+  // another approach here could be to just keep track of whether the keyboard is up or down -- and any click on the whole screen would focus the textinput if the keyoard is up ...
   constructor(props) {
     super(props);
+    var {height, width} = Dimensions.get('window');
     this.state = {
       text: 'i\nam\ndog',
-      height: undefined,
+      textInputHeight: 200,  // FIXME: wild guess, but iOS is bugging on a render with undefined value here ...
+      screenHeight: height,
     };
   }
-  handleLayout(ev) {
+  componentWillMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (frames) => this._keyboardDidShow(frames));
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', (frames) => this._keyboardDidHide(frames));
+  }
+
+  componentWillUnmount () {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
+  }
+
+  _keyboardDidShow (frames) {
+    var keyboardHeight = frames.endCoordinates.height
+    var textInputHeight = this.state.screenHeight - NAV_HEIGHT - keyboardHeight;
+    this.setState({ textInputHeight });
+  }
+
+  _keyboardDidHide (frames) {
+    var keyboardHeight = 0;
+    var textInputHeight = this.state.screenHeight - NAV_HEIGHT;
+    this.setState({ textInputHeight });
   }
   render() {
     return (
-      <View style={styles.page} onLayout={(ev) => {
-        // 80 is for the navbar on top
-        const height = ev.nativeEvent.layout.height - 80;
-        this.setState({ height });
-        }}>
+      <View style={styles.page}>
         <ScrollView keyboardDismissMode='interactive' style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>
-        <TextInput
-            style={[styles.input, {height:this.state.height}]}
-            multiline={true}
-            autoFocus={true}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}>
-        </TextInput>
+          <TextInput
+              style={[styles.input, {height: this.state.textInputHeight}]}
+              multiline={true}
+              autoFocus={true}
+              underlineColorAndroid='transparent'
+              onChangeText={(text) => this.setState({text})}
+              value={this.state.text}>
+          </TextInput>
         </ScrollView>
       </View>
     );
@@ -34,6 +55,7 @@ export default class Editor extends Component {
 
 const styles = StyleSheet.create({
   page: {
+    paddingTop: 40,
     flex: 1,
     /* alignItems: 'stretch',*/
   },
@@ -43,11 +65,13 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     fontSize: 18,
     fontFamily: 'System',
+    textAlignVertical: 'top',
   },
   scrollView: {
     flex: 1,
   },
   contentContainerStyle: {
     flex: 1,
+    justifyContent: 'flex-start',
   },
 });

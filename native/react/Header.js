@@ -5,7 +5,7 @@ export default class Header extends Component {
   render() {
     const leftText = '';
     const centerText = 'Prompt';
-    const rightText = 'Submit';
+    const rightText = '';
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
@@ -19,19 +19,24 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'absolute',
+    top: 0,
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
     marginBottom: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
   },
   button: {
-    width: 50,
+    fontSize: 16,
+    width: 60,
     textAlign: 'center',
   },
   title: {
     flex: 1,
+    fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
   },

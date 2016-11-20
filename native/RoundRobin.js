@@ -14,6 +14,7 @@ import {
 import * as firebase from 'firebase';
 
 import EditorContainer from './react/Container.js';
+import Test from './react/Test.js';
 
 const config = {
   apiKey: "AIzaSyCR6BydlVwkDyJmg45BzNN_wInKKr27iHs",
@@ -26,9 +27,13 @@ const firebaseApp = firebase.initializeApp(config);
 
 export default class RoundRobin extends Component {
   render() {
+
+    var component = <EditorContainer/>;
+    // var component = <Test/>;
+
     return (
       <View style={{ flex: 1 }}>
-        <EditorContainer/>
+        {component}
       </View>
     );
   }
