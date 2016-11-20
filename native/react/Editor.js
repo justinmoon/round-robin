@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView, Text } from 'react-native';
+import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView } from 'react-native';
+import { submitCreation }  from '../firebase.js';
 
 const NAV_HEIGHT = 40;  // FIXME: get correct number and put in canonical constants file
 
 export default class Editor extends Component {
-  // another approach here could be to just keep track of whether the keyboard is up or down -- and any click on the whole screen would focus the textinput if the keyoard is up ...
   constructor(props) {
     super(props);
     var {height, width} = Dimensions.get('window');
@@ -35,6 +35,7 @@ export default class Editor extends Component {
     var textInputHeight = this.state.screenHeight - NAV_HEIGHT;
     this.setState({ textInputHeight });
   }
+
   render() {
     return (
       <View style={styles.page}>
@@ -55,9 +56,7 @@ export default class Editor extends Component {
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 40,
     flex: 1,
-    /* alignItems: 'stretch',*/
   },
   input: {
     /* padding: 20,*/

@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { submitCreation }  from '../firebase.js';
+console.log(submitCreation)
 
 export default class Header extends Component {
+  handleRightPress() {
+    submitCreation('Justin', 'Monkeybrains', 'body')
+  }
   render() {
     const leftText = '';
     const centerText = 'Prompt';
-    const rightText = '';
+    const rightText = 'Submit';
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
         <Text style={styles.button}>{leftText}</Text>
         <Text style={styles.title}>{centerText}</Text>
-        <Text style={styles.button}>{rightText}</Text>
+        <TouchableOpacity onPress={this.handleRightPress} >
+          <Text style={styles.button}>{rightText}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -19,12 +26,9 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
-    marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',

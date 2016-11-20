@@ -8,8 +8,8 @@ export default class EditorContainer extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Header />
-        <Editor />
+        <Header style={{ flex: 1 }}/>
+        <Editor style={{ flex: 1 }}/>
       </View>
     );
   }
