@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, StatusBar, TouchableOpacity } from 'react-native';
-import { submitCreation }  from '../firebase.js';
-console.log(submitCreation)
 
 export default class Header extends Component {
-  handleRightPress() {
-    submitCreation('Justin', 'Monkeybrains', 'body')
-  }
   render() {
     const leftText = '';
-    const centerText = 'Prompt';
+    const centerText = this.props.title;
     const rightText = 'Submit';
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
         <Text style={styles.button}>{leftText}</Text>
         <Text style={styles.title}>{centerText}</Text>
-        <TouchableOpacity onPress={this.handleRightPress} >
+        <TouchableOpacity onPress={this.props.handleSubmit} >
           <Text style={styles.button}>{rightText}</Text>
         </TouchableOpacity>
       </View>

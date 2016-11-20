@@ -45,8 +45,8 @@ export default class Editor extends Component {
               multiline={true}
               autoFocus={true}
               underlineColorAndroid='transparent'
-              onChangeText={(text) => this.setState({text})}
-              value={this.state.text}>
+              onChangeText={this.props.handleEdit}
+              value={this.props.text}>
           </TextInput>
         </ScrollView>
       </View>
