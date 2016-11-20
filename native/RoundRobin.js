@@ -11,19 +11,10 @@ import {
   Text,
   View
 } from 'react-native';
-import * as firebase from 'firebase';
 
 import EditorContainer from './react/Container.js';
 import Test from './react/Test.js';
 
-const config = {
-  apiKey: "AIzaSyCR6BydlVwkDyJmg45BzNN_wInKKr27iHs",
-  authDomain: "round-robin-a58a3.firebaseapp.com",
-  databaseURL: "https://round-robin-a58a3.firebaseio.com",
-  storageBucket: "round-robin-a58a3.appspot.com",
-  messagingSenderId: "36675682146"
-};
-const firebaseApp = firebase.initializeApp(config);
 
 export default class RoundRobin extends Component {
   render() {
