@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import { Router, Scene } from 'react-native-router-flux';
 
 import EditorContainer from './react/Container.js';
 
@@ -21,14 +22,13 @@ import Swipe from './react/Swipe.js';
 
 export default class RoundRobin extends Component {
   render() {
-
-    var component = <EditorContainer/>;
-    var component = <Community/>;
-
     return (
-      <View style={{ flex: 1 }}>
-        {component}
-      </View>
+      <Router style={{ flex: 1 }}>
+        <Scene key="root" hideNavBar={true}>
+        <Scene key="editor" component={EditorContainer} initial={true} />
+        <Scene key="community" component={Community} />
+        </Scene>
+      </Router>
     );
   }
 }

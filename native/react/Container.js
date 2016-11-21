@@ -4,6 +4,8 @@ import Editor from './Editor.js';
 import Header from './Header.js';
 
 import { submitCreation, getPrompt }  from '../firebase.js';
+import { Actions } from 'react-native-router-flux';
+
 
 export default class EditorContainer extends Component {
   constructor(props) {
@@ -21,6 +23,7 @@ export default class EditorContainer extends Component {
   }
   handleSubmit() {
     submitCreation('Justin', this.state.prompt, this.state.text);
+    Actions.community();
   }
   render() {
     return (
