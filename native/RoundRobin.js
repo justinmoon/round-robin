@@ -15,7 +15,7 @@ import { Router, Scene } from 'react-native-router-flux';
 
 import EditorContainer from './react/Container.js';
 
-import Test from './react/Test.js';
+// import Test from './react/Test.js';
 import Community from './react/Community.js';
 import Swipe from './react/Swipe.js';
 

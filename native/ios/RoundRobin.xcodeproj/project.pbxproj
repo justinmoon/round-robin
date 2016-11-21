@@ -628,6 +628,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = in.roundrob.app;
 				PRODUCT_NAME = RoundRobin;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -652,6 +653,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = in.roundrob.app;
 				PRODUCT_NAME = RoundRobin;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
