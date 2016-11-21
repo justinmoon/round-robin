@@ -39,3 +39,7 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+
+# Secrets
+android/app/round-robin-credentials.json
+android/app/round-robin-key.keystore

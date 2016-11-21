@@ -361,8 +361,8 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 4HFHA2C727;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = W6VF934SEW;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -613,9 +613,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 4HFHA2C727;
+				DEVELOPMENT_TEAM = W6VF934SEW;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -628,8 +628,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = in.roundrob.app;
+				PRODUCT_BUNDLE_IDENTIFIER = in.roundrob;
 				PRODUCT_NAME = RoundRobin;
+				PROVISIONING_PROFILE = "0b2c829b-b7e8-49c6-88cb-2aba05a87b21";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development in.roundrob";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -638,9 +640,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4HFHA2C727;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = W6VF934SEW;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -653,8 +655,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = in.roundrob.app;
+				PRODUCT_BUNDLE_IDENTIFIER = in.roundrob;
 				PRODUCT_NAME = RoundRobin;
+				PROVISIONING_PROFILE = "68396cc4-e150-435b-b7e0-e426c3f165d1";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore in.roundrob";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

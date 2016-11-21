@@ -1,0 +1,12 @@
+app_identifier "in.roundrob" # The bundle identifier of your app
+apple_id "jamoen7@gmail.com" # Your Apple email address
+
+team_id "W6VF934SEW"  # Developer Portal Team ID
+
+# you can even provide different app identifiers, Apple IDs and team names per lane:
+# More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md
+
+
+# Android
+json_key_file "android/app/round-robin-credentials.json"
+package_name "com.roundrobin"
