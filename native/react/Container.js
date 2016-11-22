@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import Editor from './Editor.js';
 import Header from './Header.js';
 
@@ -13,6 +13,7 @@ export default class EditorContainer extends Component {
     this.state = {
       prompt: '',
       text: '',
+      submitting: false,
     }
   }
   componentWillMount() {
@@ -22,8 +23,11 @@ export default class EditorContainer extends Component {
     getPrompt(callback.bind(this));
   }
   handleSubmit() {
-    submitCreation('Justin', this.state.prompt, this.state.text);
-    Actions.community();
+    this.setState({ submitting: true })
+    submitCreation('Justin', this.state.prompt, this.state.text).then(() => {
+      Actions.community();
+      this.setState({ submitting: false });
+    });
   }
   render() {
     return (
@@ -32,6 +36,7 @@ export default class EditorContainer extends Component {
           style={{ flex: 1 }}
           title={this.state.prompt}
           handleSubmit={() => this.handleSubmit()}
+          submitting={this.state.submitting}
         />
         <Editor
           style={{ flex: 1 }}

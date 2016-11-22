@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { header as styles } from './styles.js';
 
 export default class Header extends Component {
@@ -12,9 +12,12 @@ export default class Header extends Component {
         <StatusBar hidden={true} />
         <Text style={styles.button}>{leftText}</Text>
         <Text style={styles.title}>{centerText}</Text>
-        <TouchableOpacity onPress={this.props.handleSubmit} >
-          <Text style={styles.button}>{rightText}</Text>
-        </TouchableOpacity>
+          {this.props.submitting ?
+           <ActivityIndicator style={{ width: 60, textAlign: 'center'}} size="small" /> :
+            <TouchableOpacity onPress={this.props.handleSubmit} >
+              <Text style={styles.button}>{rightText}</Text>
+            </TouchableOpacity>
+          }
       </View>
     );
   }

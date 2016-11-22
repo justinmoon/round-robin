@@ -7,7 +7,7 @@ const database = firebase.database()
 export function submitCreation(username, prompt, body) {
   var ref = database.ref();
   var creations = ref.child('creations');
-  creations.push().set({ username, prompt, body });
+  return creations.push().set({ username, prompt, body });
 }
 
 export function fetchCreations(callback) {
