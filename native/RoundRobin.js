@@ -4,30 +4,37 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View
-} from 'react-native';
-import { Router, Scene } from 'react-native-router-flux';
+} from 'react-native'
+import { Router, Scene } from 'react-native-router-flux'
+import { Provider, connect } from 'react-redux'
 
 // import Test from './react/Test.js';
-import EditorContainer from './react/Container.js';
-import Community from './react/Community.js';
+import EditorContainer from './react/Container.js'
+import Community from './react/Community.js'
+
+import store from './redux/store.js'
+
+const RouterWithRedux = connect()(Router)
 
 export default class RoundRobin extends Component {
   render() {
     return (
-      <Router style={{ flex: 1 }}>
-        <Scene key="root" hideNavBar={true}>
-        <Scene key="editor" component={EditorContainer} initial={true} />
-        <Scene key="community" component={Community} />
-        </Scene>
-      </Router>
+      <Provider store={store}>
+        <RouterWithRedux style={{ flex: 1 }}>
+          <Scene key="root" hideNavBar={true}>
+          <Scene key="editor" component={EditorContainer} initial={true} />
+          <Scene key="community" component={Community} />
+          </Scene>
+        </RouterWithRedux>
+      </Provider>
     );
   }
 }
 
-AppRegistry.registerComponent('RoundRobin', () => RoundRobin);
+AppRegistry.registerComponent('RoundRobin', () => RoundRobin)

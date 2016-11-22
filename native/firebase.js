@@ -4,10 +4,11 @@ const firebaseApp = firebase.initializeApp(config.firebase);
 const database = firebase.database()
 
 
-export function submitCreation(username, prompt, body) {
+export function submitCreation(payload, callback) {
+  // TODO: validate payload shape
   var ref = database.ref();
-  var creations = ref.child('creations');
-  return creations.push().set({ username, prompt, body });
+  var creations = ref.child('creations')
+  return creations.push().set(payload)
 }
 
 export function fetchCreations(callback) {
@@ -22,13 +23,8 @@ export function fetchCreations(callback) {
   });
 }
 
-/**
- * How do we avoid these ugly callbacks?
- */
-export function getPrompt(callback) {
-  var shortISODateString = new Date().toISOString().substring(0, 10)
+export function fetchPrompts(callback) {
   var ref = database.ref();
-  ref.child('prompts')
-     .child(shortISODateString)
-     .on("value", snapshot => callback(snapshot.val()))
+  return ref.child('prompts')
+    .once("value", snapshot => callback(snapshot.val()))
 }
