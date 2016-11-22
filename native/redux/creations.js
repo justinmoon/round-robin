@@ -1,25 +1,55 @@
 import Symbol from 'es6-symbol'
-import { submitCreation as firebaseSubmitCreation } from '../firebase.js'
+import {
+  submitCreation as firebaseSubmitCreation,
+  fetchCreations as firebaseFetchCreations,
+} from '../firebase.js'
+
+/**
+ * Fetch creations
+ */
 
 const REQUEST_CREATIONS = Symbol()
 const RECEIVE_CREATIONS = Symbol()
 
-const SUBMITTING_CREATION = Symbol()
-const SUBMITTING_CREATION_SUCCESS = Symbol()
-
-function receiveCreations(creations) {
+function receiveCreationsActionCreator(creations) {
   return {
     type: RECEIVE_CREATIONS,
     creations,
   }
 }
 
-export function submitCreation(payload) {
+const requestCreationsAction = { type: REQUEST_CREATIONS }
+
+export function fetchCreations() {
   return dispatch => {
-    dispatch({ type: SUBMITTING_CREATION })
-    return firebaseSubmitCreation(payload, () => dispatch({ type: SUBMITTING_CREATION_SUCCESS }))
+    dispatch(requestCreationsAction)
+    firebaseFetchCreations()
+      .then(creations => {
+        dispatch(receiveCreationsActionCreator(creations))
+      })
   }
 }
+
+/**
+ * Submit creations
+ */
+
+const SUBMIT_CREATION = Symbol()
+const SUBMIT_CREATION_SUCCESS = Symbol()
+
+const submitCreationAction = { type: SUBMIT_CREATION }
+const submitCreationSuccessAction = { type: SUBMIT_CREATION_SUCCESS }
+
+export function submitCreation(payload) {
+  return dispatch => {
+    dispatch(submitCreationAction)
+    return firebaseSubmitCreation(payload, () => dispatch(submitCreationSuccessAction))
+  }
+}
+
+/**
+ * Reducer
+ */
 
 export function reducer(state = {
   fetching: false,
@@ -34,9 +64,9 @@ export function reducer(state = {
         creations: action.creations,
         fetching: false,
       })
-    case SUBMITTING_CREATION:
+    case SUBMIT_CREATION:
       return Object.assign({}, state, { posting: true })
-    case SUBMITTING_CREATION_SUCCESS:
+    case SUBMIT_CREATION_SUCCESS:
       return Object.assign({}, state, { posting: false })
     default:
       return state

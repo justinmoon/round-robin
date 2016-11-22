@@ -1,55 +1,65 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, StatusBar } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, View, Text, StatusBar } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { fetchCreations } from '../firebase.js';
-import { community as styles } from './styles.js';
+import { connect } from 'react-redux'
+import { fetchCreations } from '../redux/creations.js'
+import { community as styles } from './styles.js'
 
-class Creation extends Component {
-  render() {
-    return (
-      <View style={styles.page}>
-        <Header creation={this.props.creation} />
-        <Text style={styles.content}>{this.props.creation.body}</Text>
-      </View>
-    );
+const Creation = ({ creation }) => {
+  return (
+    <View style={styles.page}>
+      <Header creation={creation} />
+      <Text style={styles.content}>{creation.body}</Text>
+    </View>
+  );
+}
+
+// FIXME: Duplicate component
+const Header = ({ creation }) => {
+  return (
+    <View style={{
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      marginTop: 10,
+    }}>
+      <StatusBar hidden={true} />
+      <Text style={{ fontSize: 16, fontWeight: '500' }}>{creation.prompt}</Text>
+      <Text style={{ fontSize: 16 }}> by </Text>
+      <Text style={{ fontSize: 16, fontWeight: '500' }}>{creation.username}</Text>
+    </View>
+  );
+}
+
+const mapStateToProps = (state) => {
+  return {
+    creations: state.creations.creations,
   }
 }
 
-class Header extends Component {
-  render() {
-    const { prompt, username } = this.props.creation;
-    return (
-        <View style={{
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginTop: 10,
-        }}>
-        <StatusBar hidden={true} />
-        <Text style={{ fontSize: 16, fontWeight: '500' }}>{prompt}</Text>
-        <Text style={{ fontSize: 16 }}> by </Text>
-        <Text style={{ fontSize: 16, fontWeight: '500' }}>{username}</Text>
-      </View>
-    );
-  }
-}
-
-export default class extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      creations: []
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchCreations: () => {
+      dispatch(fetchCreations())
     }
   }
-  componentWillMount() {
-    var callback = creations => this.setState({ creations });
-    fetchCreations(callback)
-  }
-  render () {
-    return (
-      <Swiper showsPagination={false}>
-        {this.state.creations.map((creation, key) => <Creation creation={creation} key={key} />)}
-      </Swiper>
-    )
-  }
 }
+
+const Community = ({ creations }) => {
+    return (
+      <View>
+        <Swiper showsPagination={false}>
+          {creations.map((creation) =>
+            <Creation key={creation.id} creation={creation}/>
+          )}
+        </Swiper>
+      </View>
+    )
+}
+
+const ConnectedCommunity = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Community)
+
+export default ConnectedCommunity

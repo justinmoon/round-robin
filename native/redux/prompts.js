@@ -2,6 +2,9 @@ import Symbol from 'es6-symbol'
 import { fetchPrompts as firebaseFetchPrompts } from '../firebase.js'
 
 const REQUEST_PROMPTS = Symbol()
+
+const requestPrompts = { type: REQUEST_PROMPTS }
+
 const RECEIVE_PROMPTS = Symbol()
 
 function receivePrompts(prompts) {
@@ -13,8 +16,9 @@ function receivePrompts(prompts) {
 
 export function fetchPrompts() {
   return dispatch => {
-    dispatch({ type: REQUEST_PROMPTS })
-    firebaseFetchPrompts(prompts => dispatch(receivePrompts(prompts)))
+    dispatch(requestPrompts)
+    return firebaseFetchPrompts()
+      .then(prompts => dispatch(receivePrompts(prompts)))
   }
 }
 

@@ -17,6 +17,7 @@ import { Provider, connect } from 'react-redux'
 // import Test from './react/Test.js';
 import EditorContainer from './react/Container.js'
 import Community from './react/Community.js'
+import Loading from './react/Loading.js'
 
 import store from './redux/store.js'
 
@@ -28,8 +29,9 @@ export default class RoundRobin extends Component {
       <Provider store={store}>
         <RouterWithRedux style={{ flex: 1 }}>
           <Scene key="root" hideNavBar={true}>
-          <Scene key="editor" component={EditorContainer} initial={true} />
-          <Scene key="community" component={Community} />
+            <Scene key="loading" component={Loading} initial={true} />
+            <Scene key="editor" component={EditorContainer} />
+            <Scene key="community" component={Community} />
           </Scene>
         </RouterWithRedux>
       </Provider>

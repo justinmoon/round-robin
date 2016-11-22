@@ -1,8 +1,18 @@
 import * as firebase from 'firebase';
+
 import config from './config';
+
 const firebaseApp = firebase.initializeApp(config.firebase);
 const database = firebase.database()
 
+const extractSnapshotValue = snapshot => snapshot.val()
+const normalizeCreationsById = creationsById => {
+  return Object.keys(creationsById).reduce((creationsArray, id) => {
+    const creationWithId = Object.assign({}, creationsById[id], { id })
+    creationsArray.push(creationWithId)
+    return creationsArray
+  }, [])
+}
 
 export function submitCreation(payload, callback) {
   // TODO: validate payload shape
@@ -12,19 +22,16 @@ export function submitCreation(payload, callback) {
 }
 
 export function fetchCreations(callback) {
-  var ref = database.ref();
-  var creations = ref.child('creations');
-  return creations.once('value', function(data){
-    var items = [];
-    data.forEach(function(child){
-      items.push(child.val())
-    });
-    callback(items);
-  });
+  const ref = database.ref()
+  const creations = ref.child('creations')
+  return creations.once('value')
+    .then(extractSnapshotValue)
+    .then(normalizeCreationsById)
 }
 
-export function fetchPrompts(callback) {
+export function fetchPrompts() {
   var ref = database.ref();
   return ref.child('prompts')
-    .once("value", snapshot => callback(snapshot.val()))
+    .once("value")
+    .then(snapshot => snapshot.val())
 }
