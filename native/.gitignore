@@ -43,3 +43,6 @@ android/keystores/debug.keystore
 # Secrets
 android/app/round-robin-credentials.json
 android/app/round-robin-key.keystore
+
+# Config
+config/index.js

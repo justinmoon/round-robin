@@ -1,12 +1,6 @@
 import * as firebase from 'firebase';
-const config = {
-  apiKey: "AIzaSyCR6BydlVwkDyJmg45BzNN_wInKKr27iHs",
-  authDomain: "round-robin-a58a3.firebaseapp.com",
-  databaseURL: "https://round-robin-a58a3.firebaseio.com",
-  storageBucket: "round-robin-a58a3.appspot.com",
-  messagingSenderId: "36675682146"
-};
-const firebaseApp = firebase.initializeApp(config);
+import config from './config';
+const firebaseApp = firebase.initializeApp(config.firebase);
 const database = firebase.database()
 
 

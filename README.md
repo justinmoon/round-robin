@@ -10,9 +10,9 @@ If you don't already have yarn and React Native CLI,:
 in the `native` dir, run `yarn`
 
 after yarn build, run
-`react-native run-ios`
+`make ios-dev`
 or 
-`react-native run-android`
+`make android-dev`
 
 ## Shipping Builds
 
@@ -34,7 +34,7 @@ $ bundle install
 
 2. Ship it: 
 
-> fastlane ios beta
+> make ios-beta
 
 ### Shipping to Android Play Store
 
@@ -50,4 +50,4 @@ Setup:
 
 3. Ship it. From `native` directory run:
 
-> fastlane android alpha
+> make android-alpha
