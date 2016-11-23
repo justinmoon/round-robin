@@ -19,10 +19,10 @@ ios-dev: config-dev
 	react-native run-ios
 
 ios-beta: config-prod
-	fastline ios beta
+	fastlane ios beta
 
 android-dev: config-dev
 	react-native run-android
 
 android-alpha: config-prod
-	fastline android alpha
+	fastlane android alpha
