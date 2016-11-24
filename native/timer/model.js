@@ -6,4 +6,3 @@ export type Timer = {
 }
 
 export type State = Timer
-

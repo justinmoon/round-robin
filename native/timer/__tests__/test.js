@@ -1,52 +1,76 @@
 import timer from '../index.js'
 
+const second = 1 * 1000
+const minute = second * 60
+
+const someTime = Date.parse("2016-11-24T17:33:12.400Z")
+const threeMinutesTenSeconds = 3 * minute + 9 * second
 
 describe('selectors', () => {
-  // it('should create an action to add a todo', () => {
-  //   const text = 'Finish docs'
-  //   const expectedAction = {
-  //     type: types.ADD_TODO,
-  //     text
-  //   }
-  //   expect(actions.addTodo(text)).toEqual(expectedAction)
-  // })
-
-  const state = {
+  const baseState = {
     timer: {
-      remaining: 5 * 60 * 1000,
-      duration: 5 * 60 * 1000,
+      targetDuration: 5 * minute,
+      startTime: undefined,
+      stopTime: undefined,
+    }
+  }
+  const unstartedState = baseState
+  const startedState = {
+    timer: {
+      targetDuration: 5 * minute,
+      startTime: someTime,
+      stopTime: undefined,
+    }
+  }
+  const stoppedState = {
+    timer: {
+      targetDuration: 5 * minute,
+      startTime: someTime,
+      stopTime: someTime + threeMinutesTenSeconds,
     }
   }
 
-  it('remaining', () => {
-    const expected = state.timer.remaining
-    console.log(timer.selectors)
-    expect(timer.selectors.remaining(state)).toEqual(expected)
+  describe('timerStateSelector', () => {
+    it('stopped', () => {
+      const expected = timer.constants.STATE.STOPPED
+      expect(timer.selectors.timerStateSelector(stoppedState))
+        .toEqual(expected)
+    })
+    it('started', () => {
+      const expected = timer.constants.STATE.STARTED
+      expect(timer.selectors.timerStateSelector(startedState))
+        .toEqual(expected)
+    })
+    it('unstarted', () => {
+      const expected = timer.constants.STATE.UNSTARTED
+      expect(timer.selectors.timerStateSelector(unstartedState))
+        .toEqual(expected)
+    })
   })
 
-  it('minutes', () => {
-    const expected = 5
-    expect(timer.selectors.minutes(state.timer.remaining)).toEqual(expected)
+  describe('timeRemainingSelector', () => {
+    it('unstarted', () => {
+      const expected = baseState.timer.targetDuration
+      expect(timer.selectors.timeRemainingSelector(unstartedState))
+        .toEqual(expected)
+    })
+    it('started', () => {
+      const now = new Date().getTime()
+      const elapsed = now - startedState.timer.startTime
+      const expected = startedState.timer.targetDuration - elapsed
+
+      result = timer.selectors.timeRemainingSelector(startedState)
+
+      // +/- 10 milliseconds ...
+      expect(result).toBeLessThan(expected + 10)
+      expect(result).toBeGreaterThan(expected - 10)
+    })
   })
 
-  it('seconds', () => {
-    const expected = 0
-    expect(timer.selectors.seconds(state.timer.remaining)).toEqual(expected)
+  describe('formattedTimeRemainingSelector', () => {
+    // 5:00 - 3:09
+    const expected = '1:51'
+    const result = timer.selectors.formattedTimeRemainingSelector(stoppedState)
+    expect(result).toEqual(expected)
   })
-
-  it('minutesRemaining', () => {
-    const expected = 5
-    expect(timer.selectors.minutesRemaining(state)).toEqual(expected)
-  })
-
-  it('secondsRemaining', () => {
-    const expected = 0
-    expect(timer.selectors.secondsRemaining(state)).toEqual(expected)
-  })
-
-  it('formattedTimeRemainingSelector', () => {
-    const expected = '5:00'
-    expect(timer.selectors.formattedTimeRemainingSelector(state)).toEqual(expected)
-  })
-
 })

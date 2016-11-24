@@ -2,28 +2,23 @@ import * as t from './actionTypes.js'
 import { State } from './model';
 
 const initialState = {
-  duration: 5 * 60 * 1000,  // what to put here???
-  remaining: 5 * 60 * 1000,
-  running: false
+  startTime: undefined,
+  stopTime: undefined,
+  targetDuration: undefined,
 }
 
 // what's wrong with this syntax?
 const reducer = (state = initialState, action: any): State => {
   switch (action.type) {
-  case t.TICK:
-    const remaining = Math.max(0, state.remaining - 1000)
-    return Object.assign({}, state, { remaining })
-  case t.START:
-    return state
-  case t.PAUSE:
-    return state
-  case t.STOP:
-    // whose responsibility is this???
-    return state
-  case t.RESTART:
-    return state
-  default:
-    return state
+    // TODO: es6 syntax for child keys like { [action.duration] }???
+    case t.SET_TARGET_DURATION:
+      return Object.assign({}, state, { targetDuration: action.targetDuration })
+    case t.START:
+      return Object.assign({}, state, { startTime: action.now })
+    case t.STOP:
+      return Object.assign({}, state, { stopTime: action.now })
+    default:
+      return state
   }
 }
 

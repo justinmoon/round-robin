@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Animated } from 'react-native'
 
 // TODO: Put this in generic location
-class FadeOutView extends Component {
+export default class FadeOutView extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -12,7 +12,7 @@ class FadeOutView extends Component {
   componentDidMount() {
     Animated.timing(
       this.state.fadeAnim,
-      { toValue: 1 }
+      { toValue: 0, duration: 3000, delay: 6000 }
     ).start()
   }
   render() {

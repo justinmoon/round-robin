@@ -1,23 +1,71 @@
 import { createSelector } from 'reselect'
+import timerModule from '.'
 
-export const remaining = state => state.timer.remaining
-export const minutes = milliseconds => Math.floor(milliseconds / (60 * 1000))
-export const seconds = milliseconds => (milliseconds / 1000) % 60
+const timerSelector = state => state.timer
+export const nowSelector = () => new Date().getTime()
+
+const elapsedSelector = createSelector(
+  timerSelector,
+  timer => timer.startTime - new Date().getTime()
+)
+
+// FIXME: any small fuckups and this is undefined ...
+const durationSelector = createSelector(
+  timerSelector,
+  timer => timer.stopTime - timer.startTime
+)
+
+export const timerStateSelector = createSelector(
+  timerSelector,
+  (timer) => {
+    if (timer.stopTime) {
+      return timerModule.constants.STATE.STOPPED
+    } else if (timer.startTime) {
+      return timerModule.constants.STATE.STARTED
+    } else {
+      return timerModule.constants.STATE.UNSTARTED
+    }
+  }
+)
+
+export const timeRemainingSelector = createSelector(
+  nowSelector,
+  timerSelector,
+  timerStateSelector,
+  durationSelector,
+  (now, timer, timerState, duration) => {
+    switch (timerState) {
+      case timerModule.constants.STATE.UNSTARTED:
+        return timer.targetDuration
+      case timerModule.constants.STATE.STARTED:
+      const elapsed = new Date().getTime() - timer.startTime
+        return timer.targetDuration - elapsed
+      case timerModule.constants.STATE.STOPPED:
+        const remaining = timer.targetDuration - duration
+        // TODO: should this just be negative?
+        return Math.max(0, remaining)
+      }
+  }
+)
+
+
+export const minutes = milliseconds => Math.round(Math.floor(milliseconds / (60 * 1000)))
+export const seconds = milliseconds => Math.round((milliseconds / 1000) % 60)
 export const zeroPad = (num, places) => {
   var zero = places - num.toString().length + 1;
   return Array(+(zero > 0 && zero)).join("0") + num;
 }
 export const formatSecondsAndMinutes = (seconds, minutes) => {
-  return `${minutes}:${zeroPad(seconds, 2)}`
+    return `${minutes}:${zeroPad(seconds, 2)}`
 }
 
 export const secondsRemaining = createSelector(
-  remaining,
+  timeRemainingSelector,
   seconds,
 )
 
 export const minutesRemaining = createSelector(
-  remaining,
+  timeRemainingSelector,
   minutes,
 )
 
