@@ -25,6 +25,7 @@ const RouterWithRedux = connect()(Router)
 
 export default class RoundRobin extends Component {
   render() {
+    // return <Test />
     return (
       <Provider store={store}>
         <RouterWithRedux style={{ flex: 1 }}>

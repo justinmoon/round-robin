@@ -1,0 +1,6 @@
+export const SET_DURATION = 'timer/set-duration'
+export const START = 'timer/start'
+export const STOP = 'timer/stop'
+export const PAUSE = 'timer/pause'
+export const RESTART = 'timer/restart'
+export const TICK = 'timer/tick'
