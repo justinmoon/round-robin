@@ -1,1 +1,1 @@
-export { default as FadeOutTimer } from './FadeOutTimer.js'
+export { default as Timer } from './Timer'

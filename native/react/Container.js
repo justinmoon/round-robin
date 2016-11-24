@@ -14,6 +14,8 @@ const mapStateToProps = (state) => {
   return {
     prompt: state.prompts.prompts[shortISODateString],
     timer: state.timer,
+    reachedTargetDuration: timer.selectors.reachedTargetDurationSelector({timer: state.timer}),
+    countingDown: timer.selectors.countingDown({ timer: state.timer }),
   }
 }
 
@@ -23,6 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),
     startTimer: () => dispatch(timer.actions.start()),
     stopTimer: () => dispatch(timer.actions.stop()),
+    tick: () => dispatch(timer.actions.tick()),
   }
 }
 
@@ -53,9 +56,10 @@ class EditorContainer extends Component {
           title={this.props.prompt}
           handleSubmit={() => this.handleSubmit()}
           submitting={this.state.submitting}
-        />
-        <timer.components.FadeOutTimer
           timer={this.props.timer}
+          tick={this.props.tick}
+          countingDown={this.props.countingDown}
+          reachedTargetDuration={this.props.reachedTargetDuration}
         />
         <Editor
           style={{ flex: 1 }}

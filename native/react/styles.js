@@ -14,8 +14,8 @@ export const header = StyleSheet.create({
   },
   button: {
     width: 60,
-    fontSize: TITLE_FONT_SIZE,
-    textAlign: 'center',
+    fontSize: COMPOSITION_FONT_SIZE,
+    textAlign: 'right',
   },
   title: {
     flex: 1,

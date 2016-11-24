@@ -5,6 +5,7 @@ const initialState = {
   startTime: undefined,
   stopTime: undefined,
   targetDuration: undefined,
+  now: undefined
 }
 
 // what's wrong with this syntax?
@@ -17,6 +18,8 @@ const reducer = (state = initialState, action: any): State => {
       return Object.assign({}, state, { startTime: action.now })
     case t.STOP:
       return Object.assign({}, state, { stopTime: action.now })
+  case t.TICK:
+    return Object.assign({}, state, { now: action.now })
     default:
       return state
   }

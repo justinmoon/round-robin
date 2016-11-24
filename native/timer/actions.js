@@ -20,3 +20,10 @@ export const stop = () => {
     now: new Date().getTime(),
   }
 }
+
+export const tick = () => {
+  return {
+    type: t.TICK,
+    tick: new Date().getTime(),
+  }
+}

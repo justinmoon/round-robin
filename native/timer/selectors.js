@@ -6,7 +6,7 @@ export const nowSelector = () => new Date().getTime()
 
 const elapsedSelector = createSelector(
   timerSelector,
-  timer => timer.startTime - new Date().getTime()
+  timer => new Date().getTime() - timer.startTime
 )
 
 // FIXME: any small fuckups and this is undefined ...
@@ -30,10 +30,11 @@ export const timerStateSelector = createSelector(
 
 export const timeRemainingSelector = createSelector(
   nowSelector,
+  elapsedSelector,
   timerSelector,
   timerStateSelector,
   durationSelector,
-  (now, timer, timerState, duration) => {
+  (now, elapsed, timer, timerState, duration) => {
     switch (timerState) {
       case timerModule.constants.STATE.UNSTARTED:
         return timer.targetDuration
@@ -73,4 +74,17 @@ export const formattedTimeRemainingSelector = createSelector(
   secondsRemaining,
   minutesRemaining,
   formatSecondsAndMinutes,
+)
+
+export const reachedTargetDurationSelector = createSelector(
+  timeRemainingSelector,
+  timeRemaining => timeRemaining <= 0
+)
+
+export const countingDown = createSelector(
+  timeRemainingSelector,
+  timeRemaining => {
+    // FIXME this should be a constant
+    return timeRemaining < 8 * 1000
+  }
 )
