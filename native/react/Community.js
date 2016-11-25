@@ -2,20 +2,20 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, StatusBar } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
-import { fetchCreations } from '../reducers/compositions.js'
+import { fetchCompositions } from '../reducers/compositions.js'
 import styles from './styles'
 
-const Creation = ({ creation }) => {
+const Composition = ({ composition }) => {
   return (
     <View style={styles.community.page}>
-      <Header creation={creation} />
-      <Text style={styles.community.content}>{creation.body}</Text>
+      <Header composition={composition} />
+      <Text style={styles.community.content}>{composition.body}</Text>
     </View>
   );
 }
 
 // FIXME: Duplicate component
-const Header = ({ creation }) => {
+const Header = ({ composition }) => {
   return (
     <View style={{
       flex: 1,
@@ -24,33 +24,33 @@ const Header = ({ creation }) => {
       marginTop: 10,
     }}>
       <StatusBar hidden={true} />
-      <Text style={{ fontSize: 16, fontWeight: '500' }}>{creation.prompt}</Text>
+      <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.prompt}</Text>
       <Text style={{ fontSize: 16 }}> by </Text>
-      <Text style={{ fontSize: 16, fontWeight: '500' }}>{creation.username}</Text>
+      <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.username}</Text>
     </View>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    creations: state.creations.creations,
+    compositions: state.compositions.compositions,
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchCreations: () => {
-      dispatch(fetchCreations())
+    fetchCompositions: () => {
+      dispatch(fetchCompositions())
     }
   }
 }
 
-const Community = ({ creations }) => {
+const Community = ({ compositions }) => {
     return (
       <View>
         <Swiper showsPagination={false}>
-          {creations.map((creation) =>
-            <Creation key={creation.id} creation={creation}/>
+          {compositions.map((composition) =>
+            <Composition key={composition.id} composition={composition}/>
           )}
         </Swiper>
       </View>

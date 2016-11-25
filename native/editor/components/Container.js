@@ -7,7 +7,7 @@ import timer from '../../timer'
 import editor from '../index'
 
 // TODO: move this to editor module
-import { submitCreation } from '../../reducers/compositions.js'
+import { submitComposition } from '../../reducers/compositions.js'
 
 const mapStateToProps = (state) => {
   var shortISODateString = new Date().toISOString().substring(0, 10)
@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    submitCreation: (payload) => dispatch(editor.actions.submit(payload)).then(Actions.community),
+    submitComposition: (payload) => dispatch(editor.actions.submit(payload)).then(Actions.community),
     setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),
     startTimer: () => dispatch(timer.actions.start()),
     stopTimer: () => dispatch(timer.actions.stop()),
@@ -47,7 +47,7 @@ class EditorContainer extends Component {
   }
   handleSubmit() {
     const payload = { username: 'Justin', prompt: this.props.prompt, body: this.state.text }
-    this.props.submitCreation(payload)
+    this.props.submitComposition(payload)
   }
   render() {
     return (

@@ -6,9 +6,7 @@ import editor from '../editor'
 import community from '../community'
 
 const mapStateToProps = (state) => {
-  return {
-    creations: state.creations.creations,
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
