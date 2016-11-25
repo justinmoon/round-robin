@@ -8,10 +8,9 @@ const NAV_HEIGHT = 40;  // FIXME: get correct number and put in canonical consta
 export default class Editor extends Component {
   constructor(props) {
     super(props);
-    var {height, width} = Dimensions.get('window');
+    var { height } = Dimensions.get('window');
     this.state = {
-      text: 'i\nam\ndog',
-      textInputHeight: 200,  // FIXME: wild guess, but iOS is bugging on a render with undefined value here ...
+      textInputHeight: height - NAV_HEIGHT,
       screenHeight: height,
     };
   }
