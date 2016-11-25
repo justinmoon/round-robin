@@ -17,7 +17,7 @@ import { Provider, connect } from 'react-redux'
 import Community from './react/Community'
 import Loading from './react/Loading'
 
-import store from './redux/store'
+import store from './store'
 
 import editor from './editor'
 
