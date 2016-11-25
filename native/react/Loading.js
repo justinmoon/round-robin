@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import { fetchCreations } from '../reducers/compositions.js'
 import editor from '../editor'
+import community from '../community'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     hydrate: () => {
       return Promise.all([
-        dispatch(fetchCreations()),
+        dispatch(community.actions.fetchCompositions()),
         dispatch(editor.actions.fetchPrompts())
       ])
     },
