@@ -33,7 +33,7 @@ export default class Header extends Component {
         <StatusBar hidden={true} />
         <Text style={styles.header.button}></Text>
         <Text style={styles.header.title}>{this.props.title}</Text>
-        <View style={styles.header.button}>
+        <View style={{ width: 60 }}>
         {this.renderRightComponent()}
         </View>
       </View>

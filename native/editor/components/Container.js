@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    submitComposition: (payload) => dispatch(editor.actions.submit(payload)).then(Actions.community),
+    submitComposition: (payload) => dispatch(editor.actions.submit(payload)).then(Actions.communityExplanation),
     setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),
     startTimer: () => dispatch(timer.actions.start()),
     stopTimer: () => dispatch(timer.actions.stop()),

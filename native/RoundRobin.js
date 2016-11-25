@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import { Router, Scene } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
+import community from './community'
 
 // import Test from './react/Test.js';
 import Community from './react/Community'
@@ -33,6 +34,7 @@ export default class RoundRobin extends Component {
             <Scene key="loading" component={Loading} initial={true} />
             <Scene key="editor" component={editor.components.Container} />
             <Scene key="community" component={Community} />
+            <Scene key="communityExplanation" component={community.components.Explanation} />
           </Scene>
         </RouterWithRedux>
       </Provider>

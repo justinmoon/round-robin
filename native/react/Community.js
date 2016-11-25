@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, StatusBar } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
-import { fetchCompositions } from '../reducers/compositions.js'
 import styles from './styles'
 
 const Composition = ({ composition }) => {
@@ -25,6 +24,7 @@ const Header = ({ composition }) => {
     }}>
       <StatusBar hidden={true} />
       <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.prompt}</Text>
+      {/* FIXME: temporary until we add login and identity */}
       {/* <Text style={{ fontSize: 16 }}> by </Text> */}
       {/* <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.username}</Text> */}
     </View>
@@ -38,23 +38,50 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchCompositions: () => {
-      dispatch(fetchCompositions())
-    }
-  }
+  return {}
 }
 
-const Community = ({ compositions }) => {
+class Community extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      touchStartedAt: undefined
+    }
+  }
+  // FIXME: undefined passed in for state and context
+  // have to fall back to using refs ...
+  onTouchStart (e, state, context) {
+    const touchStartedAt = new Date().getTime()
+    this.setState({ touchStartedAt })
+  }
+  onTouchEnd (e, state, context) {
+    now = new Date().getTime()
+    const touchDuration = now - this.state.touchStartedAt
+    if (touchDuration < 200) {
+      console.log(this.refs.swiper.scrollBy)
+      this.refs.swiper.scrollBy(1, true)
+    }
+    const touchStartedAt = undefined
+    this.setState({ touchStartedAt })
+  }
+  render() {
+    const { compositions } = this.props
     return (
       <View>
-        <Swiper showsPagination={false}>
+        <Swiper
+          ref='swiper'
+          showsPagination={false}
+          loop={false}
+          onTouchStart={this.onTouchStart.bind(this)}
+          onTouchEnd={this.onTouchEnd.bind(this)}
+        >
           {compositions.map((composition) =>
             <Composition key={composition.id} composition={composition}/>
           )}
         </Swiper>
       </View>
     )
+  }
 }
 
 const ConnectedCommunity = connect(

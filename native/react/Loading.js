@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import editor from '../editor'
@@ -20,6 +20,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
+const style = {
+  fontSize: 20,
+  marginTop: 5,
+  fontWeight: 'bold',
+}
 
 class Loading extends Component {
   componentWillMount() {
@@ -27,7 +32,22 @@ class Loading extends Component {
   }
   render () {
     return (
-      <Text style={{ fontSize: 100 }}>Loading</Text>
+      <View style={{ flex: 1}}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={style}>
+          Write freely
+        </Text>
+        <Text style={style}>
+          About the prompt
+        </Text>
+        <Text style={style}>
+          For 5 minutes
+        </Text>
+      </View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+      </View>
     )
   }
 }
