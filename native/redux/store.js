@@ -2,13 +2,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import { reducer as creations } from './creations.js';
-import { reducer as prompts } from './prompts.js';
 import timer from '../timer'
+import editor from '../editor'
 
 const rootReducer = combineReducers({
   creations,
-  prompts,
   timer: timer.reducer,
+  // FIXME: what should we call this???
+  prompts: editor.reducer,
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))

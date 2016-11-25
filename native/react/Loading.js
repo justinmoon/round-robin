@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { fetchCreations } from '../redux/creations.js'
-import { fetchPrompts } from '../redux/prompts.js'
+import editor from '../editor'
 
 const mapStateToProps = (state) => {
   return {
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     hydrate: () => {
       return Promise.all([
         dispatch(fetchCreations()),
-        dispatch(fetchPrompts())
+        dispatch(editor.actions.fetchPrompts())
       ])
     },
   }

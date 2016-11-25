@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const COMPOSITION_FONT_SIZE = 14;
 const TITLE_FONT_SIZE = 16;
 
-export const header = StyleSheet.create({
+const header = StyleSheet.create({
   container: {
     marginLeft: 20,
     marginRight: 20,
@@ -25,7 +25,7 @@ export const header = StyleSheet.create({
   },
 });
 
-export const composition = StyleSheet.create({
+const editor = StyleSheet.create({
   input: {
     paddingLeft: 20,
     paddingRight: 20,
@@ -45,7 +45,7 @@ export const composition = StyleSheet.create({
   },
 })
 
-export const community = StyleSheet.create({
+const community = StyleSheet.create({
   content: {
     paddingLeft: 20,
     paddingRight: 20,
@@ -61,3 +61,9 @@ export const community = StyleSheet.create({
     fontWeight: 'bold',
   }
 })
+
+export default {
+  header,
+  editor,
+  community,
+}

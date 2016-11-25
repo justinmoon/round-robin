@@ -3,13 +3,13 @@ import { StyleSheet, View, Text, StatusBar } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 import { fetchCreations } from '../redux/creations.js'
-import { community as styles } from './styles.js'
+import styles from './styles'
 
 const Creation = ({ creation }) => {
   return (
-    <View style={styles.page}>
+    <View style={styles.community.page}>
       <Header creation={creation} />
-      <Text style={styles.content}>{creation.body}</Text>
+      <Text style={styles.community.content}>{creation.body}</Text>
     </View>
   );
 }

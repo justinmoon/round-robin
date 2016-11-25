@@ -1,8 +1,7 @@
-import Symbol from 'es6-symbol'
 import {
-  submitCreation as firebaseSubmitCreation,
   fetchCreations as firebaseFetchCreations,
 } from '../firebase.js'
+import editor from '../editor'
 
 /**
  * Fetch creations
@@ -30,22 +29,6 @@ export function fetchCreations() {
   }
 }
 
-/**
- * Submit creations
- */
-
-const SUBMIT_CREATION = Symbol()
-const SUBMIT_CREATION_SUCCESS = Symbol()
-
-const submitCreationAction = { type: SUBMIT_CREATION }
-const submitCreationSuccessAction = { type: SUBMIT_CREATION_SUCCESS }
-
-export function submitCreation(payload) {
-  return dispatch => {
-    dispatch(submitCreationAction)
-    return firebaseSubmitCreation(payload, () => dispatch(submitCreationSuccessAction))
-  }
-}
 
 /**
  * Reducer
@@ -64,9 +47,10 @@ export function reducer(state = {
         creations: action.creations,
         fetching: false,
       })
-    case SUBMIT_CREATION:
+    // TODO: constants from another module ... will this work?
+    case editor.constants.SUBMIT:
       return Object.assign({}, state, { posting: true })
-    case SUBMIT_CREATION_SUCCESS:
+    case editor.constants.SUBMIT_SUCCESS:
       return Object.assign({}, state, { posting: false })
     default:
       return state
