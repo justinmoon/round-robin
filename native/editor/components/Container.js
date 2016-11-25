@@ -39,8 +39,6 @@ class EditorContainer extends Component {
   }
   componentWillMount() {
     this.props.startTimer()
-    /* this.props.setTargetDuration(DEFAULT_WRITE_DURATION)*/
-    this.props.setTargetDuration(editor.constants.TEST_WRITE_DURATION)
   }
   componentWillUnmount() {
     this.props.stopTimer()

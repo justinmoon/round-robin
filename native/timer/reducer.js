@@ -1,10 +1,11 @@
 import * as t from './actionTypes.js'
 import { State } from './model';
+import config from '../config'
 
 const initialState = {
   startTime: undefined,
   stopTime: undefined,
-  targetDuration: undefined,
+  targetDuration: config.DEFAULT_TARGET_DURATION,
   now: undefined
 }
 

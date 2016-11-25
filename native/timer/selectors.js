@@ -50,8 +50,9 @@ export const timeRemainingSelector = createSelector(
 )
 
 
-export const minutes = milliseconds => Math.round(Math.floor(milliseconds / (60 * 1000)))
-export const seconds = milliseconds => Math.round((milliseconds / 1000) % 60)
+const minutes = ms => (ms/1000/60) << 0
+const seconds = ms => Math.floor((ms/1000) % 60)
+
 export const zeroPad = (num, places) => {
   var zero = places - num.toString().length + 1;
   return Array(+(zero > 0 && zero)).join("0") + num;

@@ -6,4 +6,5 @@ export default {
     storageBucket: "round-robin-prod.appspot.com",
     messagingSenderId: "224639425263",
   },
+  DEFAULT_TARGET_DURATION: (5 * 60 + 1) * 1000,  // 5:01 b/c shit's fucked up
 }
