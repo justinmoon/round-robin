@@ -25,8 +25,8 @@ const Header = ({ composition }) => {
     }}>
       <StatusBar hidden={true} />
       <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.prompt}</Text>
-      <Text style={{ fontSize: 16 }}> by </Text>
-      <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.username}</Text>
+      {/* <Text style={{ fontSize: 16 }}> by </Text> */}
+      {/* <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.username}</Text> */}
     </View>
   );
 }
