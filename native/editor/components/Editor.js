@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView } from 'react-native';
 
-import { submitCreation }  from '../../firebase';
-
 import styles from '../../react/styles';
 import editor from '../index'
 

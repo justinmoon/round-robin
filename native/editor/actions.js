@@ -1,15 +1,12 @@
 import actionTypes from './actionTypes.js'
-import {
-  fetchPrompts as firebaseFetchPrompts,
-  submitCreation as firebaseSubmitCreation,
-} from '../firebase.js'
+import api from '../api'
 
 const requestPrompts = { type: actionTypes.REQUEST_PROMPTS }
 
 export function fetchPrompts(dispatch) {
   return dispatch => {
     dispatch(requestPrompts)
-    return firebaseFetchPrompts()
+    return api.fetchPrompts()
       .then(prompts => dispatch(receivePrompts(prompts)))
   }
 }
@@ -27,6 +24,6 @@ const successfulSubmitAction = { type: actionTypes.SUBMIT_SUCCESS }
 export function submit(payload) {
   return dispatch => {
     dispatch(submitAction)
-    return firebaseSubmitCreation(payload, () => dispatch(successfulSubmitAction))
+    return api.submitComposition(payload, () => dispatch(successfulSubmitAction))
   }
 }

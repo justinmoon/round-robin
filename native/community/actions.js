@@ -1,7 +1,5 @@
 import * as t from './actionTypes'
-import {
-  fetchCreations as firebaseFetchCreations,
-} from '../firebase.js'
+import api from '../api.js'
 
 const requestCompositions = { type: t.REQUEST_COMPOSITIONS }
 
@@ -15,7 +13,7 @@ function receiveCompositions(compositions) {
 export function fetchCompositions() {
   return dispatch => {
     dispatch(requestCompositions)
-    firebaseFetchCreations()     // FIXME
+    api.fetchCompositions()     // FIXME
       .then(compositions => {
         dispatch(receiveCompositions(compositions))
       })
