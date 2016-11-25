@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, StatusBar } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
-import { fetchCreations } from '../redux/creations.js'
+import { fetchCreations } from '../reducers/compositions.js'
 import styles from './styles'
 
 const Creation = ({ creation }) => {

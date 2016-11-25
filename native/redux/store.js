@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
-import { reducer as creations } from './creations.js';
+import { reducer as creations } from '../reducers/compositions.js';
 import timer from '../timer'
 import editor from '../editor'
 
