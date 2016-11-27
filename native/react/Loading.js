@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import editor from '../editor'
 import community from '../community'
+import Login from './Login.js'
 
 const mapStateToProps = (state) => {
   return {}
@@ -28,7 +29,8 @@ const style = {
 
 class Loading extends Component {
   componentWillMount() {
-    this.props.hydrate().then(Actions.editor)
+    /* this.props.hydrate().then(Actions.editor)*/
+    this.props.hydrate()
   }
   render () {
     return (
@@ -44,9 +46,13 @@ class Loading extends Component {
           For 5 minutes
         </Text>
       </View>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
+
+      {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <ActivityIndicator size="large" />
+      </View> */}
+
+      <Login />
+
       </View>
     )
   }
