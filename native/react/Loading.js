@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 import editor from '../editor'
 import community from '../community'
 import Login from './Login.js'
+import auth from '../auth'
+
+import SplashScreen from 'react-native-splash-screen'
 
 const mapStateToProps = (state) => {
   return {}
@@ -18,6 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(editor.actions.fetchPrompts())
       ])
     },
+    checkCurrentUser: auth.checkCurrentUser,
   }
 }
 
@@ -31,6 +35,8 @@ class Loading extends Component {
   componentWillMount() {
     /* this.props.hydrate().then(Actions.editor)*/
     this.props.hydrate()
+    this.props.checkCurrentUser()
+    setTimeout(SplashScreen.hide, 3000)
   }
   render () {
     return (
@@ -51,7 +57,7 @@ class Loading extends Component {
       <ActivityIndicator size="large" />
       </View> */}
 
-      <Login />
+      <Login onLoginSuccess={Actions.editor}/>
 
       </View>
     )

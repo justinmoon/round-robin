@@ -1,35 +1,29 @@
 import React from 'react'
 import { View } from 'react-native'
+import { LoginButton } from 'react-native-fbsdk'
+import { Actions } from 'react-native-router-flux'
 
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-  AccessToken
-} = FBSDK;
+import auth from '../auth'
 
 var Login = React.createClass({
   render: function() {
     return (
-        <View>
+      <View>
         <LoginButton
-      publishPermissions={["publish_actions"]}
-      onLoginFinished={
-        (error, result) => {
-          if (error) {
-            alert("login has error: " + result.error);
-          } else if (result.isCancelled) {
-            alert("login is cancelled.");
-          } else {
-            AccessToken.getCurrentAccessToken().then(
-              (data) => {
-                alert(data.accessToken.toString())
+          publishPermissions={["publish_actions"]}
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                alert("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                alert("login is cancelled.");
+              } else {
+                auth.propagate().then(this.props.onLoginSuccess)
               }
-            )
+            }
           }
-        }
-      }
-      onLogoutFinished={() => alert("logout.")}/>
-        </View>
+          onLogoutFinished={() => alert("logout.")}/>
+      </View>
     );
   }
 });
