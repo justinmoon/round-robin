@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, Text, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, TouchableWithoutFeedback, Keyboard } from 'react-native'
 
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux';
-import dismissKeyboard from 'react-native-dismiss-keyboard'
 
 const mapStateToProps = (state) => {
   return {}
@@ -24,7 +23,7 @@ const style = {
 }
 
 const Explanation = ({ achknowledge }) => {
-  dismissKeyboard()  // android
+  Keyboard.dismiss()  // android
   return (
     <TouchableWithoutFeedback onPress={achknowledge}>
       <View style={{ flex: 1 }}>
