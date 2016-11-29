@@ -16,22 +16,22 @@ import community from './community'
 
 // import Test from './react/Test.js';
 import Community from './react/Community'
-import Loading from './react/Loading'
 
 import store from './store'
 
 import editor from './editor'
+import login from './login'
 
 const RouterWithRedux = connect()(Router)
 
 export default class RoundRobin extends Component {
   render() {
-    // return <Test />
     return (
       <Provider store={store}>
         <RouterWithRedux style={{ flex: 1 }}>
           <Scene key="root" hideNavBar={true}>
-            <Scene key="loading" component={Loading} initial={true} />
+            <Scene key="loading" component={login.components.Loading} initial={true} />
+            <Scene key="login" component={login.components.Container} />
             <Scene key="editor" component={editor.components.Container} />
             <Scene key="community" component={Community} />
             <Scene key="communityExplanation" component={community.components.Explanation} />
