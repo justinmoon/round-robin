@@ -1,12 +1,12 @@
 import actionTypes from './actionTypes.js'
-import api from '../api'
+import network from '../network'
 
 const requestPrompts = { type: actionTypes.REQUEST_PROMPTS }
 
 export function fetchPrompts(dispatch) {
   return dispatch => {
     dispatch(requestPrompts)
-    return api.fetchPrompts()
+    return network.fetchPrompts()
       .then(prompts => dispatch(receivePrompts(prompts)))
   }
 }
@@ -24,6 +24,6 @@ const successfulSubmitAction = { type: actionTypes.SUBMIT_SUCCESS }
 export function submit(payload) {
   return dispatch => {
     dispatch(submitAction)
-    return api.submitComposition(payload, () => dispatch(successfulSubmitAction))
+    return network.submitComposition(payload, () => dispatch(successfulSubmitAction))
   }
 }

@@ -14,13 +14,4 @@ const listen = (callback) => {
   )
 }
 
-const reducer = (connected = false, action: any): State => {
-  switch (action.type) {
-    case CONNECTIVITY_CHANGE:
-      return action.connected
-    default:
-      return connected
-  }
-}
-
-export default { listen, reducer, connectivityChange }
+export default { listen, connectivityChange, CONNECTIVITY_CHANGE }

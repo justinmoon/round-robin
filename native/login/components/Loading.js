@@ -53,7 +53,6 @@ class Loading extends Component {
     SplashScreen.hide()
   }
   componentWillReceiveProps({loaded, loggedIn, loggedOut}) {
-    console.log(loaded, loggedIn)
     if (loaded && loggedIn) {
       return Actions.editor()
     }

@@ -8,7 +8,8 @@ import login from '../index'
 
 const mapStateToProps = (state) => {
   return {
-    connected: state.connected
+    connected: state.connected,
+    loginPressable: !login.selectors.loggingIn(state),
   }
 }
 
@@ -23,13 +24,14 @@ class Container extends Component {
     SplashScreen.hide()
   }
   render () {
+    const onPress = this.props.loginPressable ? this.props.login : undefined
     return (
       <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
         <View style={{ flex: 0.80 }}>
         <login.components.Marketing />
         </View>
         <View style={{ flex: 0.20 }}>
-        <login.components.Button onPress={this.props.login}/>
+        <login.components.Button onPress={onPress}/>
         </View>
       </View>
     )

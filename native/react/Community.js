@@ -58,7 +58,7 @@ class Community extends React.Component {
     now = new Date().getTime()
     const touchDuration = now - this.state.touchStartedAt
     if (touchDuration < 200) {
-      console.log(this.refs.swiper.scrollBy)
+      // FIXME: this can overshoot ...
       this.refs.swiper.scrollBy(1, true)
     }
     const touchStartedAt = undefined

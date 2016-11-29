@@ -3,7 +3,7 @@ import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
 import config from './config';
 
-const firebaseApp = firebase.initializeApp(config.firebase, 'new');
+const firebaseApp = firebase.initializeApp(config.firebase);
 const database = firebase.database()
 
 const facebookLogin = () => {
@@ -15,8 +15,11 @@ const facebookLogin = () => {
 }
 
 const logout = () => {
-  LoginManager.logOut()
-  firebase.auth().signOut()
+  // TODO: is it ok that these two fire simultaneously?
+  return Promise.all([
+    LoginManager.logOut(),
+    firebase.auth().signOut(),
+  ])
 }
 
 const firebaseLogin = () => {
