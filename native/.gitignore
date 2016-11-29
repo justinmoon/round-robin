@@ -46,3 +46,4 @@ android/app/round-robin-key.keystore
 
 # Config
 config/index.js
+*.keystore
