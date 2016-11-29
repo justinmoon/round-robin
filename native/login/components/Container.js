@@ -24,15 +24,13 @@ class Container extends Component {
   }
   render () {
     return (
-      <View style={{ flex: 1}}>
-
+      <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
+        <View style={{ flex: 0.80 }}>
         <login.components.Marketing />
-        {/* <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator size="large" />
-        </View> */}
-
+        </View>
+        <View style={{ flex: 0.20 }}>
         <login.components.Button onPress={this.props.login}/>
-
+        </View>
       </View>
     )
   }

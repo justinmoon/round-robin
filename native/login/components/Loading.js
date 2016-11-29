@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch, props) => {
 
 class Loading extends Component {
   componentWillMount() {
-    //this.props.dispatch(login.actions.logout())  // #testinghacks
+    this.props.dispatch(login.actions.logout())
 
     // mount network listeners
     this.props.listenForConnectivity()
