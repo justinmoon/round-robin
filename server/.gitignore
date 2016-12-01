@@ -1,2 +1,3 @@
 venv
 .cache
+./rr/secrets.py
