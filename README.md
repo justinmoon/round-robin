@@ -1,6 +1,6 @@
 # README
 
-## Running for the first time.
+## Running movile app for the first time.
 
 If you don't already have yarn and React Native CLI,:
 
@@ -51,3 +51,39 @@ Setup:
 3. Ship it. From `native` directory run:
 
 > make android-alpha
+
+
+Running Backend for the first time
+
+I modeled V1 infrastructure & developer environment off of this tutorial: https://realpython.com/blog/python/dockerizing-flask-with-compose-and-machine-from-localhost-to-the-cloud/
+
+Make sure you have Docker, Docker Compose and Docker Machine installed
+- If not, install Docker for Mac (which includes Docker Compose) and Docker Machine
+
+Create the developer VM
+$ docker-machine create -d virtualbox round-robin-dev
+
+See your newly born VM
+$ docker-machine ls
+
+Point the docker client at the `round-robin-dev` machine
+$ eval "$(docker-machine env dev)"
+
+Notice that there is a * under the "active" column
+$ docker-machine ls
+
+Next, run this command:
+$ docker-compose up
+
+Build images for each service defined in docker-compose.yml:
+$ docker-compose build
+
+Next, Run:
+$ docker-compose up
+
+This creates, starts, and attaches to containers for all services defined in the docker-compose.yml file. Pass a "-d" flag to run in the background.
+
+Your can grab the IP address to test the backend using:
+$ docker-machine ip round-robin-dev
+
+Load that in your browser and verify that the backend is running

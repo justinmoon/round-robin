@@ -1,8 +1,8 @@
 from flask import Flask
 
-from db import db
-from config import BaseConfig
-from routes import routes
+from rr.db import db
+from rr.config import BaseConfig
+from rr.routes import routes
 
 app = Flask(__name__)
 app.config.from_object(BaseConfig)
