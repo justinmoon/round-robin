@@ -9,4 +9,5 @@ itsdangerous==0.24
 psycopg2==2.6
 py==1.4.31
 pytest==3.0.4
+requests==2.12.3
 uuid==1.30

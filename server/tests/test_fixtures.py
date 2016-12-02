@@ -1,7 +1,9 @@
 import pytest
+import datetime as dt
 
 from rr.factory import create_app
 from rr.db import db as _db
+from rr.models import User, Composition, Prompt
 
 
 @pytest.fixture(scope='session')
@@ -23,7 +25,9 @@ def app(request):
     return app
 
 
-@pytest.fixture(scope='session')
+# FIXME: scope='session'
+
+@pytest.fixture(scope='function')
 def db(app, request):
     """Session-wide test database."""
 
@@ -55,3 +59,15 @@ def session(db, request):
 
     request.addfinalizer(teardown)
     return session
+
+
+def make_prompt(date=dt.date.today(), prompt='freighter'):
+    return Prompt(date=date, prompt=prompt)
+
+
+def make_user(name='susan', pic_url='http://google.com'):
+    return User(name=name, pic_url=pic_url)
+
+
+def make_composition(*, user, prompt, body='I went hunting'):
+    return Composition(user=user, prompt=prompt, body=body)
