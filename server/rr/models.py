@@ -12,11 +12,11 @@ friendship = db.Table(
 class User(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
     fb_id = db.Column('facebook_id', db.String, unique=True)
-    fb_access_token = db.Column('facebook_access_token', db.String)
+    fb_access_token = db.Column('facebook_access_token', db.String, nullable=False)
     created_at = db.Column('create_date', db.DateTime, default=db.func.now())
     # should these two be nullable?
-    name = db.Column('name', db.String)
-    pic_url = db.Column('pic_url', db.String)
+    name = db.Column('name', db.String, nullable=False)
+    pic_url = db.Column('pic_url', db.String, nullable=False)
     compositions = db.relationship('Composition',
         backref=db.backref('user', lazy='joined'), lazy='dynamic')
     friends = db.relationship("User", secondary=friendship,
@@ -42,6 +42,11 @@ class User(db.Model):
 
     def __repr__(self):
         return "User(%r)" % self.name
+
+    def to_dict(self):
+        return {
+
+        }
 
 
 friendship_union = db.select([
@@ -78,6 +83,10 @@ class Composition(db.Model):
         secondary=views,
         backref="views")
 
+    def to_dict(self):
+        return {
+
+        }
 
 class Prompt(db.Model):
     # TODO: unique date constraint
@@ -87,4 +96,8 @@ class Prompt(db.Model):
     compositions = db.relationship('Composition',
         backref=db.backref('prompt', lazy='joined'), lazy='dynamic')
 
+    def to_dict(self):
+        return {
+
+        }
 
