@@ -17,7 +17,7 @@ graph_me_success = {
     },
 }
 
-with_friends = \
+graph_me_with_friends = \
 {'friends': {'data': [{'id': '109033529586736',
                        'name': 'Charlie Aladdjbfghcdj Moidusen'},
                       {'id': '106626909828352',

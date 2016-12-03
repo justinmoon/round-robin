@@ -47,7 +47,8 @@ def session(db, request):
 @pytest.yield_fixture(scope='function')
 def app():
     """An application for the tests."""
-    test_config = {}
+    test_config = {
+    }
     _app = create_app('test', test_config)
     ctx = _app.test_request_context()
     ctx.push()
@@ -57,13 +58,18 @@ def app():
     ctx.pop()
 
 
+@pytest.fixture
+def client(app):
+    return app.test_client()
+
+
 def make_prompt(date=dt.date.today(), prompt='freighter'):
     return Prompt(date=date, prompt=prompt)
 
 
-def make_user(name='susan', pic_url='http://google.com'):
-    string = uuid.uuid4()
-    return User(name=name, pic_url=pic_url, fb_id=string, fb_access_token=string)
+def make_user(name='susan', pic_url='http://google.com',
+              fb_access_token=uuid.uuid4(), fb_id=uuid.uuid4()):
+    return User(name=name, pic_url=pic_url, fb_id=fb_id, fb_access_token=fb_access_token)
 
 
 def make_composition(*, user, prompt, body='I went hunting'):

@@ -1,53 +1,61 @@
 import requests
 from flask import jsonify, Blueprint
-from flask import request
+from flask import request, jsonify
+from flask_login import login_user, LoginManager
 
-from rr import queries as q
+from rr.queries import user_by_fb_id
 from rr.models import User
+from rr.db import db
 
 
 auth = Blueprint('auth', __name__)
 
-def test_fb_token(token):
+login_manager = LoginManager()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.query(User).get(user_id)
+
+
+def handle_facebook_login(token):
     url = 'https://graph.facebook.com/me?fields=id,name,picture,friends&access_token={}'.format(token)
     res = requests.get(url)
     print(res.status_code)
 
+    data = res.json()
+
     # if token works, log them in
     if res.status_code == 200:
+
         # check if user already exists
-        u = q.user_by_fb_id(res['id'])
+        u = user_by_fb_id(data['id'])
         if not u:
-            # grab id's at append
-            u = q.make_user(
-                fb_id=res['id'],
+            u = User(
+                fb_id=data['id'],
                 fb_access_token=token,
-                name=res['name'],
-                pic_url=res['picture']['data']['url'],
-                fb_friend_ids=[f['id'] for f in res['friends']['data']],
+                name=data['name'],
+                pic_url=data['picture']['data']['url'],
             )
-        # TODO: log user in
 
-        # TODO: publish some kind of signal
 
-        
+        fb_ids = [f['id'] for f in data['friends']['data']]
+        u.update_fb_friends(fb_ids)
+        u.fb_access_token = token
 
-        return '', 200
+        db.session.add(u)
+        db.session.commit()
+
+        login_user(u)
+
+        return jsonify(u)
     else:
-        return 'bad', 401
+        return jsonify({'error': data['error']['message']}), 401
 
 
 @auth.route('/login', methods=['POST'])
 def login():
     fb_access_token = request.json['access_token']
-    test_fb_token(fb_access_token)
-    return 'login'
-
-
-@auth.route('/fb-oauth')
-def fb_oauth():
-    print('fb-oauth')
-    return 'fb-oauth'
+    return handle_facebook_login(fb_access_token)
 
 
 @auth.route('/logout')

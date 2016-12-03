@@ -1,3 +1,4 @@
+from flask_login import UserMixin
 from rr.db import db
 
 
@@ -9,12 +10,11 @@ friendship = db.Table(
               primary_key=True)
 )
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column('id', db.Integer, primary_key=True)
-    fb_id = db.Column('facebook_id', db.String, unique=True)
-    fb_access_token = db.Column('facebook_access_token', db.String, nullable=False)
+    fb_id = db.Column('fb_id', db.String, unique=True)
+    fb_access_token = db.Column('fb_access_token', db.String, nullable=False)
     created_at = db.Column('create_date', db.DateTime, default=db.func.now())
-    # should these two be nullable?
     name = db.Column('name', db.String, nullable=False)
     pic_url = db.Column('pic_url', db.String, nullable=False)
     compositions = db.relationship('Composition',
@@ -33,6 +33,10 @@ class User(db.Model):
     def add_friends_from_fb_ids(self, fb_ids):
         friends = db.session.query(User).filter(User.fb_id.in_(fb_ids))
         self.add_friends(friends)
+
+    def update_fb_friends(self, fb_ids):
+        import rr.queries as q
+        self.friends = q.users_by_fb_ids(fb_ids).all()
 
     def viewed(self, composition):
         return self in composition.user_views
@@ -100,4 +104,3 @@ class Prompt(db.Model):
         return {
 
         }
-

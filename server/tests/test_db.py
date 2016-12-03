@@ -17,7 +17,7 @@ def test_created_at(app, db, session):
 
 
 def make_users(n):
-    return (User(name='u{}'.format(i), fb_id='fb{}'.format(i))
+    return (make_user(name='u{}'.format(i), fb_id='fb{}'.format(i))
             for i in range(1, n+1))
 
 
