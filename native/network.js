@@ -6,45 +6,32 @@ import config from './config';
 const firebaseApp = firebase.initializeApp(config.firebase);
 const database = firebase.database()
 
-const facebookLogin = () => {
+
+// TODO: something with the accepted scopes ...
+function fbLogin() {
   const permissions = ['public_profile', 'user_friends', 'email']
   return LoginManager.logInWithReadPermissions(permissions)
-    .then(r => {
-      return r
-    })
 }
 
-const logout = () => {
-  // TODO: is it ok that these two fire simultaneously?
-  return Promise.all([
-    LoginManager.logOut(),
-    firebase.auth().signOut(),
-  ])
+function getAccessToken() {
+  return AccessToken.getCurrentAccessToken()
+    .then(data => data.accessToken.toString())
 }
 
-const firebaseLogin = () => {
-  return AccessToken.getCurrentAccessToken().then(
-    (data) => {
-      var access_token = data.accessToken.toString()
-      var credential = firebase.auth.FacebookAuthProvider.credential(access_token);
-      return firebase.auth().signInWithCredential(credential)
-        .then(r => {
-          // TODO
-          return r
-        })
-        .catch(error => {
-          // TODO
-          console.log(error)
-        })
-    }
+function rrLogin(accessToken) {
+  const body = JSON.stringify({ access_token: accessToken })
+  const headers = {'Content-type': 'application/json'}
+  return fetch(
+    config.baseUrl + '/login',
+    { method: 'post', headers, body },
   )
 }
 
-const login = () => {
-  return facebookLogin()
-    .then(firebaseLogin)
+function login() {
+  return fbLogin()
+    .then(getAccessToken)
+    .then(rrLogin)
 }
-
 
 const extractSnapshotValue = snapshot => snapshot.val()
 
