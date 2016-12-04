@@ -1,7 +1,6 @@
 import requests
-from flask import jsonify, Blueprint
-from flask import request, jsonify
-from flask_login import login_user, LoginManager
+from flask import jsonify, Blueprint, request, jsonify
+from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 
 from rr.queries import user_by_fb_id
 from rr.models import User
@@ -58,6 +57,13 @@ def login():
     return handle_facebook_login(fb_access_token)
 
 
-@auth.route('/logout')
+@auth.route('/current-user')
+@login_required
+def session():
+    return jsonify(current_user)
+
+
+@auth.route('/logout', methods=['post'])
 def logout():
-    return 'logout'
+    logout_user()
+    return ''

@@ -1,7 +1,11 @@
 import network from '../network'
 import * as t from './actionTypes'
 import { Actions } from 'react-native-router-flux'
+import users from '../users'
 
+const fetchSessionAttempt = { type: t.SESSION.ATTEMPT }
+const fetchSessionSuccess = { type: t.SESSION.SUCCESS }
+const fetchLoginFailure = { type: t.SESSION.FAILURE }
 
 const loginAttempt = { type: t.LOGIN.ATTEMPT }
 const loginComplete = { type: t.LOGIN.COMPLETE }
@@ -11,10 +15,22 @@ const logoutAttempt = { type: t.LOGOUT.ATTEMPT }
 const logoutComplete = { type: t.LOGOUT.COMPLETE }
 const logoutError = error => ({ type: t.LOGOUT.ERROR, error })
 
+function fetchCurrentUser() {
+  return dispatch => {
+    dispatch(fetchSessionAttempt)
+    return network.fetchCurrentUser()
+      .then(response => response.json())
+      .then(user => dispatch(users.actions.receiveCurrentUser(user)))
+      .then(() => dispatch(fetchSessionSuccess))
+  }
+}
+
 const login = () => {
   return dispatch => {
     dispatch(loginAttempt)
     return network.login()
+      .then(response => response.json())
+      .then(user => dispatch(users.actions.receiveCurrentUser(user)))
       .then(() => dispatch(loginComplete))
       .catch(error => dispatch(loginError(error)))
   }
@@ -30,6 +46,7 @@ const logout = () => {
 }
 
 export {
+  fetchCurrentUser,
   login,
   logout,
 }

@@ -7,9 +7,15 @@ const firebaseApp = firebase.initializeApp(config.firebase);
 const database = firebase.database()
 
 
+function fetchCurrentUser() {
+  return fetch(config.baseUrl + '/current-user')
+}
+
+
 // TODO: something with the accepted scopes ...
 function fbLogin() {
   const permissions = ['public_profile', 'user_friends', 'email']
+  // TODO: this returns {isCancelled: true} if user cancels. I need to handle this.
   return LoginManager.logInWithReadPermissions(permissions)
 }
 
@@ -31,6 +37,10 @@ function login() {
   return fbLogin()
     .then(getAccessToken)
     .then(rrLogin)
+}
+
+function logout() {
+  return fetch(config.baseUrl + '/logout', { method: 'post' })
 }
 
 const extractSnapshotValue = snapshot => snapshot.val()
@@ -68,9 +78,9 @@ const fetchPrompts = () =>{
 
 
 export default {
+  fetchCurrentUser,
   login,
   logout,
-  firebaseLogin,
   submitComposition,
   fetchCompositions,
   fetchPrompts,

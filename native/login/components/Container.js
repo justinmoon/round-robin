@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    login: () => dispatch(login.actions.login()).then(Actions.editor),
+    login: () => dispatch(login.actions.login()).then(() => Actions.editor()),
   }
 }
 

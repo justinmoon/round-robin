@@ -4,13 +4,14 @@ from rr.db import db
 
 friendship = db.Table(
     'friendships', db.metadata,
-    db.Column('friend_a_id', db.Integer, db.ForeignKey('user.id'),
+    db.Column('friend_a_id', db.Integer, db.ForeignKey('users.id'),
               primary_key=True),
-    db.Column('friend_b_id', db.Integer, db.ForeignKey('user.id'),
+    db.Column('friend_b_id', db.Integer, db.ForeignKey('users.id'),
               primary_key=True)
 )
 
 class User(db.Model, UserMixin):
+    __tablename__ = 'users'
     id = db.Column('id', db.Integer, primary_key=True)
     fb_id = db.Column('fb_id', db.String, unique=True)
     fb_access_token = db.Column('fb_access_token', db.String, nullable=False)
@@ -18,7 +19,7 @@ class User(db.Model, UserMixin):
     name = db.Column('name', db.String, nullable=False)
     pic_url = db.Column('pic_url', db.String, nullable=False)
     compositions = db.relationship('Composition',
-        backref=db.backref('user', lazy='joined'), lazy='dynamic')
+        backref=db.backref('users', lazy='joined'), lazy='dynamic')
     friends = db.relationship("User", secondary=friendship,
                            primaryjoin=id==friendship.c.friend_a_id,
                            secondaryjoin=id==friendship.c.friend_b_id,
@@ -73,13 +74,13 @@ User.all_friends = db.relationship('User',
 
 views = db.Table('view', db.metadata,
                  db.Column('composition_id', db.Integer, db.ForeignKey('composition.id')),
-                 db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
+                 db.Column('user_id', db.Integer, db.ForeignKey('users.id'))
                  )
 
 class Composition(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
     created_at = db.Column('create_date', db.DateTime, default=db.func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     prompt_id = db.Column(db.Integer, db.ForeignKey('prompt.id'), nullable=False)
     body = db.Column(db.Text, nullable=False)
     user_views = db.relationship(

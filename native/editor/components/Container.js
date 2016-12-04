@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux'
 
+import SplashScreen from 'react-native-splash-screen'
+
 import timer from '../../timer'
 import editor from '../index'
 
@@ -38,6 +40,7 @@ class EditorContainer extends Component {
     }
   }
   componentWillMount() {
+    SplashScreen.hide()
     this.props.startTimer()
   }
   componentWillUnmount() {

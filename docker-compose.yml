@@ -1,3 +1,4 @@
+
 server:
   restart: always
   build: ./server
@@ -5,7 +6,8 @@ server:
     - "8000"
   links:
     - postgres:postgres
-  command: /usr/local/bin/gunicorn -w 2 -b :8000 rr.app:app
+  command: bash -c 'sleep 5 && PYTHONPATH=. python3 rr/manage.py db upgrade && /usr/local/bin/gunicorn -w 2 -b :8000 rr.app:app'
+  # command: /usr/local/bin/gunicorn -w 2 -b :8000 rr.app:app
 
 nginx:
   restart: always

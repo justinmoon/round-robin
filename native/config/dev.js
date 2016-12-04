@@ -7,6 +7,6 @@ export default {
     messagingSenderId: "36675682146"
   },
   DEFAULT_TARGET_DURATION: 20 * 1000,  // 20 seconds
-  baseUrl: 'http://192.168.99.100/',
+  baseUrl: 'http://192.168.99.100',
   // DEFAULT_TARGET_DURATION: 1000,  // 20 seconds
 }
