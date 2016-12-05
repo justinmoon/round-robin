@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, StatusBar } from 'react-native'
+import { StyleSheet, ScrollView, View, Text, StatusBar } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 import styles from './styles'
@@ -9,6 +9,7 @@ const Header = ({ composition }) => {
   const name = composition.author.name.split(' ')[0]
   return (
     <View style={{
+      flex: 1,
       height: 20,
       paddingTop: 10,
       flexDirection: 'row',
@@ -28,7 +29,9 @@ const Composition = ({ composition }) => {
   return (
     <View style={styles.community.page}>
       <Header composition={composition} />
+      <ScrollView>
       <Text style={styles.community.content}>{composition.body}</Text>
+    </ScrollView>
     </View>
   );
 }
@@ -70,8 +73,9 @@ class Community extends React.Component {
   render() {
     const { compositions } = this.props
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Swiper
+          style={{ flex: 1 }}
           ref='swiper'
           showsPagination={false}
           loop={false}

@@ -9,6 +9,20 @@ routes = Blueprint('routes', __name__)
 def index():
     return jsonify({'key':'value'})
 
+@routes.route('/seed')
+def seed():
+    # TODO: flask-script couldn't successfully run this, so put it here
+    # This is dangerous ...
+    from rr.db import db
+    import rr.seed
+    db.drop_all()
+    db.create_all()
+
+    rr.seed.create_users()
+    rr.seed.create_prompts()
+    rr.seed.create_compositions()
+    return 'done'
+
 
 @routes.route('/prompts')
 def prompt():
