@@ -25,14 +25,14 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1843314332550559</string>
+				<string>fb1842989042583088</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>22</string>
 	<key>FacebookAppID</key>
-	<string>1843314332550559</string>
+	<string>1842989042583088</string>
 	<key>FacebookDisplayName</key>
 	<string>Round Robin</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

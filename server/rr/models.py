@@ -107,7 +107,7 @@ class Prompt(db.Model):
 
     def to_dict(self):
         return {
-            'date': self.date,
+            'date': self.date.isoformat(),
             'prompt': self.prompt,
             'id': str(self.id),
         }

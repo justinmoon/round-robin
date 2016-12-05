@@ -22,14 +22,15 @@ def get_prompts():
 def construct_feed():
     one_day_ago = datetime.now() - timedelta(days=1)
     return db.session.query(Composition) \
-        .filter(Composition.created_at > one_day_ago)
+        .filter(Composition.created_at > one_day_ago)\
+        .order_by(Composition.created_at.desc())
 
 
-def create_composition(*, prompt_id, user_id, body, created_at=datetime.now()):
+def create_composition(*, prompt_id, user_id, body):
     c = Composition(
         user_id=user_id,
         prompt_id=prompt_id,
-        body=body
+        body=body,
     )
     db.session.add(c)
     db.session.commit()

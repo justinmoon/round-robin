@@ -23,6 +23,13 @@ def seed():
     rr.seed.create_compositions()
     return 'done'
 
+# @routes.route('/reset')
+# def reset():
+#     from rr.db import db
+#     db.drop_all()
+#     db.create_all()
+#     return '', 204
+
 
 @routes.route('/prompts')
 def prompt():

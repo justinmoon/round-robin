@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         // If the smallest promise error goes undetected, we navigate to a view that should require authentication
         // User will get trapped in the editor view ... very bad
         // Maybe this navigation should happen within "componentWillReceiveProps"
-        console.log('login failed')
+        console.log('login failed: ', err)
       })
   }
 }

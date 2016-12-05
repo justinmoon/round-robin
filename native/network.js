@@ -24,7 +24,7 @@ function fbLogin() {
     // TODO: throw specific error message which is caught specifically by the login action
     .then(result => {
       console.log(result)
-      if (result.isCancelled || result.grantedPermissions.length != 3) {
+      if (result.isCancelled || result.grantedPermissions.length < 3) {
         throw new Error()
       }
       return result
@@ -47,7 +47,10 @@ export function login() {
 }
 
 export function logout() {
-  return http.post('/logout')
+  return Promise.all([
+    http.post('/logout'),
+    LoginManager.logOut(),
+  ])
 }
 
 export function fetchPrompts() {
