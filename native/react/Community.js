@@ -4,6 +4,26 @@ import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 import styles from './styles'
 
+ // FIXME: Duplicate component
+const Header = ({ composition }) => {
+  const name = composition.author.name.split(' ')[0]
+  return (
+    <View style={{
+      height: 20,
+      paddingTop: 10,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <StatusBar hidden={true} />
+      <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.prompt.prompt}</Text>
+      <Text style={{ fontSize: 16 }}> by </Text>
+      <Text style={{ fontSize: 16, fontWeight: '500' }}>{name}</Text>
+    </View>
+  );
+}
+
+
 const Composition = ({ composition }) => {
   return (
     <View style={styles.community.page}>
@@ -13,23 +33,6 @@ const Composition = ({ composition }) => {
   );
 }
 
-// FIXME: Duplicate component
-const Header = ({ composition }) => {
-  return (
-    <View style={{
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      marginTop: 10,
-    }}>
-      <StatusBar hidden={true} />
-      <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.prompt}</Text>
-      {/* FIXME: temporary until we add login and identity */}
-      {/* <Text style={{ fontSize: 16 }}> by </Text> */}
-      {/* <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.username}</Text> */}
-    </View>
-  );
-}
 
 const mapStateToProps = (state) => {
   return {

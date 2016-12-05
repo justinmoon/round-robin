@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     name = db.Column('name', db.String, nullable=False)
     pic_url = db.Column('pic_url', db.String, nullable=False)
     compositions = db.relationship('Composition',
-        backref=db.backref('users', lazy='joined'), lazy='dynamic')
+        backref=db.backref('user', lazy='joined'), lazy='dynamic')
     friends = db.relationship("User", secondary=friendship,
                            primaryjoin=id==friendship.c.friend_a_id,
                            secondaryjoin=id==friendship.c.friend_b_id,
@@ -50,7 +50,8 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return {
-
+            'id': self.id,
+            'name': self.name
         }
 
 
@@ -90,7 +91,10 @@ class Composition(db.Model):
 
     def to_dict(self):
         return {
-
+            'id': str(self.id),
+            'author': self.user,
+            'body': self.body,
+            'prompt': self.prompt,
         }
 
 class Prompt(db.Model):
@@ -103,5 +107,7 @@ class Prompt(db.Model):
 
     def to_dict(self):
         return {
-
+            'date': self.date,
+            'prompt': self.prompt,
+            'id': str(self.id),
         }

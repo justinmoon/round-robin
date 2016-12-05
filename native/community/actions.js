@@ -1,5 +1,5 @@
 import * as t from './actionTypes'
-import network from '../network.js'
+import * as network from '../network.js'
 
 const requestCompositions = { type: t.REQUEST_COMPOSITIONS }
 
@@ -13,7 +13,7 @@ function receiveCompositions(compositions) {
 export function fetchCompositions() {
   return dispatch => {
     dispatch(requestCompositions)
-    network.fetchCompositions()     // FIXME
+    network.fetchFeed()
       .then(compositions => {
         dispatch(receiveCompositions(compositions))
       })

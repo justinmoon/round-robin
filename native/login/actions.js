@@ -1,4 +1,4 @@
-import network from '../network'
+import * as network from '../network'
 import * as t from './actionTypes'
 import { Actions } from 'react-native-router-flux'
 import users from '../users'
@@ -19,7 +19,6 @@ function fetchCurrentUser() {
   return dispatch => {
     dispatch(fetchSessionAttempt)
     return network.fetchCurrentUser()
-      .then(response => response.json())
       .then(user => dispatch(users.actions.receiveCurrentUser(user)))
       .then(() => dispatch(fetchSessionSuccess))
   }
@@ -29,10 +28,12 @@ const login = () => {
   return dispatch => {
     dispatch(loginAttempt)
     return network.login()
-      .then(response => response.json())
       .then(user => dispatch(users.actions.receiveCurrentUser(user)))
       .then(() => dispatch(loginComplete))
-      .catch(error => dispatch(loginError(error)))
+      .catch(error => {
+        dispatch(loginError(error))
+        throw error
+      })
   }
 }
 

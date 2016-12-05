@@ -66,4 +66,4 @@ def session():
 @auth.route('/logout', methods=['post'])
 def logout():
     logout_user()
-    return ''
+    return jsonify({})

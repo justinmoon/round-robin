@@ -7,14 +7,14 @@ import SplashScreen from 'react-native-splash-screen'
 
 import timer from '../../timer'
 import editor from '../index'
+import community from '../../community'
 
 // TODO: move this to editor module
 import { submitComposition } from '../../reducers/compositions.js'
 
 const mapStateToProps = (state) => {
-  var shortISODateString = new Date().toISOString().substring(0, 10)
   return {
-    prompt: state.prompts.prompts[shortISODateString],
+    prompt: editor.selectors.getPrompt(state),
     timer: state.timer,
     reachedTargetDuration: timer.selectors.reachedTargetDurationSelector({timer: state.timer}),
     countingDown: timer.selectors.countingDown({ timer: state.timer }),
@@ -23,6 +23,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    fetch : () => {
+      return dispatch(community.actions.fetchCompositions())
+    },
     submitComposition: (payload) => dispatch(editor.actions.submit(payload)).then(Actions.communityExplanation),
     setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),
     startTimer: () => dispatch(timer.actions.start()),
@@ -41,21 +44,24 @@ class EditorContainer extends Component {
   }
   componentWillMount() {
     SplashScreen.hide()
+    this.props.fetch()
     this.props.startTimer()
   }
   componentWillUnmount() {
     this.props.stopTimer()
   }
   handleSubmit() {
-    const payload = { username: 'Justin', prompt: this.props.prompt, body: this.state.text }
+    const payload = { prompt_id: this.props.prompt.id, body: this.state.text }
     this.props.submitComposition(payload)
   }
   render() {
+    // FIXME
+    title = this.props.prompt && this.props.prompt.prompt
     return (
       <View style={{ flex: 1 }}>
         <editor.components.Header
           style={{ flex: 1 }}
-          title={this.props.prompt}
+          title={title}
           handleSubmit={() => this.handleSubmit()}
           submitting={this.state.submitting}
           timer={this.props.timer}

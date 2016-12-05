@@ -1,4 +1,3 @@
-import * as firebase from 'firebase'
 import { Actions } from 'react-native-router-flux'
 
 const actionTypes = {

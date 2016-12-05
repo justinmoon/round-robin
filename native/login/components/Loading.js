@@ -8,8 +8,6 @@ import login from '../index'
 import editor from '../../editor'
 import users from '../../users'
 
-import * as firebase from 'firebase';
-
 
 const mapStateToProps = (state) => {
   return {
@@ -35,8 +33,8 @@ const mapDispatchToProps = (dispatch, props) => {
 
 class Loading extends Component {
   componentWillMount() {
-    this.props.dispatch(login.actions.logout())
-
+    /* this.props.dispatch(login.actions.logout())
+     */
     // mount network listeners
     this.props.listenForConnectivity()
 

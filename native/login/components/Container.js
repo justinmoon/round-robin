@@ -15,7 +15,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    login: () => dispatch(login.actions.login()).then(() => Actions.editor()),
+    login: () => dispatch(login.actions.login())
+      .then(r => Actions.editor())
+      .catch(err => {
+        // UI reacts to redux state.
+        // TODO: I wish navigation were same way, instead in this imperative way.
+        // If the smallest promise error goes undetected, we navigate to a view that should require authentication
+        // User will get trapped in the editor view ... very bad
+        // Maybe this navigation should happen within "componentWillReceiveProps"
+        console.log('login failed')
+      })
   }
 }
 

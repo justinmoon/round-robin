@@ -47,6 +47,7 @@ const editor = StyleSheet.create({
 
 const community = StyleSheet.create({
   content: {
+    paddingTop: 10,
     paddingLeft: 20,
     paddingRight: 20,
     fontSize: COMPOSITION_FONT_SIZE,

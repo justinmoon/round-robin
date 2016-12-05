@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes.js'
-import network from '../network'
+import * as network from '../network'
 
 const requestPrompts = { type: actionTypes.REQUEST_PROMPTS }
 
