@@ -1032,7 +1032,7 @@
 				CODE_SIGN_ENTITLEMENTS = RoundRobin/RoundRobin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 28;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = W6VF934SEW;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
@@ -1065,8 +1065,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = RoundRobin/RoundRobin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 22;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = W6VF934SEW;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
@@ -1085,8 +1085,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = in.roundrob;
 				PRODUCT_NAME = RoundRobin;
-				PROVISIONING_PROFILE = "51981b37-45c0-4ec1-9ac3-4d83f8271a0c";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development in.roundrob";
+				PROVISIONING_PROFILE = "68396cc4-e150-435b-b7e0-e426c3f165d1";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore in.roundrob";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
