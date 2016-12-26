@@ -10,7 +10,6 @@ const Header = ({ composition }) => {
   const name = composition.author.name.split(' ')[0]
   return (
     <View style={{
-      flex: 1,
       height: 20,
       paddingTop: 10,
       flexDirection: 'row',
@@ -28,7 +27,7 @@ const Header = ({ composition }) => {
 
 const Composition = ({ composition }) => {
   return (
-    <View style={styles.community.page}>
+    <View style={styles.community.container}>
       <Header composition={composition} />
       <ScrollView>
         <Text style={styles.community.content}>{composition.body}</Text>
@@ -67,7 +66,6 @@ class Community extends React.Component {
     if (touchDuration < 200) {
       // FIXME: this can overshoot ...
       // FIXME: refs are depricated ...
-      console.log('next!!!')
       this.refs.swiper.scrollBy(1, true)
     }
     const touchStartedAt = undefined
@@ -78,7 +76,6 @@ class Community extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Swiper
-          style={{ flex: 1 }}
           ref='swiper'
           showsPagination={false}
           loop={false}

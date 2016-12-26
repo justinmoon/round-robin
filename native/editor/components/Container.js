@@ -9,24 +9,21 @@ import timer from '../../timer'
 import editor from '../index'
 import community from '../../community'
 
-// TODO: move this to editor module
-import { submitComposition } from '../../reducers/compositions.js'
-
 const mapStateToProps = (state) => {
   return {
     prompt: editor.selectors.getPrompt(state),
     timer: state.timer,
-    reachedTargetDuration: timer.selectors.reachedTargetDurationSelector({timer: state.timer}),
+    reachedTargetDuration: timer.selectors.reachedTargetDurationSelector({ timer: state.timer }),
     countingDown: timer.selectors.countingDown({ timer: state.timer }),
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetch : () => {
+    fetch: () => {
       return dispatch(community.actions.fetchCompositions())
     },
-    submitComposition: (payload) => dispatch(editor.actions.submit(payload)).then(Actions.communityExplanation),
+    submitComposition: payload => dispatch(editor.actions.submit(payload)).then(Actions.communityExplanation),
     setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),
     startTimer: () => dispatch(timer.actions.start()),
     stopTimer: () => dispatch(timer.actions.stop()),
@@ -56,7 +53,7 @@ class EditorContainer extends Component {
   }
   render() {
     // FIXME
-    title = this.props.prompt && this.props.prompt.prompt
+    const title = this.props.prompt && this.props.prompt.prompt
     return (
       <View style={{ flex: 1 }}>
         <editor.components.Header

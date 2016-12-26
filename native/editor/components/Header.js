@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StatusBar, TouchableOpacity, ActivityIndicator } from 'react-native';
-import styles from '../../react/styles.js';
+import styles from '../../react/styles'
 import timer from '../../timer'
-import editor from '../index'
 import components from '../../react'
 
 export default class Header extends Component {
@@ -10,7 +9,7 @@ export default class Header extends Component {
     // TODO: alerts
     if (this.props.submitting) {
       return (
-        <ActivityIndicator style={{ width: 60, textAlign: 'center'}} size="small" />
+        <ActivityIndicator style={{ width: 60, textAlign: 'center' }} size="small" />
       )
     } else if (this.props.reachedTargetDuration) {
       return (
@@ -30,11 +29,11 @@ export default class Header extends Component {
   render() {
     return (
       <View style={styles.header.container}>
-        <StatusBar hidden={true} />
+        <StatusBar hidden />
         <Text style={styles.header.button}></Text>
         <Text style={styles.header.title}>{this.props.title}</Text>
         <View style={{ width: 60 }}>
-        {this.renderRightComponent()}
+          {this.renderRightComponent()}
         </View>
       </View>
     );
