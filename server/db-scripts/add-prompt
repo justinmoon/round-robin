@@ -1,0 +1,1 @@
+insert into prompt (date, prompt) values ('2016-12-26', 'Ear');
