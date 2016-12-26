@@ -63,8 +63,10 @@ class Community extends React.Component {
   onTouchEnd (e, state, context) {
     const now = new Date().getTime()
     const touchDuration = now - this.state.touchStartedAt
-    if (touchDuration < 200) {
-      // FIXME: this can overshoot ...
+    const isTap = touchDuration < 200
+    // FIXME: crazy math ... find a better way
+    const scenesRemain = this.refs.swiper.props.children.length > this.refs.swiper.state.index + 1
+    if (isTap && scenesRemain) {
       // FIXME: refs are depricated ...
       this.refs.swiper.scrollBy(1, true)
     }

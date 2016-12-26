@@ -1,4 +1,4 @@
-import actionTypes from './actionTypes.js'
+import * as actionTypes from './actionTypes.js'
 import * as network from '../network'
 
 const requestPrompts = { type: actionTypes.REQUEST_PROMPTS }
@@ -19,11 +19,16 @@ function receivePrompts(prompts) {
 }
 
 const submitAction = { type: actionTypes.SUBMIT }
-const successfulSubmitAction = composition => ({ type: actionTypes.SUBMIT_SUCCESS, composition })
+
+const successfulSubmitAction = composition => ({
+  type: actionTypes.SUBMIT_SUCCESS, composition
+})
 
 export function submit(payload) {
   return dispatch => {
     dispatch(submitAction)
-    return network.submitComposition(payload, composition => dispatch(successfulSubmitAction(composition)))
+    return network.submitComposition(payload)
+      .then(composition => dispatch(successfulSubmitAction(composition)))
+      .then(console.log) // FIXME: this fails without this!!!
   }
 }

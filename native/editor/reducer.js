@@ -1,4 +1,4 @@
-import actionTypes from './actionTypes'
+import * as actionTypes from './actionTypes'
 
 export default function reducer(state = {
   requesting: false,
