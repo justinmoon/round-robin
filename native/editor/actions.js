@@ -19,11 +19,11 @@ function receivePrompts(prompts) {
 }
 
 const submitAction = { type: actionTypes.SUBMIT }
-const successfulSubmitAction = { type: actionTypes.SUBMIT_SUCCESS }
+const successfulSubmitAction = composition => ({ type: actionTypes.SUBMIT_SUCCESS, composition })
 
 export function submit(payload) {
   return dispatch => {
     dispatch(submitAction)
-    return network.submitComposition(payload, () => dispatch(successfulSubmitAction))
+    return network.submitComposition(payload, composition => dispatch(successfulSubmitAction(composition)))
   }
 }

@@ -24,7 +24,9 @@ export default function reducer(state = {
       return Object.assign({}, state, { posting: true })
     // FIXME: NETWORK REDUCER
     case editor.actionTypes.SUBMIT_SUCCESS:
-      return Object.assign({}, state, { posting: false })
+      let compositions = state.compositions
+      compositions.unshift(action.composition)
+      return Object.assign({}, state, { posting: false, compositions })
     default:
       return state
     }
