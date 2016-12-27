@@ -44,7 +44,7 @@ def handle_facebook_login(token):
         db.session.add(u)
         db.session.commit()
 
-        login_user(u)
+        login_user(u, remember=True)
 
         return jsonify(u)
     else:
