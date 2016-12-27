@@ -18,7 +18,7 @@ def create_app(name, settings_override={}):
     login_manager.init_app(app)
 
     # FIXME: only add this in prod ...
-    sentry = Sentry(app, dsn='https://085ef39a06a049a990ff23598bffbf86:dae4cd15384747f5aec4aae8bfc4eb34@sentry.io/124868')
+    sentry = Sentry(app, dsn='https://085ef39a06a049a990ff23598bffbf86:dae4cd15384747f5aec4aae8bfc4eb34@sentry.io/124868?timeout=10')
     sentry.init_app(app)
 
     return app
