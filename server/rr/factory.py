@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from raven.contrib.flask import Sentry
 
@@ -17,8 +19,11 @@ def create_app(name, settings_override={}):
     db.init_app(app)
     login_manager.init_app(app)
 
-    # FIXME: only add this in prod ...
-    sentry = Sentry(app, dsn='https://085ef39a06a049a990ff23598bffbf86:dae4cd15384747f5aec4aae8bfc4eb34@sentry.io/124868?timeout=10')
+    if os.environ['CONFIG_ENV'] == 'prod':
+        sentry = Sentry(app, dsn='https://085ef39a06a049a990ff23598bffbf86:dae4cd15384747f5aec4aae8bfc4eb34@sentry.io/124868?timeout=10')
+    else:
+        sentry = Sentry(app)
+
     sentry.init_app(app)
 
     return app
