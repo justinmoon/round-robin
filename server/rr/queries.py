@@ -26,9 +26,10 @@ def construct_feed():
         .order_by(Composition.created_at.desc())
 
 
-def create_composition(*, prompt_id, user_id, body):
+def create_composition(*, prompt_id, created_at, user_id, body):
     c = Composition(
         user_id=user_id,
+        created_at=created_at,
         prompt_id=prompt_id,
         body=body,
     )
