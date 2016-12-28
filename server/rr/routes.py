@@ -7,7 +7,7 @@ routes = Blueprint('routes', __name__)
 
 @routes.route('/')
 def index():
-    return jsonify({'key':'value'})
+    return jsonify({'key':'the truth!'})
 
 @routes.route('/seed')
 def seed():
