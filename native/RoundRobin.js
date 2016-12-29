@@ -21,6 +21,15 @@ import community from './community'
 
 const RouterWithRedux = connect()(Router)
 
+
+// global._fetch = fetch;
+// global.fetch = function(uri, options, ...args) {
+//   return global._fetch(uri, options, ...args).then((response) => {
+//     console.log('Fetch <' + uri + '>', { request: { uri, options, ...args }, response });
+//     return response;
+//   });
+// };
+
 export default class RoundRobin extends Component {
   render() {
     return (
