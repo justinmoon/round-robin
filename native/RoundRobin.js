@@ -10,7 +10,7 @@ import {
   Text,
   View
 } from 'react-native'
-import { Router, Scene } from 'react-native-router-flux'
+import { Router, Reducer, Scene } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
 
 import store from './store'
@@ -18,6 +18,8 @@ import store from './store'
 import editor from './editor'
 import login from './login'
 import community from './community'
+
+import analytics from './analytics'
 
 const RouterWithRedux = connect()(Router)
 
@@ -30,11 +32,21 @@ const RouterWithRedux = connect()(Router)
 //   });
 // };
 
+const createReducer = params => {
+  const defaultReducer = new Reducer(params);
+  return (state, action) => {
+    if (action.type == "REACT_NATIVE_ROUTER_FLUX_FOCUS") {
+      analytics.page(action.scene.name, store.getState())
+    }
+    return defaultReducer(state, action);
+  };
+};
+
 export default class RoundRobin extends Component {
   render() {
     return (
       <Provider store={store}>
-        <RouterWithRedux style={{ flex: 1 }}>
+        <RouterWithRedux createReducer={createReducer} style={{ flex: 1 }}>
           <Scene key="root" hideNavBar={true}>
             <Scene key="loading" component={login.components.Loading} initial={true} />
             <Scene key="login" component={login.components.Container} />

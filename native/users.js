@@ -1,5 +1,3 @@
-import { Actions } from 'react-native-router-flux'
-
 const actionTypes = {
   RECEIVE_CURRENT_USER: 'users/receive-current-user',
   RECEIVE_USERS: 'users/receive-users',

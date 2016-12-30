@@ -2,6 +2,8 @@ server {
 
     listen 80;
     server_name example.org;
+    error_log /var/log/nginx/error.log warn;
+    access_log /var/log/access.log ;
     charset utf-8;
 
     location /static {

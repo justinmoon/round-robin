@@ -2,6 +2,7 @@ import * as network from '../network'
 import * as t from './actionTypes'
 import { Actions } from 'react-native-router-flux'
 import users from '../users'
+import analytics from '../analytics'
 
 const fetchSessionAttempt = { type: t.SESSION.ATTEMPT }
 const fetchSessionSuccess = { type: t.SESSION.SUCCESS }
@@ -28,6 +29,10 @@ const login = () => {
   return dispatch => {
     dispatch(loginAttempt)
     return network.login()
+      .then(user => {
+        analytics.signup(user)
+        return user
+      })
       .then(user => dispatch(users.actions.receiveCurrentUser(user)))
       .then(() => dispatch(loginComplete))
       .catch(error => {
