@@ -29,11 +29,8 @@ const login = () => {
   return dispatch => {
     dispatch(loginAttempt)
     return network.login()
-      .then(user => {
-        analytics.signup(user)
-        return user
-      })
       .then(user => dispatch(users.actions.receiveCurrentUser(user)))
+      .then(() => dispatch(analytics.actions.signup()))
       .then(() => dispatch(loginComplete))
       .catch(error => {
         dispatch(loginError(error))

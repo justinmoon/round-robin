@@ -8,7 +8,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native'
 import { Router, Reducer, Scene } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
@@ -35,7 +35,8 @@ const RouterWithRedux = connect()(Router)
 const createReducer = params => {
   const defaultReducer = new Reducer(params);
   return (state, action) => {
-    if (action.type == "REACT_NATIVE_ROUTER_FLUX_FOCUS") {
+    // FIXME: excluding loading screen because store isn't hydrated yet ..
+    if (action.type == "REACT_NATIVE_ROUTER_FLUX_FOCUS" && action.scene.name !== 'loading') {
       analytics.page(action.scene.name, store.getState())
     }
     return defaultReducer(state, action);

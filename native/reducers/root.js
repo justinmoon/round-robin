@@ -8,7 +8,8 @@ import users from '../users'
 export default combineReducers({
   compositions,
   network,
-  users: users.reducer,
+  currentUser: users.currentUserReducer,
+  anonymousId: users.anonymousIdReducer,
   timer: timer.reducer,
   prompts: editor.reducer,
 })

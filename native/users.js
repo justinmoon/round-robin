@@ -1,26 +1,45 @@
+import { AsyncStorage } from 'react-native'
+import uuid from 'uuid'
+
 const actionTypes = {
   RECEIVE_CURRENT_USER: 'users/receive-current-user',
   RECEIVE_USERS: 'users/receive-users',
+  SET_ANONYMOUS_ID: 'users/set-anonymous-id',
 }
 
 const actions = {
+  setAnonymousId: () => {
+    let anonymousId = uuid.v4()
+    AsyncStorage.setItem('anonymousId', anonymousId)
+    return { type: actionTypes.SET_ANONYMOUS_ID, anonymousId }
+  },
   receiveUsers: users => ({ type: actionTypes.RECEIVE_USERS, users }),
-  receiveCurrentUser: currentUser => ({ type: actionTypes.RECEIVE_CURRENT_USER, currentUser }),
+  receiveCurrentUser: currentUser => {
+    return { type: actionTypes.RECEIVE_CURRENT_USER, currentUser }},
 }
 
 const selectors = {
-  loggedIn: state => !!state.users.currentUser,
-  loggedOut: state => state.users.currentUser === null,
+  loggedIn: state => !!state.currentUser,
+  loggedOut: state => state.currentUser === null,
 }
 
-const initialState = {
-  currentUser: null,
-}
+const currentUser = null
 
-function reducer(state = initialState, action) {
+function currentUserReducer(state = currentUser, action) {
   switch (action.type) {
   case actionTypes.RECEIVE_CURRENT_USER:
-    return Object.assign({}, state, { currentUser: action.currentUser })
+    return action.currentUser
+  default:
+    return state
+  }
+}
+
+const anonymousId = null
+
+function anonymousIdReducer(state = currentUser, action) {
+  switch (action.type) {
+  case actionTypes.SET_ANONYMOUS_ID:
+    return action.anonymousId
   default:
     return state
   }
@@ -29,6 +48,7 @@ function reducer(state = initialState, action) {
 export default {
   actionTypes,
   actions,
-  reducer,
+  currentUserReducer,
+  anonymousIdReducer,
   selectors,
 }
