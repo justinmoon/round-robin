@@ -2,6 +2,8 @@ import Analytics from 'analytics-react-native'
 import uuid from 'uuid'
 import { AsyncStorage } from 'react-native'
 
+var DeviceInfo = require('react-native').NativeModules.RNDeviceInfo;
+
 const analytics = new Analytics('OCymMIWSscaApOCoDZZ2ZATREPEnIe0L')
 
 function signup(user, anonymousId) {
@@ -24,6 +26,7 @@ function screen(route, user, anonymousId, properties) {
   } else {
     payload.anonymousId = anonymousId
   }
+  payload.context = { device: DeviceInfo }  // TODO: smarter way to include this
   analytics.screen(payload)
 }
 

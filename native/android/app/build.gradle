@@ -141,6 +141,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-device-info')
     compile project(':react-native-splash-screen')
     compile "com.facebook.android:facebook-android-sdk:4.17.0"
     compile project(':react-native-fbsdk')
