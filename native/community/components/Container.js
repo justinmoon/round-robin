@@ -5,6 +5,8 @@ import Swiper from 'react-native-swiper'
 import { connect } from 'react-redux'
 import styles from '../../react/styles'
 
+import analytics from '../../analytics'
+
  // FIXME: Duplicate component
 const Header = ({ composition }) => {
   const name = composition.author.name.split(' ')[0]
@@ -54,6 +56,16 @@ class Community extends React.Component {
       touchStartedAt: undefined,
     }
   }
+  logScreenView(index) {
+    console.log('screen view')
+    let properties = {
+      index,
+      total: this.props.compositions.length,
+      composition: this.props.compositions[index],
+    }
+    // FIXME: would sure be nice if these properties lived in redux ...
+    this.props.dispatch(analytics.actions.screen('compositions', properties))
+  }
   // FIXME: undefined passed in for state and context
   // have to fall back to using refs ...
   onTouchStart (e, state, context) {
@@ -83,6 +95,7 @@ class Community extends React.Component {
           loop={false}
           onTouchStart={this.onTouchStart.bind(this)}
           onTouchEnd={this.onTouchEnd.bind(this)}
+          onUpdateIndex={this.logScreenView.bind(this)}
         >
           {compositions.map((composition) =>
             <Composition key={composition.id} composition={composition}/>

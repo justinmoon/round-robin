@@ -82,9 +82,9 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-"analytics-react-native@https://github.com/superquest/analytics-react-native/archive/v1.0.3.tar.gz":
+"analytics-react-native@https://github.com/superquest/analytics-react-native/archive/latest.1.tar.gz":
   version "1.0.1"
-  resolved "https://github.com/superquest/analytics-react-native/archive/v1.0.3.tar.gz#479f334c90b0cdc63500de27cf14321591295d39"
+  resolved "https://github.com/superquest/analytics-react-native/archive/latest.1.tar.gz#b165611f6c793ce22bf08df08be26b5a9e9948b1"
   dependencies:
     assert "1.4.1"
     base-64 "0.1.0"
@@ -4302,9 +4302,9 @@ react-native-splash-screen@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-1.0.9.tgz#4d0847e43cab297d6f8c3e98909f00a15929cb27"
 
-react-native-swiper@^1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.3.tgz#11ac74881f2dbb640592d7b1e60d472958550314"
+"react-native-swiper@https://github.com/superquest/react-native-swiper/archive/analytics.tar.gz":
+  version "1.5.4"
+  resolved "https://github.com/superquest/react-native-swiper/archive/analytics.tar.gz#058b1fabcbc47ee33740d7297b3ccb1d8aaa5da3"
 
 react-native-tabs@^1.0.9:
   version "1.0.9"

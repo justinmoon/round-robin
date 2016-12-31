@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "analytics-react-native": "https://github.com/superquest/analytics-react-native/archive/v1.0.3.tar.gz",
+    "analytics-react-native": "https://github.com/superquest/analytics-react-native/archive/latest.1.tar.gz",
     "es6-symbol": "^3.1.0",
     "firebase": "^3.6.2",
     "moment": "^2.17.1",
@@ -17,7 +17,7 @@
     "react-native-linear-gradient": "^1.5.15",
     "react-native-router-flux": "^3.37.0",
     "react-native-splash-screen": "^1.0.9",
-    "react-native-swiper": "^1.5.3",
+    "react-native-swiper": "https://github.com/superquest/react-native-swiper/archive/analytics.tar.gz",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "redux-persist": "^4.0.1",

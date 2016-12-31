@@ -14,8 +14,11 @@ function signup(user, anonymousId) {
   });
 }
 
-function screen(route, user, anonymousId) {
+function screen(route, user, anonymousId, properties) {
   let payload = { name: route }
+  if (properties) {
+    payload.properties = properties
+  }
   if (user) {
     payload.userId = user.id
   } else {
@@ -24,10 +27,10 @@ function screen(route, user, anonymousId) {
   analytics.screen(payload)
 }
 
-function screenAction(route) {
+function screenAction(route, payload) {
   return (dispatch, getState) => {
     let { currentUser, anonymousId } = getState()
-    return screen(route, currentUser, anonymousId)
+    return screen(route, currentUser, anonymousId, payload)
   }
 }
 
