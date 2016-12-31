@@ -1,12 +1,10 @@
-// import Analytics from 'analytics-react-native'
-import Analytics from './node_modules/analytics-react-native/lib/'
-// import Analytics from '~/code/clones/analytics-react-native/src'
+import Analytics from 'analytics-react-native'
 import uuid from 'uuid'
 import { AsyncStorage } from 'react-native'
 
 const analytics = new Analytics('OCymMIWSscaApOCoDZZ2ZATREPEnIe0L')
 
-function signup(anonymousId, user) {
+function signup(user, anonymousId) {
   analytics.identify({
     anonymousId,
     userId: user.id,
@@ -16,8 +14,8 @@ function signup(anonymousId, user) {
   });
 }
 
-function page(user, name, anonymousId) {
-  let payload = { name: 'mobile:' + name }
+function screen(route, user, anonymousId) {
+  let payload = { name: route }
   if (user) {
     payload.userId = user.id
   } else {
@@ -26,39 +24,23 @@ function page(user, name, anonymousId) {
   analytics.screen(payload)
 }
 
-function viewPage(name, state) {
-  let { currentUser, anonymousId } = state
-
-  // TODO: assertion that one of these is defined ...
-  if (!!currentUser) {
-    return page(currentUser, name)
+function screenAction(route) {
+  return (dispatch, getState) => {
+    let { currentUser, anonymousId } = getState()
+    return screen(route, currentUser, anonymousId)
   }
-
-  if (!!anonymousId) {
-    return page(undefined, name, anonymousId)
-  }
-}
-
-function pageAction() {
-  // TODO
-}
-
-function basePayload(state) {
-  const { anonymousId, currentUser } = state
-  return (currentUser) ? { userId: currentUser.id } : { anonymousId }
 }
 
 function signupAction(user) {
   return (dispatch, getState) => {
     const { anonymousId, currentUser } = getState()
-    return signup(anonymousId, currentUser)
+    return signup(currentUser, anonymousId)
   }
 }
 
 export default {
-  page: viewPage,
-  rawPage: analytics.page,
   actions: {
+    screen: screenAction,
     signup: signupAction,
   }
 }

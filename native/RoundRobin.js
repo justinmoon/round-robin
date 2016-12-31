@@ -37,7 +37,7 @@ const createReducer = params => {
   return (state, action) => {
     // FIXME: excluding loading screen because store isn't hydrated yet ..
     if (action.type == "REACT_NATIVE_ROUTER_FLUX_FOCUS" && action.scene.name !== 'loading') {
-      analytics.page(action.scene.name, store.getState())
+      store.dispatch(analytics.actions.screen(action.scene.name))
     }
     return defaultReducer(state, action);
   };

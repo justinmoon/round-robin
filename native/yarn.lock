@@ -82,9 +82,9 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-analytics-react-native@^1.0.1:
+"analytics-react-native@https://github.com/superquest/analytics-react-native/archive/v1.0.3.tar.gz":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/analytics-react-native/-/analytics-react-native-1.0.1.tgz#719f258bcb38a8c51927d58652957ee87a3ff08d"
+  resolved "https://github.com/superquest/analytics-react-native/archive/v1.0.3.tar.gz#479f334c90b0cdc63500de27cf14321591295d39"
   dependencies:
     assert "1.4.1"
     base-64 "0.1.0"
