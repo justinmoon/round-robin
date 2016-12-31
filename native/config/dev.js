@@ -6,7 +6,9 @@ export default {
     storageBucket: "round-robin-a58a3.appspot.com",
     messagingSenderId: "36675682146"
   },
-  // DEFAULT_TARGET_DURATION: 20 * 1000,  // 20 seconds
-  DEFAULT_TARGET_DURATION: 1000,  // 1 second
+  DEFAULT_TARGET_DURATION: 20 * 1000,  // 20 seconds
+  // DEFAULT_TARGET_DURATION: 1000,  // 1 second
   baseUrl: 'http://192.168.99.100',
+  segmentWriteKey: 'x3or7amdIOx22jzqVZcqqkkqMe0ywkxc',
+  makeSegmentCalls: false,
 }

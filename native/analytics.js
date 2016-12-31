@@ -1,10 +1,11 @@
 import Analytics from 'analytics-react-native'
 import uuid from 'uuid'
 import { AsyncStorage } from 'react-native'
+import config from './config'
 
 var DeviceInfo = require('react-native').NativeModules.RNDeviceInfo;
 
-const analytics = new Analytics('OCymMIWSscaApOCoDZZ2ZATREPEnIe0L')
+const analytics = new Analytics(config.segmentWriteKey)
 
 function signup(user, anonymousId) {
   analytics.identify({
@@ -75,7 +76,7 @@ function appStateChangeAction(state) {
   }
 }
 
-export default {
+const prod = {
   actions: {
     screen: screenAction,
     signup: signupAction,
@@ -85,3 +86,10 @@ export default {
   }
 }
 
+const emptyActionCreator = () => {
+  return dispatch => {}
+}
+const dev = {actions: {}}
+Object.keys(prod.actions).forEach(key => dev.actions[key] = emptyActionCreator)
+
+module.exports = (config.makeSegmentCalls) ? prod : dev
