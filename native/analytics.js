@@ -64,12 +64,24 @@ function signupAction(user) {
   }
 }
 
+function appStateChangeAction(state) {
+  return (dispatch, getState) => {
+    const { currentUser } = getState()
+    analytics.track({
+      userId: currentUser.id,
+      event: 'app-state-change',
+      properties: { state: state },
+    })
+  }
+}
+
 export default {
   actions: {
     screen: screenAction,
     signup: signupAction,
     beginComposition: beginCompositionAction,
     submitComposition: submitCompositionAction,
+    appStateChange: appStateChangeAction,
   }
 }
 

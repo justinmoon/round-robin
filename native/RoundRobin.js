@@ -5,6 +5,7 @@
  */
 import React, { Component } from 'react'
 import {
+  AppState,
   AppRegistry,
   StyleSheet,
   Text,
@@ -20,9 +21,10 @@ import login from './login'
 import community from './community'
 
 import analytics from './analytics'
+import appState from './appState'
+import connectivity from './connected'
 
 const RouterWithRedux = connect()(Router)
-
 
 // global._fetch = fetch;
 // global.fetch = function(uri, options, ...args) {
@@ -44,7 +46,20 @@ const createReducer = params => {
   };
 };
 
+
 export default class RoundRobin extends Component {
+  listenForConnectivity() {
+    // FIXME: teardown
+    const callback = connected => store.dispatch(connectivity.connectivityChange(connected))
+    connectivity.listen(callback)
+  }
+  componentWillMount() {
+    this.listenForConnectivity()
+    AppState.addEventListener('change', console.log)
+  }
+  componentWillUnmount() {
+    AppState.removeEventListener('change', console.log)
+  }
   render() {
     return (
       <Provider store={store}>
