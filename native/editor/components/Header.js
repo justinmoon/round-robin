@@ -6,10 +6,9 @@ import components from '../../react'
 
 export default class Header extends Component {
   renderRightComponent() {
-    // TODO: alerts
     if (this.props.submitting) {
       return (
-        <ActivityIndicator style={{ width: 60, textAlign: 'center' }} size="small" />
+        <ActivityIndicator style={{ width: 60 }} size="small" />
       )
     } else if (this.props.reachedTargetDuration) {
       return (
@@ -18,9 +17,8 @@ export default class Header extends Component {
         </TouchableOpacity>
       )
     } else {
-      const finalOpacity = (this.props.countingDown) ? 1 : 0
       return (
-        <components.FadingView finalOpacity={finalOpacity} >
+        <components.FadingView fade={this.props.fade} >
           <timer.components.Timer timer={this.props.timer} tick={this.props.tick} />
         </components.FadingView>
       )

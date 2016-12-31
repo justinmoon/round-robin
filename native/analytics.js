@@ -30,6 +30,26 @@ function screen(route, user, anonymousId, properties) {
   analytics.screen(payload)
 }
 
+function beginCompositionAction() {
+  return (dispatch, getState) => {
+    let { currentUser } = getState()
+    analytics.track({
+      userId: currentUser.id,
+      event: 'begin-composition',
+    })
+  }
+}
+
+function submitCompositionAction() {
+  return (dispatch, getState) => {
+    let { currentUser } = getState()
+    analytics.track({
+      userId: currentUser.id,
+      event: 'submit-composition',
+    })
+  }
+}
+
 function screenAction(route, payload) {
   return (dispatch, getState) => {
     let { currentUser, anonymousId } = getState()
@@ -48,6 +68,8 @@ export default {
   actions: {
     screen: screenAction,
     signup: signupAction,
+    beginComposition: beginCompositionAction,
+    submitComposition: submitCompositionAction,
   }
 }
 

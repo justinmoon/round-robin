@@ -4,7 +4,7 @@ import community from '../community'
 export default function reducer(state = {
   // fixme: make the whole state an array
   fetching: false,
-  posting: false,
+  submitting: false,
   compositions: [],
 }, action) {
   switch (action.type) {
@@ -21,12 +21,12 @@ export default function reducer(state = {
     // Functionally, these don't accomplish much ...
     // FIXME: NETWORK REDUCER
     case editor.actionTypes.SUBMIT:
-      return Object.assign({}, state, { posting: true })
+      return Object.assign({}, state, { submitting: true })
     // FIXME: NETWORK REDUCER
     case editor.actionTypes.SUBMIT_SUCCESS:
       let compositions = state.compositions
       compositions.unshift(action.composition)
-      return Object.assign({}, state, { posting: false, compositions })
+      return Object.assign({}, state, { submitting: false, compositions })
     default:
       return state
     }

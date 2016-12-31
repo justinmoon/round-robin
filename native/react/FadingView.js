@@ -22,12 +22,11 @@ export default class FadingView extends Component {
       { toValue: 0, duration: 3000, delay: 3000 }
     ).start()
   }
-  componentDidMount() {
-    this.fadeOut()
-  }
   componentWillReceiveProps(props) {
-    if (this.props.finalOpacity < props.finalOpacity) {
+    if (props.fade === 'in' && this.props.fade !== 'in') {
       this.fadeIn()
+    } else if (props.fade === 'out' && this.props.fade !== 'out') {
+      this.fadeOut()
     }
   }
   render() {

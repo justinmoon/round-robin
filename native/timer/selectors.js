@@ -82,7 +82,7 @@ export const reachedTargetDurationSelector = createSelector(
   timeRemaining => timeRemaining <= 0
 )
 
-export const countingDown = createSelector(
+export const homestretch = createSelector(
   timeRemainingSelector,
   timeRemaining => {
     // FIXME this should be a constant
