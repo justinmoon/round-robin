@@ -111,3 +111,6 @@ class Prompt(db.Model):
             'prompt': self.prompt,
             'id': str(self.id),
         }
+
+    def __repr__(self):
+        return "Prompt(%r %r)" % (str(self.date), self.prompt)
