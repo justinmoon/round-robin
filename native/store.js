@@ -1,15 +1,28 @@
 import { AsyncStorage } from 'react-native'
-import { createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist'
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers/root'
 import users from './users'
 
+
 AsyncStorage.clear()
+
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
+
+const enhancer = composeEnhancers(
+  applyMiddleware(thunkMiddleware),
+);
+
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunkMiddleware),
+	enhancer,
   autoRehydrate(),
 )
 
