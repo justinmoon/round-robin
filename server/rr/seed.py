@@ -7,7 +7,7 @@ from rr.db import db
 
 
 def read_psalms():
-    with open('rr/psalms', 'r') as f:
+    with open('psalms', 'r') as f:
         psalms_string = f.read()
         psalms = psalms_string.split('\n\n\n\n')
         return psalms
