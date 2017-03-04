@@ -5,31 +5,6 @@ import rr.queries as q
 
 routes = Blueprint('routes', __name__)
 
-@routes.route('/')
-def index():
-    return jsonify({'key':'the truth!'})
-
-@routes.route('/seed')
-def seed():
-    # TODO: flask-script couldn't successfully run this, so put it here
-    # This is dangerous ...
-    from rr.db import db
-    import rr.seed
-    db.drop_all()
-    db.create_all()
-
-    rr.seed.create_users()
-    rr.seed.create_prompts()
-    rr.seed.create_compositions()
-    return 'done'
-
-# @routes.route('/reset')
-# def reset():
-#     from rr.db import db
-#     db.drop_all()
-#     db.create_all()
-#     return '', 204
-
 
 @routes.route('/prompts')
 def prompt():

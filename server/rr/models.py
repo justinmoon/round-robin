@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     id = db.Column('id', db.Integer, primary_key=True)
     fb_id = db.Column('fb_id', db.String, unique=True)
     fb_access_token = db.Column('fb_access_token', db.String, nullable=False)
-    created_at = db.Column('create_date', db.DateTime, default=db.func.now())
+    created_at = db.Column('created_at', db.DateTime, default=db.func.now())
     name = db.Column('name', db.String, nullable=False)
     pic_url = db.Column('pic_url', db.String, nullable=False)
     compositions = db.relationship('Composition',
@@ -80,7 +80,7 @@ views = db.Table('view', db.metadata,
 
 class Composition(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
-    created_at = db.Column('create_date', db.DateTime, default=db.func.now())
+    created_at = db.Column('created_at', db.DateTime, default=db.func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     prompt_id = db.Column(db.Integer, db.ForeignKey('prompt.id'), nullable=False)
     body = db.Column(db.Text, nullable=False)

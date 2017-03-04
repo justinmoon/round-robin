@@ -7,7 +7,7 @@ from rr.db import db
 
 
 def read_psalms():
-    with open('psalms', 'r') as f:
+    with open('rr/psalms', 'r') as f:
         psalms_string = f.read()
         psalms = psalms_string.split('\n\n\n\n')
         return psalms
@@ -91,3 +91,10 @@ def create_compositions():
             prompt_id=today_prompt.id if created_at.date() == now.date() else yesterday_prompt.id,
             body=psalms[i],
         )
+
+def seed():
+    db.drop_all()
+    db.create_all()
+    create_users()
+    create_prompts()
+    create_compositions()
