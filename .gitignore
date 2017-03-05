@@ -2,3 +2,9 @@ clones
 native/react/Test.js
 ladder.pem
 *.projectile
+__pycache__
+tags
+.ropeproject
+.agignore
+.idea
+.DS_STORE
