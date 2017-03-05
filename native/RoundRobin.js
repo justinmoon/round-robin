@@ -24,6 +24,12 @@ import analytics from './analytics'
 import appState from './appState'
 import connectivity from './connected'
 
+import Raven from 'raven-js'
+require('raven-js/plugins/react-native')(Raven)
+Raven
+  .config('https://db4b9222ae0741c887af8627790e3b44@sentry.io/144995', { release: 'TODO' })
+  .install();
+
 const RouterWithRedux = connect()(Router)
 
 // global._fetch = fetch;
