@@ -13,11 +13,11 @@ friendship = db.Table(
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column('id', db.Integer, primary_key=True)
-    fb_id = db.Column('fb_id', db.String, unique=True)
-    fb_access_token = db.Column('fb_access_token', db.String, nullable=False)
+    fb_id = db.Column('fb_id', db.String(1000), unique=True)
+    fb_access_token = db.Column('fb_access_token', db.String(1000), nullable=False)
     created_at = db.Column('created_at', db.DateTime, default=db.func.now())
-    name = db.Column('name', db.String, nullable=False)
-    pic_url = db.Column('pic_url', db.String, nullable=False)
+    name = db.Column('name', db.String(1000), nullable=False)
+    pic_url = db.Column('pic_url', db.String(1000), nullable=False)
     compositions = db.relationship('Composition',
         backref=db.backref('user', lazy='joined'), lazy='dynamic')
     friends = db.relationship("User", secondary=friendship,
@@ -101,7 +101,7 @@ class Prompt(db.Model):
     # TODO: unique date constraint
     id = db.Column('id', db.Integer, primary_key=True)
     date = db.Column('date', db.Date, nullable=False)
-    prompt = db.Column('prompt', db.String, nullable=False)
+    prompt = db.Column('prompt', db.String(1000), nullable=False)
     compositions = db.relationship('Composition',
         backref=db.backref('prompt', lazy='joined'), lazy='dynamic')
 
