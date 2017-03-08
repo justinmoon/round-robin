@@ -5,43 +5,43 @@ android-rm-strings:
 	-rm android/app/src/main/res/values/strings.xml
 
 android-dev-strings: android-rm-strings
-	cp config/dev-strings.xml android/app/src/main/res/values/strings.xml
+	cp con/dev-strings.xml android/app/src/main/res/values/strings.xml
 
 android-prod-strings: android-rm-strings
-	cp config/prod-strings.xml android/app/src/main/res/values/strings.xml
+	cp con/prod-strings.xml android/app/src/main/res/values/strings.xml
 
 ios-rm-info-plist:
 	-rm ios/RoundRobin/Info.plist
 
 ios-dev-info-plist: ios-rm-info-plist
-	cp config/dev-Info.plist ios/RoundRobin/Info.plist
+	cp con/dev-Info.plist ios/RoundRobin/Info.plist
 
 ios-prod-info-plist: ios-rm-info-plist
-	cp config/prod-Info.plist ios/RoundRobin/Info.plist
+	cp con/prod-Info.plist ios/RoundRobin/Info.plist
 
 
-config-clean:
-	-rm config/index.js
+con-clean:
+	-rm con/index.js
 
-config-prod: config-clean
-	cp config/prod.js config/index.js
+con-prod: con-clean
+	cp con/prod.js con/index.js
 
-config-dev: config-clean
-	cp config/dev.js config/index.js
+con-dev: con-clean
+	cp con/dev.js con/index.js
 
-config-stage: config-clean
-	cp config/stage.js config/index.js
+con-stage: con-clean
+	cp con/stage.js con/index.js
 
 ### Run ###
 
-ios-dev: config-dev ios-dev-info-plist
+ios-dev: con-dev ios-dev-info-plist
 	react-native run-ios
 
-ios-beta: config-prod ios-prod-info-plist
+ios-beta: con-prod ios-prod-info-plist
 	fastlane ios beta
 
-android-dev: config-dev android-dev-strings
+android-dev: con-dev android-dev-strings
 	react-native run-android
 
-android-alpha: config-prod android-prod-strings
+android-alpha: con-prod android-prod-strings
 	fastlane android alpha

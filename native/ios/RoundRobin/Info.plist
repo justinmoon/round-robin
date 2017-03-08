@@ -25,14 +25,14 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1842989042583088</string>
+				<string>__RN_CONFIG_FACEBOOK_BUNDLE_URL_SCHEME</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>22</string>
 	<key>FacebookAppID</key>
-	<string>1842989042583088</string>
+	<string>__RN_CONFIG_FACEBOOK_APP_ID</string>
 	<key>FacebookDisplayName</key>
 	<string>Round Robin</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -51,8 +51,11 @@
 	    <key>NSAllowsArbitraryLoads</key>
 	    <true/>
 	</dict>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -83,5 +86,7 @@
       <string>{320, 568}</string>
     </dict>
   </array>
+
+
 </dict>
 </plist>
