@@ -1,7 +1,5 @@
 import Config from 'react-native-config'
 
-console.log(Config)
-
 const SIMPLE_INTEGER_REGEX = /^\d+$/
 
 function cast(configValue) {
