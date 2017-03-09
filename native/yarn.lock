@@ -2728,7 +2728,7 @@ interpret@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.1.tgz#d579fb7f693b858004947af39fa0db49f795602c"
 
-invariant@^2.0.0, invariant@^2.2.0:
+invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -4329,6 +4329,12 @@ react-native-fbsdk@^0.4.0:
 react-native-linear-gradient@^1.5.15:
   version "1.5.15"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-1.5.15.tgz#4413111934dc1d8f5e0572ca96e60b1a2cf41f4d"
+
+react-native-onesignal@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.0.3.tgz#6e9fd8588c40b07b22fae38202e662643e070ae2"
+  dependencies:
+    invariant "^2.2.2"
 
 react-native-router-flux@^3.37.0:
   version "3.37.0"

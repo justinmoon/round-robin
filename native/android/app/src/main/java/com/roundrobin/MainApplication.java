@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;    // Added automatically
+// import com.geektime.reactnativeonesignal.ReactNativeOneSignalPackage;  // Added manually. Do we need both?
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.facebook.react.ReactInstanceManager;
@@ -54,7 +56,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNDeviceInfo(),
         new SplashScreenReactPackage(),
         new LinearGradientPackage(),
-        new FBSDKPackage(mCallbackManager)
+        new FBSDKPackage(mCallbackManager),
+        new ReactNativeOneSignalPackage()
       );
     }
   };

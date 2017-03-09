@@ -25,6 +25,7 @@
     "react-native-device-info": "^0.9.7",
     "react-native-fbsdk": "^0.4.0",
     "react-native-linear-gradient": "^1.5.15",
+    "react-native-onesignal": "^3.0.3",
     "react-native-router-flux": "^3.37.0",
     "react-native-splash-screen": "^1.0.9",
     "react-native-swiper": "https://github.com/superquest/react-native-swiper/archive/analytics.tar.gz",
