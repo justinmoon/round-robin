@@ -1,3 +1,0 @@
-server:
-  environment:
-    - CONFIG_ENV=dev

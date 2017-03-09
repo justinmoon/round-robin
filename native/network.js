@@ -3,12 +3,17 @@ import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import config from './config';
 
 const http = {
-  get: url => fetch(config.baseUrl + url).then(res => res.json()),
+  get: url => {
+    const credentials = 'same-origin'
+    return fetch(config.baseUrl + url, { credentials })
+      .then(res => res.json())
+  },
   // TODO: payload should be optional
   post: (url, payload={}) => {
     const body = JSON.stringify(payload)
-    const headers = {'Content-type': 'application/json'}
-    return fetch(config.baseUrl + url, { method: 'post', headers, body })
+    const headers = { 'Content-type': 'application/json' }
+    const credentials = 'same-origin'
+    return fetch(config.baseUrl + url, { method: 'post', headers, body, credentials })
       .then(res => res.json())
   },
 }

@@ -4295,6 +4295,10 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
+react-native-config@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-0.2.5.tgz#1d804b77de381a02aa35974c95e1bec0c8286485"
+
 react-native-debugger-open@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/react-native-debugger-open/-/react-native-debugger-open-0.3.2.tgz#ac90d33e97ab9aa9f815eb8c9f6f9efb4a09a733"

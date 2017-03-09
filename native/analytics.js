@@ -92,4 +92,4 @@ const emptyActionCreator = () => {
 const dev = {actions: {}}
 Object.keys(prod.actions).forEach(key => dev.actions[key] = emptyActionCreator)
 
-module.exports = (config.makeSegmentCalls) ? prod : dev
+module.exports = (config.makeSegmentCalls == true) ? prod : dev

@@ -18,8 +18,8 @@ def create_app(name, settings_override={}):
     app.json_encoder = CustomJSONEncoder
     app.config.from_object(BaseConfig)
     app.config.update(settings_override)
-    app.register_blueprint(routes, url_prefix='/api')
-    app.register_blueprint(auth, url_prefix='/api')
+    app.register_blueprint(routes)
+    app.register_blueprint(auth)
 
     migrate.init_app(app, db)
     db.init_app(app)

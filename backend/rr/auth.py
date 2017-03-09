@@ -1,5 +1,5 @@
 import requests
-from flask import jsonify, Blueprint, request, jsonify
+from flask import jsonify, Blueprint, request
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 
 from rr.queries import user_by_fb_id
@@ -59,7 +59,7 @@ def login():
 
 @auth.route('/current-user')
 @login_required
-def session():
+def session_():
     return jsonify(current_user)
 
 

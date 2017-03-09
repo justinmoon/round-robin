@@ -8,5 +8,5 @@ team_id "W6VF934SEW"  # Developer Portal Team ID
 
 
 # Android
-json_key_file "android/app/round-robin-credentials.json"
+json_key_file "~/credentials/round-robin/google-play.json"
 package_name "com.roundrobin"

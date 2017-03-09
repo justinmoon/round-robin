@@ -21,7 +21,8 @@ platform :ios do
 
     # https://github.com/fastlane-old/deliver/issues/235
     ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
-
+    ENV["ENVFILE"] = ".env.prod"
+    sh("echo '.env.prod' > /tmp/envfile")
 
   end
 
