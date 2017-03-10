@@ -51,6 +51,7 @@
 		D02382021DEA365400A0C04C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02381FE1DEA365400A0C04C /* FBSDKCoreKit.framework */; };
 		D02382031DEA365400A0C04C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02381FF1DEA365400A0C04C /* FBSDKLoginKit.framework */; };
 		D02382041DEA365400A0C04C /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D02382001DEA365400A0C04C /* FBSDKShareKit.framework */; };
+		D09558641E726DEE00794C4E /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D09558571E726DCC00794C4E /* libRCTOneSignal.a */; };
 		D0B983121DECC5B600BA6E5B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0B983111DECC5B600BA6E5B /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -230,6 +231,13 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
+		D09558561E726DCC00794C4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D09558461E726DCB00794C4E /* RCTOneSignal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTOneSignal;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -304,6 +312,7 @@
 		D02381FE1DEA365400A0C04C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D02381FF1DEA365400A0C04C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		D02382001DEA365400A0C04C /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		D09558461E726DCB00794C4E /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		D0B983111DECC5B600BA6E5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E8549EE565C648139700F7A2 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -340,6 +349,7 @@
 				1E554DA0B8454C3B8AD9E910 /* libRCTFBSDK.a in Frameworks */,
 				B7356086089F4BF6991B696B /* libSplashScreen.a in Frameworks */,
 				D01FADBE1DEDD4A2006262AC /* libBVLinearGradient.a in Frameworks */,
+				D09558641E726DEE00794C4E /* libRCTOneSignal.a in Frameworks */,
 				9CAD7EEDDC5F409DBEEA7C1C /* libRNDeviceInfo.a in Frameworks */,
 				A038BD394E5342B89C477B95 /* libReactNativeConfig.a in Frameworks */,
 			);
@@ -460,6 +470,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				D09558461E726DCB00794C4E /* RCTOneSignal.xcodeproj */,
 				D01FADA31DEDD490006262AC /* BVLinearGradient.xcodeproj */,
 				D01FAD2E1DEDCBC4006262AC /* NativeAnimation */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -634,6 +645,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D09558471E726DCB00794C4E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D09558571E726DCC00794C4E /* libRCTOneSignal.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -691,6 +710,9 @@
 						DevelopmentTeam = W6VF934SEW;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.GameCenter = {
 								enabled = 1;
 							};
@@ -750,6 +772,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = D09558471E726DCB00794C4E /* Products */;
+					ProjectRef = D09558461E726DCB00794C4E /* RCTOneSignal.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -959,6 +985,13 @@
 			fileType = archive.ar;
 			path = libSplashScreen.a;
 			remoteRef = D07E32A91DECA7D800AE0B32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D09558571E726DCC00794C4E /* libRCTOneSignal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOneSignal.a;
+			remoteRef = D09558561E726DCC00794C4E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1216,6 +1249,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 				);
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${CONFIGURATION_BUILD_DIR}/GeneratedInfoPlistDotEnv.h";
@@ -1268,6 +1302,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 				);
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${CONFIGURATION_BUILD_DIR}/GeneratedInfoPlistDotEnv.h";

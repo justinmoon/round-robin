@@ -19,6 +19,7 @@
 #import "SplashScreen.h"
 
 @implementation AppDelegate
+@synthesize oneSignal = _oneSignal;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -43,8 +44,9 @@
     // $ curl http://localhost:8081/index.ios.bundle -o main.jsbundle
     jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   #endif
-
-
+ 
+  self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
+                                                       appId:@"3e14e653-4dc6-4331-95e3-e3d8703bd206"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"RoundRobin"
@@ -71,6 +73,11 @@
   ];
   // Add any custom logic here.
   return handled;
+}
+
+// Required for the notification event.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)notification {
+    [RCTOneSignal didReceiveRemoteNotification:notification];
 }
 
 @end
