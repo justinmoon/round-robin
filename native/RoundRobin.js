@@ -24,6 +24,8 @@ import analytics from './analytics'
 import appState from './appState'
 import connectivity from './connected'
 
+import OneSignal from 'react-native-onesignal';
+
 import config from './config'
 import Raven from 'raven-js'
 require('raven-js/plugins/react-native')(Raven)
@@ -63,9 +65,10 @@ export default class RoundRobin extends Component {
     const callback = connected => store.dispatch(connectivity.connectivityChange(connected))
     connectivity.listen(callback)
   }
-  componentWillMount() {
+  componentDidMount() {
     this.listenForConnectivity()
     AppState.addEventListener('change', console.log)
+    OneSignal.configure({});
   }
   componentWillUnmount() {
     AppState.removeEventListener('change', console.log)

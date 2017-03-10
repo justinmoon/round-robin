@@ -53,25 +53,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-	<key>UIRequiredDeviceCapabilities</key>
+	<key>UIBackgroundModes</key>
 	<array>
-		<string>armv7</string>
-		<string>gamekit</string>
+		<string>remote-notification</string>
 	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-
-        <!-- somehow commenting this out fixed this: http://stackoverflow.com/questions/28830013/your-binary-is-not-optimized-for-iphone-5-itms-90096-when-submitting -->
-	<!-- <key>UILaunchStoryboardName</key> -->
-	<!-- <string>LaunchScreen</string> -->
-
-
 	<key>UILaunchImages</key>
 	<array>
 		<dict>
@@ -85,5 +70,18 @@
 			<string>{320, 568}</string>
 		</dict>
 	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+		<string>gamekit</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
