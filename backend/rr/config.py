@@ -9,6 +9,6 @@ class BaseConfig(object):
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{0}:{1}@{2}'.format(
         DB_USER, DB_PASS, DB_SERVICE
     )
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
     ONESIGNAL_APP_ID = get_secret('ONESIGNAL_APP_ID')
     ONESIGNAL_API_KEY = get_secret('ONESIGNAL_API_KEY')
