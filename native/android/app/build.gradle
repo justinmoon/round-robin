@@ -97,7 +97,7 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         manifestPlaceholders = [manifestApplicationId: "${applicationId}",
-                        onesignal_app_id: "3e14e653-4dc6-4331-95e3-e3d8703bd206",
+                        onesignal_app_id: project.env.get('ONESIGNAL_APP_ID'),
                         onesignal_google_project_number: "922702127785"]
     }
     // stored in ~/.gradle/properties.gradle

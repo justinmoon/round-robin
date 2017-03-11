@@ -36,8 +36,6 @@ if (config.ENABLE_SENTRY) {
     .install()
 }
 
-import OneSignal from 'react-native-onesignal';
-
 const RouterWithRedux = connect()(Router)
 
 // global._fetch = fetch;

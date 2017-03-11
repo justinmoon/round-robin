@@ -16,6 +16,8 @@
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+#import "ReactNativeConfig.h"
+
 #import "SplashScreen.h"
 
 @implementation AppDelegate
@@ -44,9 +46,10 @@
     // $ curl http://localhost:8081/index.ios.bundle -o main.jsbundle
     jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
   #endif
- 
+
+  NSString *appId = [ReactNativeConfig envFor:@"ONESIGNAL_APP_ID"];
   self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
-                                                       appId:@"3e14e653-4dc6-4331-95e3-e3d8703bd206"];
+                                                       appId:appId];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"RoundRobin"

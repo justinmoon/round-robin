@@ -24,7 +24,8 @@ const mapDispatchToProps = (dispatch, props) => {
 
 class Loading extends Component {
   componentWillMount() {
-		// this.props.dispatch(login.actions.logout())
+    // this.props.dispatch(login.actions.logout())
+    // setTimeout(Actions.login, 1000)
     this.props.fetchPrompts()
     this.props.fetchCurrentUser()
   }

@@ -10,3 +10,5 @@ class BaseConfig(object):
         DB_USER, DB_PASS, DB_SERVICE
     )
     SQLALCHEMY_ECHO = True
+    ONESIGNAL_APP_ID = get_secret('ONESIGNAL_APP_ID')
+    ONESIGNAL_API_KEY = get_secret('ONESIGNAL_API_KEY')
