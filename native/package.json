@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "analytics-react-native": "https://github.com/superquest/analytics-react-native/archive/latest.1.tar.gz",
+    "bugsnag-react-native": "^1.2",
     "es6-symbol": "^3.1.0",
     "firebase": "^3.6.2",
     "moment": "^2.17.1",

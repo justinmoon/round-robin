@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.bugsnag.BugsnagReactNative;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;    // Added automatically
 // import com.geektime.reactnativeonesignal.ReactNativeOneSignalPackage;  // Added manually. Do we need both?
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -52,6 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            BugsnagReactNative.getPackage(),
             new ReactNativeConfigPackage(),
             new RNDeviceInfo(),
         new SplashScreenReactPackage(),

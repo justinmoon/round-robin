@@ -35,6 +35,7 @@ if (config.ENABLE_SENTRY) {
     .config(config.SENTRY_URL, { release: 'TODO' })
     .install()
 }
+import { Client } from 'bugsnag-react-native';
 
 const RouterWithRedux = connect()(Router)
 
@@ -60,6 +61,10 @@ const createReducer = params => {
 
 
 export default class RoundRobin extends Component {
+  constructor(opts) {
+    super(opts);
+    this.client = new Client('b192f3dc0336014568d0cc1db8761df6');
+  }
   listenForConnectivity() {
     // FIXME: teardown
     const callback = connected => store.dispatch(connectivity.connectivityChange(connected))
