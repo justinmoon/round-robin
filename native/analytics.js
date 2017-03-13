@@ -28,7 +28,7 @@ function screen(route, user, anonymousId, properties) {
     payload.anonymousId = anonymousId
   }
   payload.context = { device: DeviceInfo }  // TODO: smarter way to include this
-  analytics.screen(payload)
+  // analytics.screen(payload)
 }
 
 function beginCompositionAction() {

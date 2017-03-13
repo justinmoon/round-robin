@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import RoundRobin from './Pretty.js';
+import RoundRobin from './RoundRobin.js';
 
 AppRegistry.registerComponent('RoundRobin', () => RoundRobin);

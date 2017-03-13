@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       return dispatch(community.actions.fetchCompositions())
     },
     submitComposition: (payload) => {
-      dispatch(editor.actions.submit(payload)).then(Actions.communityExplanation)
+      dispatch(editor.actions.submit(payload)).then(Actions.me)
       dispatch(analytics.actions.submitComposition())
     },
     setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),

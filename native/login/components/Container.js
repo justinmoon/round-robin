@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     login: () => dispatch(login.actions.login())
-      .then(r => Actions.editor())
+      .then(r => Actions.lowerTabs())
       .catch(err => {
         // UI reacts to redux state.
         // TODO: I wish navigation were same way, instead in this imperative way.

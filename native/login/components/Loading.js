@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchPrompts: () => dispatch(editor.actions.fetchPrompts()),
     fetchCurrentUser: () => {
       dispatch(login.actions.fetchCurrentUser())
-        .then(() => Actions.editor())
+        .then(() => Actions.lowerTabs())
         .catch(() => Actions.login())  // FIXME: check that it was actually an auth problem ...
     },
   }

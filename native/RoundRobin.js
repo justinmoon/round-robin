@@ -11,7 +11,7 @@ import {
   Text,
   View,
 } from 'react-native'
-import { Router, Reducer, Scene } from 'react-native-router-flux'
+import { Modal, Router, Reducer, Scene, Actions } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
 
 import store from './store'
@@ -25,6 +25,7 @@ import appState from './appState'
 import connectivity from './connected'
 
 import OneSignal from 'react-native-onesignal';
+import SplashScreen from 'react-native-splash-screen'
 
 import config from './config'
 import Raven from 'raven-js'
@@ -36,6 +37,8 @@ if (config.ENABLE_SENTRY) {
     .install()
 }
 import { Client } from 'bugsnag-react-native';
+
+import TabIcon from './components/TabIcon';
 
 const RouterWithRedux = connect()(Router)
 
@@ -60,6 +63,71 @@ const createReducer = params => {
 };
 
 
+
+
+
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tabBarStyle: {
+    backgroundColor: '#eee',
+  },
+  nestedTabBarStyle: {
+    backgroundColor: '#eee',
+    top: 0,
+  },
+  tabBarSelectedItemStyle: {
+    backgroundColor: '#ddd',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+  },
+  purpleContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8a3ab9',
+  },
+  yellowContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fccc63',
+  },
+  redContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#e95950',
+  },
+  redVioletContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#bc2a8d',
+  },
+});
+
+const Screen = ({s, title}) => {
+  return (
+    <View style={s}>
+      <Text style={styles.welcome}>
+        {title}
+      </Text>
+    </View>
+  );
+}
+
+const Friends = () => <Screen s={styles.purpleContainer} title='Friends'/>
+const Write = () => <Screen s={styles.yellowContainer} title='Write'/>
+const Private = () => <Screen s={styles.redContainer} title='Private'/>
+const Published = () => <Screen s={styles.redVioletContainer} title='Published'/>
+
 export default class RoundRobin extends Component {
   constructor(opts) {
     super(opts);
@@ -81,13 +149,68 @@ export default class RoundRobin extends Component {
   render() {
     return (
       <Provider store={store}>
-        <RouterWithRedux createReducer={createReducer} style={{ flex: 1 }}>
+        <RouterWithRedux createReducer={createReducer} >
+        <Scene key="modal" component={Modal} >
           <Scene key="root" hideNavBar={true}>
+
             <Scene key="loading" component={login.components.Loading} initial={true} />
+            
             <Scene key="login" component={login.components.Container} />
             <Scene key="editor" component={editor.components.Container} />
             <Scene key="community" component={community.components.Container} />
             <Scene key="communityExplanation" component={community.components.Explanation} />
+
+            <Scene key="lowerTabs" >
+              <Scene
+                key="lowerTabsMain"
+                tabs
+                tabBarStyle={styles.tabBarStyle}
+                tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
+              >
+                <Scene 
+                  key="friends" 
+                  component={community.components.Container} 
+                  hideNavBar 
+                  title="Friends" 
+                  icon={TabIcon} 
+                />
+                <Scene 
+                  key="write" 
+                  direction='vertical' 
+                  component={editor.components.Container} 
+                  title="Write" 
+                  hideTabBar 
+                  hideNavBar 
+                  icon={TabIcon} 
+                  leftTitle='close'
+                  onLeft={() => Actions.friends()}
+                />
+                <Scene key="me" title="Me" hideNavBar icon={TabIcon} >
+                  <Scene
+                    key="me:tabs"
+                    tabs
+                    tabBarStyle={styles.nestedTabBarStyle}
+                    tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
+                  >
+                    <Scene
+                      key="me:private"
+                      title="Private"
+                      component={Private}
+                      icon={TabIcon}
+                    />
+                    <Scene 
+                      initial 
+                      key="me:published" 
+                      title="Published" 
+                      component={Published} 
+                      icon={TabIcon}
+                    />
+                  </Scene>
+                </Scene>
+              </Scene>
+            </Scene>
+
+          </Scene>
           </Scene>
         </RouterWithRedux>
       </Provider>

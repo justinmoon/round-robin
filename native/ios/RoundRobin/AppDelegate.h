@@ -8,7 +8,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <RCTOneSignal.h>
+#import   <RCTOneSignal.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

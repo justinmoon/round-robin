@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import styles from '../../react/styles'
 
 import analytics from '../../analytics'
+import community from '../../community'
 
  // FIXME: Duplicate component
 const Header = ({ composition }) => {
@@ -46,7 +47,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {
+    fetchFeed: () => dispatch(community.actions.fetchCompositions()),
+  }
 }
 
 class Community extends React.Component {
@@ -55,6 +58,9 @@ class Community extends React.Component {
     this.state = {
       touchStartedAt: undefined,
     }
+  }
+  componentWillMount() {
+    this.props.fetchFeed()
   }
   logScreenView(index) {
     console.log('screen view')
