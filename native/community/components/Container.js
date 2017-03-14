@@ -1,6 +1,8 @@
 import React from 'react'
 import { ScrollView, View, Text, StatusBar } from 'react-native'
 import Swiper from 'react-native-swiper'
+import { Actions } from 'react-native-router-flux'
+import { List, ListItem } from 'react-native-elements'
 
 import { connect } from 'react-redux'
 import styles from '../../react/styles'
@@ -41,8 +43,9 @@ const Composition = ({ composition }) => {
 
 
 const mapStateToProps = (state) => {
+  const isByFriend = composition => composition.author.id !== state.currentUser.id
   return {
-    compositions: state.compositions.compositions,
+    compositions: state.compositions.compositions.filter(isByFriend),
   }
 }
 
@@ -117,4 +120,39 @@ const ConnectedCommunity = connect(
   mapDispatchToProps,
 )(Community)
 
-export default ConnectedCommunity
+
+
+class Friends extends React.Component {
+  componentWillMount() {
+    this.props.fetchFeed()
+  }
+  truncate(string) {
+    return string.substring(0, 100) + ' ...'
+  }
+  render() {
+    const { compositions } = this.props
+    return (
+      <List containerStyle={{marginBottom: 20}}>
+        {
+          compositions.map((c, i) => (
+            <ListItem
+              hideChevron
+              onPress={() => Actions.composition({ composition: c })}
+              avatar={{ uri: c.author.avatar_url }}
+              key={i}
+              title={c.prompt.prompt + ' by ' + c.author.name}
+              subtitle={this.truncate(c.body)}
+            />
+          ))
+        }
+      </List> 
+    )
+  }
+}
+
+const ConnectedFriends = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Friends)
+
+export default ConnectedFriends

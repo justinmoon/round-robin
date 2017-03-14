@@ -123,8 +123,6 @@ const Screen = ({s, title}) => {
   );
 }
 
-const Friends = () => <Screen s={styles.purpleContainer} title='Friends'/>
-const Write = () => <Screen s={styles.yellowContainer} title='Write'/>
 const Private = () => <Screen s={styles.redContainer} title='Private'/>
 const Published = () => <Screen s={styles.redVioletContainer} title='Published'/>
 
@@ -158,6 +156,7 @@ export default class RoundRobin extends Component {
             <Scene key="login" component={login.components.Container} />
             <Scene key="editor" component={editor.components.Container} />
             <Scene key="community" component={community.components.Container} />
+            <Scene key="composition" direction='vertical' component={community.components.Composition} />
             <Scene key="communityExplanation" component={community.components.Explanation} />
 
             <Scene key="lowerTabs" >

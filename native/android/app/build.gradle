@@ -145,6 +145,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-vector-icons')
     compile project(':bugsnag-react-native')
     compile project(':react-native-onesignal')
     compile project(':react-native-config')
