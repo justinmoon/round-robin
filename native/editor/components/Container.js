@@ -48,7 +48,6 @@ class EditorContainer extends Component {
     }
   }
   componentWillMount() {
-    SplashScreen.hide()
     this.props.fetch()
   }
   componentWillReceiveProps(props) {

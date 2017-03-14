@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
+import SplashScreen from 'react-native-splash-screen'
 
 import login from '../index'
 import editor from '../../editor'
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch, props) => {
       dispatch(login.actions.fetchCurrentUser())
         .then(() => Actions.lowerTabs())
         .catch(() => Actions.login())  // FIXME: check that it was actually an auth problem ...
+        .finally(() => SplashScreen.hide())
     },
   }
 }

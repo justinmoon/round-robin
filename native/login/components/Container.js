@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import SplashScreen from 'react-native-splash-screen'
 
 import login from '../index'
 
@@ -29,9 +28,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 class Container extends Component {
-  componentWillMount() {
-    SplashScreen.hide()
-  }
   render () {
     const bottomContent = this.props.loggingIn ?
         <ActivityIndicator size="large" /> :
