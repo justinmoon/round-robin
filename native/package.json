@@ -30,7 +30,7 @@
     "react-native-router-flux": "^3.37.0",
     "react-native-splash-screen": "^1.0.9",
     "react-native-swiper": "https://github.com/superquest/react-native-swiper/archive/analytics.tar.gz",
-    "react-native-vector-icons": "^4.0.0",
+    "react-native-vector-icons": "^3.0",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",

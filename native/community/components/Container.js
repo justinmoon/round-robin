@@ -137,7 +137,7 @@ class Friends extends React.Component {
           compositions.map((c, i) => (
             <ListItem
               hideChevron
-              onPress={() => Actions.composition({ composition: c })}
+              onPress={() => Actions.composition({ compositionId: c.id })}
               avatar={{ uri: c.author.avatar_url }}
               key={i}
               title={c.prompt.prompt + ' by ' + c.author.name}

@@ -25,11 +25,12 @@ def construct_filters(users):
     return filters
 
 
-def send_to_users(users, contents, heading=''):
+def send_to_users(users, contents, heading='', data={}):
     filters = construct_filters(users)
     return one_signal_client().create_notification(
         contents=contents,
         heading=heading,
         included_segments=[],
         filters=filters,
+        data=data,
     )

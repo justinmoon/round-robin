@@ -27,9 +27,10 @@ const Header = ({ composition }) => {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  // FIXME: UGLY!
   return {
-    compositions: state.compositions.compositions,
+    composition: state.compositions.compositions.filter(c => String(c.id) === String(ownProps.compositionId))[0],
   }
 }
 
@@ -45,6 +46,10 @@ class Composition extends React.Component {
   }
   render() {
     const { composition } = this.props
+    // FIXME
+    if (!composition) {
+      return <View/>
+    }
     return (
       <View style={styles.community.container}>
         <Header composition={composition} />

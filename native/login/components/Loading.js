@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch, props) => {
     fetchPrompts: () => dispatch(editor.actions.fetchPrompts()),
     fetchCurrentUser: () => {
       dispatch(login.actions.fetchCurrentUser())
+      // FIXME: only navigate if it wasn't opened from a push notification
         .then(() => Actions.lowerTabs())
         .catch(() => Actions.login())  // FIXME: check that it was actually an auth problem ...
         .finally(() => SplashScreen.hide())

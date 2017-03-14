@@ -131,6 +131,20 @@ export default class RoundRobin extends Component {
     super(opts);
     this.client = new Client('b192f3dc0336014568d0cc1db8761df6');
   }
+  onReceived(notification) {
+    console.log("Notification received: ", notification);
+  }
+  onOpened(openResult) {
+    console.log('Message: ', openResult.notification.payload.body)
+    console.log('Data: ', openResult.notification.payload.additionalData)
+    console.log('isActive: ', openResult.notification.isAppInFocus)
+    console.log('openResult: ', openResult);
+
+    const data = openResult.notification.payload.additionalData
+    if (data.event === 'new-composition') {
+      Actions.composition({compositionId: data.compositionId})
+    }
+  }  
   listenForConnectivity() {
     // FIXME: teardown
     const callback = connected => store.dispatch(connectivity.connectivityChange(connected))
@@ -140,6 +154,9 @@ export default class RoundRobin extends Component {
     this.listenForConnectivity()
     AppState.addEventListener('change', console.log)
     OneSignal.configure({});
+    OneSignal.addEventListener('received', this.onReceived);
+    OneSignal.addEventListener('opened', this.onOpened);
+
   }
   componentWillUnmount() {
     AppState.removeEventListener('change', console.log)
