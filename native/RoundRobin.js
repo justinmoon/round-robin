@@ -41,7 +41,8 @@ if (config.ENABLE_SENTRY) {
 }
 import { Client } from 'bugsnag-react-native';
 
-import TabIcon from './components/TabIcon';
+import components from './components';
+console.log(components)
 
 const RouterWithRedux = connect()(Router)
 
@@ -227,7 +228,7 @@ export default class RoundRobin extends Component {
                   component={community.components.Container} 
                   hideNavBar 
                   title="Friends" 
-                  icon={TabIcon} 
+                  icon={components.TabIcon} 
                 />
                 <Scene 
                   key="write" 
@@ -235,7 +236,7 @@ export default class RoundRobin extends Component {
                   icon={WriteIcon}
                   onPress={() => Actions.editor()}
                 />
-                <Scene key="me" title="Me" hideNavBar icon={TabIcon} >
+                <Scene key="me" title="Me" hideNavBar icon={components.TabIcon} >
                   <Scene
                     key="meTabs"
                     tabs
@@ -243,17 +244,19 @@ export default class RoundRobin extends Component {
                     tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
                   >
                     <Scene
+                      hideNavBar 
                       key="mePrivate"
                       title="Private"
                       component={Private}
-                      icon={TabIcon}
+                      icon={components.TabIcon}
                     />
                     <Scene 
+                      hideNavBar 
                       initial 
                       key="mePublished" 
                       title="Published" 
-                      component={Published} 
-                      icon={TabIcon}
+                      component={components.Published} 
+                      icon={components.TabIcon}
                     />
                   </Scene>
                 </Scene>

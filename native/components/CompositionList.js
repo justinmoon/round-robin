@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
 
 const truncate = string => string.substring(0, 100) + ' ...'
 
-const Row = ( composition, i ) => (
+const Row = ({ composition, renderTitle }, i ) => (
   <ListItem
     hideChevron
     onPress={() => Actions.composition({ compositionId: composition.id })}
     avatar={{ uri: composition.author.avatar_url }}
     key={i}
-    title={composition.prompt.prompt + ' by ' + composition.author.name}
+    title={renderTitle(composition)}
     subtitle={truncate(composition.body)}
   />
 )
@@ -29,7 +29,6 @@ class CompositionList extends React.Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      console.log(props.compositions),
     this.state = {
       dataSource: ds.cloneWithRows(props.compositions),
     };
@@ -48,7 +47,7 @@ class CompositionList extends React.Component {
         enableEmptySections
         style={styles.listContainer}
         dataSource={this.state.dataSource}
-        renderRow={(data) => <Row {...data} />}
+        renderRow={composition  => <Row composition={composition} renderTitle={this.props.renderTitle} />}
       />
     );
   }

@@ -37,7 +37,10 @@ class Friends extends React.Component {
     const { compositions } = this.props
     return (
       <View style={{ flex: 1, marginTop: 40 }}>
-        <components.CompositionList compositions={compositions}/>
+        <components.CompositionList 
+          compositions={compositions}
+          renderTitle={composition => composition.prompt.prompt + ' at ' + composition.created_at}
+        />
       </View>
     )
   }

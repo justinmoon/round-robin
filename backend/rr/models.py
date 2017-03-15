@@ -93,6 +93,7 @@ class Composition(db.Model):
     def to_dict(self):
         return {
             'id': str(self.id),
+            'created_at': self.created_at,
             'author': self.user,
             'body': self.body,
             'prompt': self.prompt,
