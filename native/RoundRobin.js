@@ -168,7 +168,7 @@ export default class RoundRobin extends Component {
             <Scene key="loading" component={login.components.Loading} initial />
             
             <Scene key="login" component={login.components.Container} />
-            <Scene key="editor" component={editor.components.Container} />
+            <Scene key="editor" direction='vertical' component={editor.components.Container} />
             <Scene key="community" component={community.components.Container} />
             <Scene key="composition" direction='vertical' component={community.components.Composition} />
             <Scene key="communityExplanation" component={community.components.Explanation} />
@@ -190,14 +190,9 @@ export default class RoundRobin extends Component {
                 />
                 <Scene 
                   key="write" 
-                  direction='vertical' 
-                  component={editor.components.Container} 
                   title="Write" 
-                  hideTabBar 
-                  hideNavBar 
                   icon={TabIcon} 
-                  leftTitle='close'
-                  onLeft={() => Actions.friends()}
+                  onPress={() => Actions.editor()}
                 />
                 <Scene key="me" title="Me" hideNavBar icon={TabIcon} >
                   <Scene
