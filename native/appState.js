@@ -6,7 +6,6 @@ const actionTypes = {
 
 const actions = {
   appStateChange: (state) => {
-    console.log('fuck')
     return (dispatch, getState) => {
       const { appState } = getState()
 

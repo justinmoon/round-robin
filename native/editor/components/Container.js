@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     submitComposition: (payload) => {
       dispatch(editor.actions.submit(payload)).then(Actions.me)
       dispatch(analytics.actions.submitComposition())
+      Keyboard.dismiss()
     },
     setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),
     startTimer: () => dispatch(timer.actions.start()),

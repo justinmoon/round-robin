@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView } from 'react-native';
 
-import styles from '../../react/styles';
+import styles from '../../styles';
 import editor from '../index'
 
 export default class Editor extends Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StatusBar, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
-import styles from '../../react/styles'
+import styles from '../../styles'
 import timer from '../../timer'
-import components from '../../react'
+import components from '../../components'
 import { Actions } from 'react-native-router-flux'
 
 export default class Header extends Component {
@@ -14,6 +14,11 @@ export default class Header extends Component {
     )
   }
   renderRightComponent() {
+    if (this.props.submitting) {
+      return (
+        <ActivityIndicator style={{ width: 60 }} size="small" />
+      )
+    }
     return (
       <TouchableOpacity onPress={this.props.handleSubmit} >
         <Text style={styles.header.buttonRight}>Submit</Text>

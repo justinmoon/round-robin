@@ -4,7 +4,7 @@ import Swiper from 'react-native-swiper'
 import { List, ListItem } from 'react-native-elements'
 
 import { connect } from 'react-redux'
-import styles from '../../react/styles'
+import styles from '../../styles'
 
 import analytics from '../../analytics'
 import community from '../../community'

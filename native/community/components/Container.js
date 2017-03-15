@@ -5,10 +5,12 @@ import { Actions } from 'react-native-router-flux'
 import { List, ListItem } from 'react-native-elements'
 
 import { connect } from 'react-redux'
-import styles from '../../react/styles'
+import styles from '../../styles'
 
 import analytics from '../../analytics'
 import community from '../../community'
+import components from '../../components'
+console.log(components.CompositionList)
 
  // FIXME: Duplicate component
 const Header = ({ composition }) => {
@@ -131,6 +133,7 @@ class Friends extends React.Component {
   }
   render() {
     const { compositions } = this.props
+    return (<components.CompositionList compositions={compositions}/>)
     return (
       <List containerStyle={{marginBottom: 20}}>
         {
