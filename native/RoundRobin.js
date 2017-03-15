@@ -63,10 +63,6 @@ const createReducer = params => {
 };
 
 
-
-
-
-
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center',
     alignItems: 'center',
@@ -123,6 +119,7 @@ const Screen = ({s, title}) => {
   );
 }
 
+
 const Private = () => <Screen s={styles.redContainer} title='Private'/>
 const Published = () => <Screen s={styles.redVioletContainer} title='Published'/>
 
@@ -168,7 +165,7 @@ export default class RoundRobin extends Component {
         <Scene key="modal" component={Modal} >
           <Scene key="root" hideNavBar={true}>
 
-            <Scene key="loading" component={login.components.Loading} initial={true} />
+            <Scene key="loading" component={login.components.Loading} initial />
             
             <Scene key="login" component={login.components.Container} />
             <Scene key="editor" component={editor.components.Container} />
@@ -184,6 +181,7 @@ export default class RoundRobin extends Component {
                 tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
               >
                 <Scene 
+                  initial
                   key="friends" 
                   component={community.components.Container} 
                   hideNavBar 
@@ -203,20 +201,20 @@ export default class RoundRobin extends Component {
                 />
                 <Scene key="me" title="Me" hideNavBar icon={TabIcon} >
                   <Scene
-                    key="me:tabs"
+                    key="meTabs"
                     tabs
                     tabBarStyle={styles.nestedTabBarStyle}
                     tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
                   >
                     <Scene
-                      key="me:private"
+                      key="mePrivate"
                       title="Private"
                       component={Private}
                       icon={TabIcon}
                     />
                     <Scene 
                       initial 
-                      key="me:published" 
+                      key="mePublished" 
                       title="Published" 
                       component={Published} 
                       icon={TabIcon}

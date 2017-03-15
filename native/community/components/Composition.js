@@ -8,6 +8,7 @@ import styles from '../../react/styles'
 
 import analytics from '../../analytics'
 import community from '../../community'
+import editor from '../../editor'
 
 const Header = ({ composition }) => {
   const name = composition.author.name.split(' ')[0]
