@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     top: 0,
   },
   tabBarSelectedItemStyle: {
-    backgroundColor: '#ddd',
   },
   welcome: {
     fontSize: 20,
