@@ -12,7 +12,12 @@ const header = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
   },
-  button: {
+  buttonLeft: {
+    width: 60,
+    fontSize: COMPOSITION_FONT_SIZE,
+    textAlign: 'left',
+  },
+  buttonRight: {
     width: 60,
     fontSize: COMPOSITION_FONT_SIZE,
     textAlign: 'right',

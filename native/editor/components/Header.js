@@ -1,34 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
 import styles from '../../react/styles'
 import timer from '../../timer'
 import components from '../../react'
+import { Actions } from 'react-native-router-flux'
 
 export default class Header extends Component {
+  renderLeftComponent() {
+    return (
+      <TouchableOpacity onPress={() => { Keyboard.dismiss(); Actions.pop()}} >
+        <Text style={styles.header.buttonLeft}>Quit</Text>
+      </TouchableOpacity>
+    )
+  }
   renderRightComponent() {
-    if (this.props.submitting) {
-      return (
-        <ActivityIndicator style={{ width: 60 }} size="small" />
-      )
-    } else if (this.props.reachedTargetDuration) {
-      return (
-        <TouchableOpacity onPress={this.props.handleSubmit} >
-          <Text style={styles.header.button}>Submit</Text>
-        </TouchableOpacity>
-      )
-    } else {
-      return (
-        <components.FadingView fade={this.props.fade} >
-          <timer.components.Timer timer={this.props.timer} tick={this.props.tick} />
-        </components.FadingView>
-      )
-    }
+    return (
+      <TouchableOpacity onPress={this.props.handleSubmit} >
+        <Text style={styles.header.buttonRight}>Submit</Text>
+      </TouchableOpacity>
+    )
   }
   render() {
     return (
       <View style={styles.header.container}>
         <StatusBar hidden />
-        <Text style={styles.header.button}></Text>
+        <View style={{ width: 60 }}>
+          {this.renderLeftComponent()}
+        </View>
         <Text style={styles.header.title}>{this.props.title}</Text>
         <View style={{ width: 60 }}>
           {this.renderRightComponent()}
