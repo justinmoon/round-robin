@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, View, Text, StatusBar } from 'react-native'
+import { ScrollView, View, Text } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { List, ListItem } from 'react-native-elements'
 
@@ -20,7 +20,6 @@ const Header = ({ composition }) => {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      <StatusBar hidden />
       <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.prompt.prompt}</Text>
       <Text style={{ fontSize: 16 }}> by </Text>
       <Text style={{ fontSize: 16, fontWeight: '500' }}>{name}</Text>
