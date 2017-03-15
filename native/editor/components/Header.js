@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
 import styles from '../../styles'
 import timer from '../../timer'
 import components from '../../components'
@@ -28,7 +28,6 @@ export default class Header extends Component {
   render() {
     return (
       <View style={styles.header.container}>
-        <StatusBar hidden />
         <View style={{ width: 60 }}>
           {this.renderLeftComponent()}
         </View>
