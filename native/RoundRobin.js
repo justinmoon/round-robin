@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableWithoutFeedback,
 } from 'react-native'
 import { Modal, Router, Reducer, Scene, Actions } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
@@ -29,6 +30,8 @@ import SplashScreen from 'react-native-splash-screen'
 
 import config from './config'
 import Raven from 'raven-js'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 require('raven-js/plugins/react-native')(Raven)
 
 if (config.ENABLE_SENTRY) {
@@ -132,6 +135,35 @@ const Screen = ({s, title}) => {
 const Private = () => <Screen title='Private'/>
 const Published = () => <Screen s={styles.redVioletContainer} title='Published'/>
 
+
+
+class WriteIcon extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      color: '#a9a9a9',
+    }
+  }
+  darken() {
+    console.log('dark')
+    this.setState({ color: 'black' });
+  }
+  lighten() {
+    this.setState({ color: '#a9a9a9' })
+  }
+  render() {
+    return (
+      <TouchableWithoutFeedback 
+        onPressIn={() => this.darken()} 
+        onPressOut={() => this.lighten()}
+        onPress={this.props.onPress}
+      >
+        <Icon name="plus-square" color={this.state.color} size={35} />
+      </TouchableWithoutFeedback>
+    )
+  }
+}
+
 export default class RoundRobin extends Component {
   constructor(opts) {
     super(opts);
@@ -200,7 +232,7 @@ export default class RoundRobin extends Component {
                 <Scene 
                   key="write" 
                   title="Write" 
-                  icon={TabIcon} 
+                  icon={WriteIcon}
                   onPress={() => Actions.editor()}
                 />
                 <Scene key="me" title="Me" hideNavBar icon={TabIcon} >

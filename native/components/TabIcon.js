@@ -13,7 +13,9 @@ const propTypes = {
 const TabIcon = (props) => (
   <Text
     style={{ 
-      fontWeight: props.selected ? 'bold' : 'normal',
+      fontWeight: 'bold',
+      fontSize: 18,
+      color: props.selected ? 'black' : '#A9A9A9',
     }}
   >
     {props.title}
