@@ -68,10 +68,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabBarStyle: {
-    backgroundColor: '#eee',
+    backgroundColor: '#f9f9f9',
+    padding: 10,
+    // iOS "shadows"
+    shadowColor: '#acacac',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 5,
+    shadowOpacity: 1.0,
+    // Android "shadows"
+    // elevation: 5, // invisible for lower tab bar ...
   },
-  nestedTabBarStyle: {
-    backgroundColor: '#eee',
+  nestedTabBarOverrides: {
     top: 0,
   },
   tabBarSelectedItemStyle: {
@@ -119,7 +129,7 @@ const Screen = ({s, title}) => {
 }
 
 
-const Private = () => <Screen s={styles.redContainer} title='Private'/>
+const Private = () => <Screen title='Private'/>
 const Published = () => <Screen s={styles.redVioletContainer} title='Published'/>
 
 export default class RoundRobin extends Component {
@@ -197,7 +207,7 @@ export default class RoundRobin extends Component {
                   <Scene
                     key="meTabs"
                     tabs
-                    tabBarStyle={styles.nestedTabBarStyle}
+                    tabBarStyle={[styles.tabBarStyle, styles.nestedTabBarOverrides]}
                     tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
                   >
                     <Scene
