@@ -14,9 +14,10 @@ import analytics from '../analytics'
 import community from '../community'
 import components from '../components'
 import { compositionsByFriends } from '../selectors/index.js'
+import { queries } from 'common'
 import lodash from 'lodash'
 
- 
+
 const mapStateToProps = (state) => {
   const isByFriend = composition => composition.author.id !== state.currentUser.id
   return {
@@ -49,27 +50,7 @@ class Friends extends React.Component {
   }
 }
 
-const FriendsContainer = connectRequest((props) => ({
-  url: config.baseUrl + '/compositions/friends',
-  transform: (json, text) => {
-    var compositions = json.reduce((acc, comp) => {
-      console.log(acc)
-      acc[comp.id] = comp
-      acc.friendIds.push(comp.id)
-      return acc
-    }, { friendIds: [] })
-    return { compositions } 
-  },
-  update: {
-    compositions: (prevCompositions, newCompositions) => {
-      console.log(prevCompositions, newCompositions)
-      return {
-      ...prevCompositions,
-      ...newCompositions,
-      }
-    }
-  },
-}))(Friends)
+const FriendsContainer = connectRequest(queries.fetchFriendsCompositions)(Friends)
 
 export default connect(
   mapStateToProps,
