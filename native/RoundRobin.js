@@ -42,7 +42,7 @@ if (config.ENABLE_SENTRY) {
 import { Client } from 'bugsnag-react-native';
 
 import components from './components';
-console.log(components)
+import { Friends } from './containers';
 
 const RouterWithRedux = connect()(Router)
 
@@ -225,7 +225,7 @@ export default class RoundRobin extends Component {
                 <Scene 
                   initial
                   key="friends" 
-                  component={community.components.Container} 
+                  component={Friends} 
                   hideNavBar 
                   title="Friends" 
                   icon={components.TabIcon} 
