@@ -10,8 +10,6 @@ runtime_config:
 env_variables:
   # Replace user, password, database, and instance connection name with the values obtained
   # when configuring your Cloud SQL instance.
-  SQLALCHEMY_DATABASE_URI: >-
-    mysql+pymysql://root:password@/prod?unix_socket=/cloudsql/round-robin-prod:us-central1:app-engine
   CONFIG_ENV: prod
 #[END env]
 

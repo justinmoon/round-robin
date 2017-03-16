@@ -13,15 +13,14 @@ import config from '../config'
 import analytics from '../analytics'
 import community from '../community'
 import components from '../components'
-import { compositionsByFriends } from '../selectors/index.js'
-import { queries } from 'common'
+import { selectors, queries } from 'common'
 import lodash from 'lodash'
 
 
 const mapStateToProps = (state) => {
   const isByFriend = composition => composition.author.id !== state.currentUser.id
   return {
-    compositions: compositionsByFriends(state),
+    compositions: selectors.compositionsByFriends(state),
   }
 }
 
