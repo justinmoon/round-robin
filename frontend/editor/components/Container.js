@@ -10,6 +10,8 @@ import editor from '../index'
 import community from '../../community'
 import analytics from '../../analytics'
 
+import { actions } from 'common'
+
 const mapStateToProps = (state) => {
   return {
     prompt: editor.selectors.getPrompt(state),
@@ -23,10 +25,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetch: () => {
-      return dispatch(community.actions.fetchCompositions())
+      return dispatch(actions.fetchCompositions())
     },
     submitComposition: (payload) => {
-      dispatch(editor.actions.submit(payload)).then(Actions.me)
+      dispatch(actions.submit(payload)).then(Actions.me)
       dispatch(analytics.actions.submitComposition())
       Keyboard.dismiss()
     },

@@ -6,6 +6,7 @@ import SplashScreen from 'react-native-splash-screen'
 
 import login from '../index'
 import editor from '../../editor'
+import { actions } from 'common'
 
 
 const mapStateToProps = (state) => {
@@ -14,7 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchPrompts: () => dispatch(editor.actions.fetchPrompts()),
+    fetchPrompts: () => dispatch(actions.fetchPrompts()),
     fetchCurrentUser: () => {
       dispatch(login.actions.fetchCurrentUser())
       // FIXME: only navigate if it wasn't opened from a push notification

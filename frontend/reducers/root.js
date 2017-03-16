@@ -7,13 +7,15 @@ import editor from '../editor'
 import users from '../users'
 import appState from '../appState'
 
+import { reducers as commonReducers } from 'common'
+
 export default combineReducers({
-  compositions,
+  compositions: commonReducers.compositions,
+  prompts: commonReducers.prompts,
   network,
   router,
   currentUser: users.currentUserReducer,
   anonymousId: users.anonymousIdReducer,
   appState: appState.reducer,
   timer: timer.reducer,
-  prompts: editor.reducer,
 })
