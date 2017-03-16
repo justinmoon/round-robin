@@ -19,10 +19,11 @@ def get_prompts():
     return db.session.query(Prompt)
 
 
-def construct_feed():
+def construct_feed(user):
     one_day_ago = datetime.now() - timedelta(days=1)
     return db.session.query(Composition) \
         .filter(Composition.created_at > one_day_ago)\
+        .filter(Composition.user_id != user.id)\
         .order_by(Composition.created_at.desc())
 
 

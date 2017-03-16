@@ -5,17 +5,22 @@ import { Actions } from 'react-native-router-flux'
 import { List, ListItem } from 'react-native-elements'
 
 import { connect } from 'react-redux'
+import { connectRequest } from 'redux-query'
+
 import styles from '../styles'
+import config from '../config'
 
 import analytics from '../analytics'
 import community from '../community'
 import components from '../components'
+import { compositionsByFriends } from '../selectors/index.js'
+import lodash from 'lodash'
 
-
+ 
 const mapStateToProps = (state) => {
   const isByFriend = composition => composition.author.id !== state.currentUser.id
   return {
-    compositions: state.compositions.compositions.filter(isByFriend),
+    compositions: compositionsByFriends(state),
   }
 }
 
@@ -44,9 +49,29 @@ class Friends extends React.Component {
   }
 }
 
-const ConnectedFriends = connect(
+const FriendsContainer = connectRequest((props) => ({
+  url: config.baseUrl + '/compositions/friends',
+  transform: (json, text) => {
+    var compositions = json.reduce((acc, comp) => {
+      console.log(acc)
+      acc[comp.id] = comp
+      acc.friendIds.push(comp.id)
+      return acc
+    }, { friendIds: [] })
+    return { compositions } 
+  },
+  update: {
+    compositions: (prevCompositions, newCompositions) => {
+      console.log(prevCompositions, newCompositions)
+      return {
+      ...prevCompositions,
+      ...newCompositions,
+      }
+    }
+  },
+}))(Friends)
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Friends)
-
-export default ConnectedFriends
+)(FriendsContainer)

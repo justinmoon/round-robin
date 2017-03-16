@@ -4,7 +4,11 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers/root'
 import users from './users'
+import { queryMiddleware } from 'redux-query';
 
+
+export const getQueries = (state) => state.queries;
+export const getEntities = (state) => state.entities;
 
 AsyncStorage.clear()
 
@@ -16,7 +20,7 @@ const composeEnhancers =
     }) : compose;
 
 const enhancer = composeEnhancers(
-  applyMiddleware(thunkMiddleware),
+  applyMiddleware(thunkMiddleware, queryMiddleware(getQueries, getEntities)),
 );
 
 

@@ -7,6 +7,8 @@ import editor from '../editor'
 import users from '../users'
 import appState from '../appState'
 
+import { entitiesReducer, queriesReducer } from 'redux-query'
+
 import { reducers as commonReducers } from 'common'
 
 export default combineReducers({
@@ -18,4 +20,6 @@ export default combineReducers({
   anonymousId: users.anonymousIdReducer,
   appState: appState.reducer,
   timer: timer.reducer,
+  queries: queriesReducer,
+  entities: entitiesReducer,
 })

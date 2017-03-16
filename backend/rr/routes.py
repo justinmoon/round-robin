@@ -29,7 +29,8 @@ def create_composition_route():
 
 
 @routes.route('/feed')
+@routes.route('/compositions/friends')
 @login_required
 def get_feed_route():
-    feed = q.construct_feed()
+    feed = q.construct_feed(current_user)
     return jsonify(feed.all())
