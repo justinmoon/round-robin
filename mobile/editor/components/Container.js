@@ -2,70 +2,49 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Keyboard } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux'
+import { connectRequest } from 'redux-query'
 
-import SplashScreen from 'react-native-splash-screen'
-
-import timer from '../../timer'
 import editor from '../index'
-import community from '../../community'
 import analytics from '../../analytics'
 
-import { actions } from 'common'
+import { selectors, actions, queries } from 'common'
+
 
 const mapStateToProps = (state) => {
   return {
-    prompt: editor.selectors.getPrompt(state),
-    timer: state.timer,
-    reachedTargetDuration: timer.selectors.reachedTargetDurationSelector({ timer: state.timer }),
-    homestretch: timer.selectors.homestretch({ timer: state.timer }),
-    submitting: state.compositions.submitting,
+    prompt: selectors.getPrompt(state),
+    submitting: false,  // FIXME
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetch: () => {
-      return dispatch(actions.fetchCompositions())
-    },
     submitComposition: (payload) => {
-      dispatch(actions.submit(payload)).then(Actions.me)
+      dispatch(queries.submitComposition(payload)).then(() => { 
+        // FIXME: HACK!
+        Actions.pop();
+        Actions.mePublished()
+      })
       dispatch(analytics.actions.submitComposition())
       Keyboard.dismiss()
     },
-    setTargetDuration: duration => dispatch(timer.actions.setTargetDuration(duration)),
-    startTimer: () => dispatch(timer.actions.start()),
-    stopTimer: () => dispatch(timer.actions.stop()),
-    tick: () => dispatch(timer.actions.tick()),
     beginComposition: () => dispatch(analytics.actions.beginComposition()),
   }
 }
 
-class EditorContainer extends Component {
+class Compose extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
       submitting: false,
       touched: false,
-      fade: null,
     }
-  }
-  componentWillMount() {
-    this.props.fetch()
-  }
-  componentWillReceiveProps(props) {
-    if (props.homestretch && this.state.fade !== 'in') {
-      this.setState({ fade: 'in' })
-    }
-  }
-  componentWillUnmount() {
-    this.props.stopTimer()
   }
   handleFirstKeystroke(text) {
     if (!this.state.touched) {
-      this.props.startTimer()
       this.props.beginComposition()
-      this.setState({ touched: true, fade: 'out' })
+      this.setState({ touched: true })
     }
   }
   handleEdit(text) {
@@ -78,7 +57,8 @@ class EditorContainer extends Component {
   }
   render() {
     // FIXME
-    const title = this.props.prompt && this.props.prompt.prompt
+    const { prompt } = this.props
+    const title = prompt ? prompt.prompt : ''
     return (
       <View style={{ flex: 1 }}>
         <editor.components.Header
@@ -86,9 +66,6 @@ class EditorContainer extends Component {
           title={title}
           handleSubmit={() => this.handleSubmit()}
           submitting={this.props.submitting}
-          timer={this.props.timer}
-          tick={this.props.tick}
-          fade={this.state.fade}
           reachedTargetDuration={this.props.reachedTargetDuration}
         />
         <editor.components.Editor
@@ -101,12 +78,15 @@ class EditorContainer extends Component {
   }
 }
 
-const ConnectedEditorContainer = connect(
+
+const ComposeContainer = connectRequest(queries.fetchPrompts)(Compose)
+
+const ConnectedComposeContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EditorContainer)
+)(ComposeContainer)
 
-export default ConnectedEditorContainer
+export default ConnectedComposeContainer
 
 const styles = StyleSheet.create({
   editor: {

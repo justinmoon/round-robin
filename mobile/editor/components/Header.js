@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
 import styles from '../../styles'
-import timer from '../../timer'
 import components from '../../components'
 import { Actions } from 'react-native-router-flux'
 
