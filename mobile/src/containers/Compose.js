@@ -7,8 +7,7 @@ import { connectRequest } from 'redux-query'
 import analytics from '../analytics'
 
 import { selectors, actions, queries } from 'common'
-// import { Input, Header } from '../components/compose' // FIXME: is there better way?
-import components from '../components' // FIXME: is there better way?
+import components from '../components'
 
 
 const mapStateToProps = (state) => {

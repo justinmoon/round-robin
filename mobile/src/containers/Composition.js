@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import styles from '../styles'
 
 import analytics from '../analytics'
-import community from '../community'
 import { selectors } from 'common'
 
 const Header = ({ composition }) => {
@@ -35,14 +34,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchFeed: () => dispatch(community.actions.fetchCompositions()),
   }
 }
 
 class Composition extends React.Component {
-  componentWillMount() {
-    this.props.fetchFeed()
-  }
   render() {
     const { composition } = this.props
     // FIXME

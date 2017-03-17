@@ -18,7 +18,6 @@ import { Provider, connect } from 'react-redux'
 import store from './store'
 
 import login from './login'
-import community from './community'
 
 import analytics from './analytics'
 import appState from './appState'
@@ -206,9 +205,7 @@ export default class RoundRobin extends Component {
             
             <Scene key="login" component={login.components.Container} />
             <Scene key="compose" direction='vertical' component={containers.Compose} />
-            <Scene key="community" component={community.components.Container} />
             <Scene key="composition" direction='vertical' component={containers.Composition} />
-            <Scene key="communityExplanation" component={community.components.Explanation} />
 
             <Scene key="lowerTabs" >
               <Scene
