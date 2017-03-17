@@ -21,3 +21,25 @@ export const fetchFriendsCompositions = (props) => ({
     }
   },
 })
+
+export const fetchCurrentUserCompositions = (props) => ({
+  url: config.baseUrl + '/compositions/me',
+  transform: (json, text) => {
+    // TODO: normalizr
+    var compositions = json.reduce((acc, comp) => {
+      acc[comp.id] = comp
+      acc.myIds.push(comp.id)
+      return acc
+    }, { myIds: [] })
+    return { compositions } 
+  },
+  update: {
+    compositions: (prevCompositions, newCompositions) => {
+      // TODO: Understand this ...
+      return {
+        ...prevCompositions,
+        ...newCompositions,
+      }
+    }
+  },
+})

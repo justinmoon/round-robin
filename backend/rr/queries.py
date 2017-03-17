@@ -27,6 +27,12 @@ def construct_feed(user):
         .order_by(Composition.created_at.desc())
 
 
+def current_user_compositions(user):
+    return db.session.query(Composition) \
+        .filter(Composition.user_id == user.id)\
+        .order_by(Composition.created_at.desc())
+
+
 def create_composition(created_at=None, *, prompt_id, user_id, body):
     created_at = created_at if created_at is not None else datetime.now()
     c = Composition(

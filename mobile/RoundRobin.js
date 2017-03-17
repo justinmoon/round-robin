@@ -42,7 +42,7 @@ if (config.ENABLE_SENTRY) {
 import { Client } from 'bugsnag-react-native';
 
 import components from './components';
-import { Friends } from './containers';
+import { Friends, Published } from './containers';
 
 const RouterWithRedux = connect()(Router)
 
@@ -132,11 +132,7 @@ const Screen = ({s, title}) => {
   );
 }
 
-
 const Private = () => <Screen title='Private'/>
-const Published = () => <Screen s={styles.redVioletContainer} title='Published'/>
-
-
 
 class WriteIcon extends React.Component {
   constructor(props){
@@ -255,7 +251,7 @@ export default class RoundRobin extends Component {
                       initial 
                       key="mePublished" 
                       title="Published" 
-                      component={components.Published} 
+                      component={Published} 
                       icon={components.TabIcon}
                     />
                   </Scene>

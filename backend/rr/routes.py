@@ -34,3 +34,10 @@ def create_composition_route():
 def get_feed_route():
     feed = q.construct_feed(current_user)
     return jsonify(feed.all())
+
+
+@routes.route('/compositions/me')
+@login_required
+def get_current_user_compositions():
+    feed = q.current_user_compositions(current_user)
+    return jsonify(feed.all())

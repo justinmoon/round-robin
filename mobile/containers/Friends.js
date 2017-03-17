@@ -1,40 +1,25 @@
 import React from 'react'
-import { ScrollView, View, Text, StatusBar } from 'react-native'
-import Swiper from 'react-native-swiper'
-import { Actions } from 'react-native-router-flux'
-import { List, ListItem } from 'react-native-elements'
-
+import { View } from 'react-native'
+import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 
-import styles from '../styles'
-import config from '../config'
-
-import analytics from '../analytics'
-import community from '../community'
 import components from '../components'
 import { selectors, queries } from 'common'
-import lodash from 'lodash'
 
 
 const mapStateToProps = (state) => {
-  const isByFriend = composition => composition.author.id !== state.currentUser.id
   return {
     compositions: selectors.compositionsByFriends(state),
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchFeed: () => dispatch(community.actions.fetchCompositions()),
-  }
+  return {}
 }
 
 
 class Friends extends React.Component {
-  componentWillMount() {
-    this.props.fetchFeed()
-  }
   truncate(string) {
     return string.substring(0, 100) + ' ...'
   }

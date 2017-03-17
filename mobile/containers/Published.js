@@ -1,35 +1,25 @@
 import React from 'react'
-import { ScrollView, View, Text, StatusBar } from 'react-native'
-import Swiper from 'react-native-swiper'
+import { View } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import { List, ListItem } from 'react-native-elements'
+import { ListItem } from 'react-native-elements'
 
 import { connect } from 'react-redux'
-import styles from '../styles'
+import { connectRequest } from 'redux-query'
 
-import analytics from '../analytics'
-import community from '../community'
 import components from '../components'
-
+import { selectors, queries } from 'common'
 
 const mapStateToProps = (state, ownProps) => {
-  const isCurrentUser = composition => composition.author.id === state.currentUser.id
   return {
-    compositions: state.compositions.compositions.filter(isCurrentUser),
+    compositions: selectors.currentUserPublishedCompositions(state)
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchFeed: () => dispatch(community.actions.fetchCompositions()),
-  }
+  return {}
 }
 
-
-class Friends extends React.Component {
-  componentWillMount() {
-    this.props.fetchFeed()
-  }
+class Published extends React.Component {
   truncate(string) {
     return string.substring(0, 100) + ' ...'
   }
@@ -46,9 +36,11 @@ class Friends extends React.Component {
   }
 }
 
-const ConnectedFriends = connect(
+const PublishedContainer = connectRequest(queries.fetchCurrentUserCompositions)(Published)
+
+const ConnectedPublished = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Friends)
+)(PublishedContainer)
 
-export default ConnectedFriends
+export default ConnectedPublished
