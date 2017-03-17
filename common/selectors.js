@@ -16,6 +16,11 @@ export const currentUserPublishedCompositions = state => {
   return myIds.map(id => compositions[id])
 }
 
+export const getCompositionById = (state, compositionId) => {
+  return lodash.get(state, `entities.compositions.${compositionId}`)
+}
+
+
 /**
  * Prompts
  */
@@ -24,4 +29,11 @@ export function getPrompt(state) {
   momentDate = moment(+moment.utc(utcDate))
   const key = momentDate.format('YYYY-MM-DD')
   return lodash.get(state, `entities.prompts.${key}`, '')
+}
+
+export default {
+  compositionsByFriends, 
+  currentUserPublishedCompositions, 
+  getCompositionById,
+  getPrompt,
 }

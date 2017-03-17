@@ -4,10 +4,11 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 
-import editor from '../index'
-import analytics from '../../analytics'
+import analytics from '../analytics'
 
 import { selectors, actions, queries } from 'common'
+// import { Input, Header } from '../components/compose' // FIXME: is there better way?
+import components from '../components' // FIXME: is there better way?
 
 
 const mapStateToProps = (state) => {
@@ -56,19 +57,18 @@ class Compose extends Component {
     this.props.submitComposition(payload)
   }
   render() {
-    // FIXME
     const { prompt } = this.props
     const title = prompt ? prompt.prompt : ''
     return (
       <View style={{ flex: 1 }}>
-        <editor.components.Header
+        <components.compose.Header
           style={{ flex: 1 }}
           title={title}
           handleSubmit={() => this.handleSubmit()}
           submitting={this.props.submitting}
           reachedTargetDuration={this.props.reachedTargetDuration}
         />
-        <editor.components.Editor
+        <components.compose.Input
           style={{ flex: 1 }}
           handleEdit={(text) => this.handleEdit(text)}
           text={this.state.text}

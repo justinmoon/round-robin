@@ -17,7 +17,6 @@ import { Provider, connect } from 'react-redux'
 
 import store from './store'
 
-import editor from './editor'
 import login from './login'
 import community from './community'
 
@@ -42,7 +41,7 @@ if (config.ENABLE_SENTRY) {
 import { Client } from 'bugsnag-react-native';
 
 import components from './components';
-import { Friends, Published } from './containers';
+import containers from './containers';
 
 const RouterWithRedux = connect()(Router)
 
@@ -206,9 +205,9 @@ export default class RoundRobin extends Component {
             <Scene key="loading" component={login.components.Loading} initial />
             
             <Scene key="login" component={login.components.Container} />
-            <Scene key="editor" direction='vertical' component={editor.components.Container} />
+            <Scene key="compose" direction='vertical' component={containers.Compose} />
             <Scene key="community" component={community.components.Container} />
-            <Scene key="composition" direction='vertical' component={community.components.Composition} />
+            <Scene key="composition" direction='vertical' component={containers.Composition} />
             <Scene key="communityExplanation" component={community.components.Explanation} />
 
             <Scene key="lowerTabs" >
@@ -221,7 +220,7 @@ export default class RoundRobin extends Component {
                 <Scene 
                   initial
                   key="friends" 
-                  component={Friends} 
+                  component={containers.Friends} 
                   hideNavBar 
                   title="Friends" 
                   icon={components.TabIcon} 
@@ -230,7 +229,7 @@ export default class RoundRobin extends Component {
                   key="write" 
                   title="Write" 
                   icon={WriteIcon}
-                  onPress={() => Actions.editor()}
+                  onPress={() => Actions.compose()}
                 />
                 <Scene key="me" title="Me" hideNavBar icon={components.TabIcon} >
                   <Scene
@@ -251,7 +250,7 @@ export default class RoundRobin extends Component {
                       initial 
                       key="mePublished" 
                       title="Published" 
-                      component={Published} 
+                      component={containers.Published} 
                       icon={components.TabIcon}
                     />
                   </Scene>

@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import SplashScreen from 'react-native-splash-screen'
 
 import login from '../index'
-import editor from '../../editor'
 import { actions } from 'common'
 
 

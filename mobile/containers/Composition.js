@@ -8,7 +8,7 @@ import styles from '../styles'
 
 import analytics from '../analytics'
 import community from '../community'
-import editor from '../editor'
+import { selectors } from 'common'
 
 const Header = ({ composition }) => {
   const name = composition.author.name.split(' ')[0]
@@ -28,9 +28,8 @@ const Header = ({ composition }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // FIXME: UGLY!
   return {
-    composition: state.compositions.compositions.filter(c => String(c.id) === String(ownProps.compositionId))[0],
+    composition: selectors.getCompositionById(state, ownProps.compositionId),
   }
 }
 

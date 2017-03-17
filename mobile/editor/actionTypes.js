@@ -1,5 +1,0 @@
-export const REQUEST_PROMPTS = 'editor/request-prompts'
-export const RECEIVE_PROMPTS = 'editor/receive-prompts'
-export const START_WRITING = 'editor/start-writing'
-export const SUBMIT = 'editor/submit'
-export const SUBMIT_SUCCESS = 'editor/submit-success'

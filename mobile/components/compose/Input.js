@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView } from 'react-native';
-
-import styles from '../../styles';
-import editor from '../index'
+import React, { Component } from 'react'
+import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView } from 'react-native'
+import styles from '../../styles'
+import constants from '../../constants'
 
 export default class Editor extends Component {
   constructor(props) {
     super(props);
     var { height } = Dimensions.get('window');
     this.state = {
-      textInputHeight: height - editor.constants.NAV_HEIGHT,
+      textInputHeight: height - constants.NAV_HEIGHT,
       screenHeight: height,
     };
   }
@@ -25,13 +24,13 @@ export default class Editor extends Component {
 
   _keyboardDidShow (frames) {
     var keyboardHeight = frames.endCoordinates.height
-    var textInputHeight = this.state.screenHeight - editor.constants.NAV_HEIGHT - keyboardHeight;
+    var textInputHeight = this.state.screenHeight - constants.NAV_HEIGHT - keyboardHeight;
     this.setState({ textInputHeight });
   }
 
   _keyboardDidHide (frames) {
     var keyboardHeight = 0;
-    var textInputHeight = this.state.screenHeight - editor.constants.NAV_HEIGHT;
+    var textInputHeight = this.state.screenHeight - constants.NAV_HEIGHT;
     this.setState({ textInputHeight });
   }
 

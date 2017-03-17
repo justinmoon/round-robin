@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
 import styles from '../../styles'
-import components from '../../components'
+import components from '..'
 import { Actions } from 'react-native-router-flux'
 
 export default class Header extends Component {
