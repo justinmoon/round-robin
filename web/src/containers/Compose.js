@@ -1,13 +1,14 @@
-import {Editor, EditorState} from 'draft-js';
+import React from 'react'
+import {Editor, EditorState} from 'draft-js'
 
 class Compose extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = (editorState) => this.setState({editorState});
+  constructor (props) {
+    super(props)
+    this.state = {editorState: EditorState.createEmpty()}
+    this.onChange = (editorState) => this.setState({editorState})
   }
-  render() {
-    return <Editor editorState={this.state.editorState} onChange={this.onChange} />;
+  render () {
+    return <Editor editorState={this.state.editorState} onChange={this.onChange} />
   }
 }
 
