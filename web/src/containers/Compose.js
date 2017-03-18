@@ -39,10 +39,9 @@ class Compose extends React.Component {
   }
   render () {
     const { submit, prompt } = this.props
-    console.log(this.props.state)
     return (
       <div>
-        <h1>{prompt.prompt}</h1>
+        <h1>{prompt && prompt.prompt}</h1>
         <div style={{
           fontFamily: "'Source Sans Pro', sans-serif",
             backgroundColor: '#eff2f1'
