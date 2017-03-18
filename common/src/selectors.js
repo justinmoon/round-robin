@@ -39,7 +39,7 @@ export function getPrompt(state) {
   const utcDate = new Date()
   momentDate = moment(+moment.utc(utcDate))
   const key = momentDate.format('YYYY-MM-DD')
-  return get(state, `entities.prompts.${key}`, '')
+  return get(state, `entities.prompts.${key}`, null)
 }
 
 export default {

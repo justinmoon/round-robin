@@ -24,10 +24,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "release": "(cd ../common && npm install && npm run build) && npm install && cp -r ../common node_modules/ && REACT_APP_BASE_URL=/api react-scripts build && cp _redirects build/_redirects",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/standard",
-    "postinstall": "(cd node_modules/react-flexbox-grid && yarn && yarn build)",
+    "netlify": "npm install && npm run build",
+    "postinstall": "(cd node_modules/react-flexbox-grid && npm install)",
     "fix": "./node_modules/.bin/standard --fix"
   }
 }

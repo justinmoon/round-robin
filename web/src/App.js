@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      route: ''
+      route: 'compose'
     }
   }
   onUpdateRoute (route) {
@@ -18,7 +18,7 @@ class App extends React.Component {
   getCurrentRoute () {
     switch (this.state.route) {
       case 'compose':
-        return <Compose updateRoute={() => this.onUpdateRoute()} />
+        return <Compose updateRoute={route => this.onUpdateRoute(route)} />
       case 'me':
         return <Me />
       case 'friends':

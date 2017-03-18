@@ -19,6 +19,15 @@ const enhancer = composeEnhancers(
 
 const store = createStore(
   rootReducer,
+  { 
+    entities: { 
+      compositions: {
+        myIds: [],
+        friendIds: [],
+      }, 
+      prompts: {} 
+    } 
+  },
   enhancer,
 )
 

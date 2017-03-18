@@ -8,7 +8,6 @@ def on_new_composition(user, composition):
     )
     data = {'event': 'new-composition', 'compositionId': composition.id}
     res = rr.onesignal.send_to_users(users, contents, data=data)
-    print(res.json())
 
 
 if __name__ == '__main__':
