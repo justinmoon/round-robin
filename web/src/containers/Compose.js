@@ -1,11 +1,5 @@
 import React from 'react'
 import {Editor, EditorState} from 'draft-js'
-import styled from 'styled-components'
-
-const EditorContainer = styled.div`
-  font-family: 'Source Sans Pro', sans-serif;
-  background-color: #eff2f7;
-`
 
 class Compose extends React.Component {
   constructor (props) {
@@ -15,12 +9,15 @@ class Compose extends React.Component {
   }
   render () {
     return (
-      <EditorContainer>
+      <div style={{
+        fontFamily: "'Source Sans Pro', sans-serif",
+        backgroundColor: '#eff2f1'
+      }}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}
         />
-      </EditorContainer>
+      </div>
     )
   }
 }
