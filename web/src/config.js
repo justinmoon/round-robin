@@ -1,3 +1,3 @@
 export default {
-  baseUrl: 'https://api.roundrob.in'
+  baseUrl: 'http://localhost:3000'
 }
