@@ -14,7 +14,7 @@ const defaultUpdate = (prev, next) => ({ ...prev, ...next })
  */
 
 const _login = payload => ({
-  url: config.baseUrl + '/login',
+  url: '/login',
   transform: (json, text) => {
     return { currentUser: json }
   },
@@ -27,7 +27,7 @@ const _login = payload => ({
 export const login = payload => mutateAsync(_login(payload))
 
 const _logout = () => ({
-  url: config.baseUrl + '/logout',
+  url: '/logout',
   transform: (json, text) => {
     return { currentUser: null }
   },
@@ -44,7 +44,7 @@ export const logout = payload => mutateAsync(_logout())
  * Compositions
  */
 export const fetchFriendsCompositions = (props) => ({
-  url: config.baseUrl + '/compositions/friends',
+  url: '/compositions/friends',
   transform: (json, text) => {
     var compositions = json.reduce((acc, comp) => {
       acc[comp.id] = comp
@@ -59,7 +59,7 @@ export const fetchFriendsCompositions = (props) => ({
 })
 
 export const fetchCurrentUserCompositions = (props) => ({
-  url: config.baseUrl + '/compositions/me',
+  url: '/compositions/me',
   transform: (json, text) => {
     var compositions = json.reduce((acc, comp) => {
       acc[comp.id] = comp
@@ -74,7 +74,7 @@ export const fetchCurrentUserCompositions = (props) => ({
 })
 
 const _submitComposition = payload => ({
-  url: config.baseUrl + '/compositions',
+  url: '/compositions',
   body: payload,
   transform: (json, text) => {
     return { compositions: json }
@@ -106,7 +106,7 @@ export const submitComposition = payload => mutateAsync(_submitComposition(paylo
  * Prompts
  */
 export const fetchPrompts = (props) => ({
-  url: config.baseUrl + '/prompts',
+  url: '/prompts',
   transform: (json, text) => {
     return { prompts: json }
   },
