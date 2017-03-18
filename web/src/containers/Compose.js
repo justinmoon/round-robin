@@ -17,7 +17,6 @@ class Compose extends React.Component {
     return (
       <EditorContainer>
         <Editor
-          textAlignment='left'
           editorState={this.state.editorState}
           onChange={this.onChange}
         />
