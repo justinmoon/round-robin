@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/standard",
     "netlify": "npm install && npm run build",
-    "postinstall": "(cd node_modules/react-flexbox-grid && npm install && npm run build)",
+    "postinstall": "pwd && (cd node_modules/react-flexbox-grid && npm install && npm run build)",
     "fix": "./node_modules/.bin/standard --fix"
   }
 }
