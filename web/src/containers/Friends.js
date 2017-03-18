@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 import { selectors, queries } from 'common'
+import { CompositionList } from '../components'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -17,9 +18,10 @@ class Friends extends React.Component {
   render () {
     const { compositions } = this.props
     return (
-      <ul>
-        {compositions.map((c, i) => <li key={i}>{c.body}</li>)}
-      </ul>
+      <CompositionList 
+        compositions={compositions} 
+        renderTitle={composition => composition.prompt.prompt + ' by ' + composition.author.name}
+      />
     )
   }
 }

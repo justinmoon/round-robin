@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 import { selectors, queries } from 'common'
+import { CompositionList } from '../components'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -15,7 +16,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 class Me extends React.Component {
   render () {
-    return <div>Me</div>
+    const { compositions } = this.props
+    return (
+      <CompositionList 
+        compositions={compositions} 
+        renderTitle={composition => composition.prompt.prompt + ' at ' + composition.created_at}
+      />
+    )
   }
 }
 
