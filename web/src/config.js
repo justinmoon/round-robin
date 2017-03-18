@@ -1,3 +1,3 @@
 export default {
-  baseUrl: 'api.roundrob.in'
+  baseUrl: 'https://api.roundrob.in'
 }
