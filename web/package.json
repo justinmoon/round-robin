@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "common": "file:../common",
     "draft-js": "^0.10.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "standard": "^9.0.1",
-    "react-flexbox-grid": "https://github.com/roylee0704/react-flexbox-grid.git#master"
+    "react-flexbox-grid": "https://github.com/roylee0704/react-flexbox-grid.git#master",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-query": "^1.2.0",
+    "redux-thunk": "^2.2.0",
+    "standard": "^9.0.1"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"

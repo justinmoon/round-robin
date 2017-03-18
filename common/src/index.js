@@ -1,4 +1,3 @@
-import * as network  from './network'
 import * as reducers from './reducers'
 import * as actions  from './actions'
 import * as queries  from './queries'
@@ -10,6 +9,5 @@ export {
   queries,
   actions,
   actionTypes,
-  network,
   selectors,
 }

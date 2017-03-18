@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native'
 import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist'
 import thunkMiddleware from 'redux-thunk';
-import rootReducer from './reducers/root'
+import rootReducer from './reducers'
 import users from './users'
 import { queryMiddleware } from 'redux-query';
 

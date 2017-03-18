@@ -1,4 +1,4 @@
-import config from '../../../src/config'  // FIXME: how to inject config into a node module?
+import config from '../../../../src/config'  // FIXME: how to inject config into a node module?
 import { mutateAsync } from 'redux-query';
 
 
@@ -6,6 +6,21 @@ import { mutateAsync } from 'redux-query';
  * Helpers
  */
 const defaultUpdate = (prev, next) => ({ ...prev, ...next })
+
+
+
+/** 
+ * Authentication
+ */
+
+const _login = payload => ({
+  url: config.baseUrl + '/login',
+  body: payload,
+  update: {
+  },
+})
+
+export const login = payload => mutateAsync(_login(payload))
 
 
 /**

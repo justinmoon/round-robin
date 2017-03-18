@@ -1,7 +1,10 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { Compose, Friends, Me } from './containers'
-import { Nav } from './components'
+import { Nav, FBLogin } from './components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
+import store from './store'
+
 
 class App extends React.Component {
   constructor (props) {
@@ -33,10 +36,13 @@ class App extends React.Component {
   }
   render () {
     return (
-      <Grid fluid>
-        <Nav updateRoute={route => this.onUpdateRoute(route)} />
-        {this.getCurrentRoute()}
-      </Grid>
+      <Provider store={store}>
+        <Grid fluid>
+          <FBLogin/>
+          <Nav updateRoute={route => this.onUpdateRoute(route)} />
+          {this.getCurrentRoute()}
+        </Grid>
+      </Provider>
     )
   }
 }
