@@ -27,7 +27,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/standard",
-    "postinstall": "(cd node_modules/react-flexbox-grid && yarn && yarn build)",
+    "netlify": "npm install && npm run build",
+    "postinstall": "(cd node_modules/react-flexbox-grid && npm install && npm run build)",
     "fix": "./node_modules/.bin/standard --fix"
   }
 }
