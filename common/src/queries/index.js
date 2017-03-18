@@ -15,13 +15,30 @@ const defaultUpdate = (prev, next) => ({ ...prev, ...next })
 
 const _login = payload => ({
   url: config.baseUrl + '/login',
+  transform: (json, text) => {
+    return { currentUser: json }
+  },
   body: payload,
   update: {
+    currentUser: defaultUpdate
   },
 })
 
 export const login = payload => mutateAsync(_login(payload))
 
+const _logout = () => ({
+  url: config.baseUrl + '/logout',
+  transform: (json, text) => {
+    return { currentUser: null }
+  },
+  update: {
+    currentUser: (prev, next) => {
+      return { currentUser: next }
+    }
+  },
+})
+
+export const logout = payload => mutateAsync(_logout())
 
 /**
  * Compositions

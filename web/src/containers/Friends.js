@@ -1,8 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { connectRequest } from 'redux-query'
+import { selectors, queries } from 'common'
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    compositions: selectors.compositionsByFriends(state)
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -11,9 +15,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 class Friends extends React.Component {
   render () {
-    console.log(this.props)
-    return <div>Friends</div>
+    const { compositions } = this.props
+    return (
+      <ul>
+        {compositions.map((c, i) => <li key={i}>{c.body}</li>)}
+      </ul>
+    )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Friends)
+const FriendsContainer = connectRequest(queries.fetchFriendsCompositions)(Friends)
+
+export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer)

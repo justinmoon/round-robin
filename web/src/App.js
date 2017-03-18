@@ -5,7 +5,6 @@ import { Nav, FBLogin } from './components'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import store from './store'
 
-
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -19,7 +18,7 @@ class App extends React.Component {
   getCurrentRoute () {
     switch (this.state.route) {
       case 'compose':
-        return <Compose />
+        return <Compose updateRoute={() => this.onUpdateRoute()} />
       case 'me':
         return <Me />
       case 'friends':
@@ -38,7 +37,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Grid fluid>
-          <FBLogin/>
+          <FBLogin />
           <Nav updateRoute={route => this.onUpdateRoute(route)} />
           {this.getCurrentRoute()}
         </Grid>
