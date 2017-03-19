@@ -3,8 +3,7 @@ import {Editor, EditorState} from 'draft-js'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 import { convertToRaw } from 'draft-js'
-// import { selectors, queries } from 'common'
-const { selectors, queries } = require('common')
+import { selectors, queries } from 'common'
 
 const mapStateToProps = (state, ownProps) => {
   return {
