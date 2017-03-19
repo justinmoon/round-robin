@@ -24,7 +24,6 @@
   "scripts": {
     "start": "react-scripts start",
     "release": "cp -r ../common node_modules/ && REACT_APP_BASE_URL=/api react-scripts build && cp _redirects build/_redirects",
-    "release": "npm install && REACT_APP_BASE_URL=/api react-scripts build && cp _redirects build/_redirects && cp -r ../common node_modules/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/standard",
