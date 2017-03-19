@@ -23,6 +23,7 @@
   "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "release": "(cd ../common && npm install && npm run build) && npm install && cp -r ../common node_modules/ && REACT_APP_BASE_URL=/api react-scripts build && cp _redirects build/_redirects",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

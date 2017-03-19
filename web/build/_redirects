@@ -1,1 +1,1 @@
-/api/*   http://round-robin-api.ngrok.io/:splat  200
+/api/*   http://roundrob.in/:splat  200
