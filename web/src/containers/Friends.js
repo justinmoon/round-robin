@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
-// import { selectors, queries } from 'common'
-const { selectors, queries } = require('common')
+import { selectors, queries } from 'common'
 import { CompositionList } from '../components'
 
 const mapStateToProps = (state, ownProps) => {
