@@ -5,12 +5,14 @@
   "author": "Justin Moen",
   "license": "MIT",
   "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
     "babel-preset-react-native": "^1.9.1",
     "cpx": "^1.5.0",
     "moment": "^2.17.1"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "node_modules/.bin/babel src -d lib",
     "web": "./node_modules/.bin/cpx '**/*.*' ../web/node_modules/common/",
     "mobile": "./node_modules/.bin/cpx '**/*.*' ../mobile/node_modules/common/"
   }
