@@ -1,5 +1,0 @@
-dispatch:
-  - url: "api.roundrob.in/*"
-    module: api
-  - url: "roundrob.in/*"
-    module: web
