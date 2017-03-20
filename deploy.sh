@@ -1,8 +1,13 @@
-cd web
-npm install
-echo "listingit"
-pwd
-ls node_modules/common
-npm run build
-cp _redirects build/_redirects
+cd common
+yarn install
+
+cd ../web
+yarn
+yarn build
+rm -rf ../backend/rr/build
+cp -r build ../backend/rr
+ls ../backend/rr
 cd ..
+
+cd backend
+# gcloud app deploy app.yaml

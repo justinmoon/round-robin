@@ -2,7 +2,6 @@ import os
 
 
 class ProductionSecrets:
-    DEBUG=False
     SECRET_KEY='5(15ds+i2+%ik6z&!yer+ga9m=e%jcqiz_5wszg)r-z!2--b2d'
     DB_USER = 'root'
     DB_PASS='password'
@@ -11,7 +10,6 @@ class ProductionSecrets:
     ONESIGNAL_API_KEY = 'NmE1MTg2MmQtNWQ4Zi00NTE4LTkwYzQtOTcwOTQ5ODBjODNk'
 
 class DevelopmentSecrets:
-    DEBUG=True
     SECRET_KEY='5(15ds+i2+%ik6z&!yer+ga9m=e%jcqiz_5wszg)r-z!2--b2d'
     DB_USER = 'user'
     DB_PASS='password'
@@ -19,12 +17,7 @@ class DevelopmentSecrets:
     ONESIGNAL_APP_ID='a01d57b3-098d-4442-8da0-3c901a0fdecc'
     ONESIGNAL_API_KEY = 'ZWI1ZDhjYWQtNWFmNC00ODk3LWEzNGItNjZjYTMzMzM2NjEy'
 
-class StagingSecrets:
-    DEBUG=False
-
 class TestSecrets:
-    DEBUG=False
-
     SECRET_KEY='5(15ds+i2+%ik6z&!yer+ga9m=e%jcqiz_5wszg)r-z!2--b2d'
     DB_USER = 'postgres'
     DB_NAME='postgres'
@@ -41,7 +34,6 @@ def get_secret(key):
         'prod': ProductionSecrets,
         'test': TestSecrets,
         'dev': DevelopmentSecrets,
-        'stage': StagingSecrets,
     }
     thing = secrets.get(env)
     return getattr(thing, key)

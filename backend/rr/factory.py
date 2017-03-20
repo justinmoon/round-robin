@@ -10,16 +10,19 @@ from rr.routes import routes
 from rr.auth import auth, login_manager
 from rr.custom_json_encoder import CustomJSONEncoder
 from rr.admin import admin
+from rr.static import static
 
 migrate = Migrate()
 
 def create_app(name, settings_override={}):
-    app = Flask(name)
+    app = Flask(name, static_folder='build/static', static_url_path='/static')
+
     app.json_encoder = CustomJSONEncoder
     app.config.from_object(BaseConfig)
     app.config.update(settings_override)
-    app.register_blueprint(routes)
-    app.register_blueprint(auth)
+    app.register_blueprint(routes, url_prefix='/api')
+    app.register_blueprint(auth, url_prefix='/api')
+    app.register_blueprint(static)
 
     migrate.init_app(app, db)
     db.init_app(app)
