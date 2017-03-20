@@ -1,46 +1,32 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import { Grid, Row, Col } from 'react-flexbox-grid'
+import { ConnectedRouter } from 'react-router-redux'
+import { Route, NavLink, Link } from 'react-router-dom'
+
 import { Compose, Friends, Me } from './containers'
 import { Nav, FBLogin } from './components'
-import { Grid, Row, Col } from 'react-flexbox-grid'
 import store from './store'
+import history from './history'
+
+console.log(Compose)
 
 class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      route: 'compose'
-    }
-  }
-  onUpdateRoute (route) {
-    this.setState({ route })
-  }
-  getCurrentRoute () {
-    switch (this.state.route) {
-      case 'compose':
-        return <Compose updateRoute={route => this.onUpdateRoute(route)} />
-      case 'me':
-        return <Me />
-      case 'friends':
-        return <Friends />
-      default:
-        return (
-          <Row>
-            <Col xs={6} md={3}>
-              Hello, world!
-            </Col>
-          </Row>
-        )
-    }
-  }
   render () {
     return (
       <Provider store={store}>
-        <Grid fluid>
-          <FBLogin />
-          <Nav updateRoute={route => this.onUpdateRoute(route)} />
-          {this.getCurrentRoute()}
-        </Grid>
+        <ConnectedRouter history={history}>
+          <div>
+            <ul>
+              <li><NavLink to="/friends">Friends</NavLink></li>
+              <li><NavLink to="/write">Write</NavLink></li>
+              <li><NavLink to="/me">Me</NavLink></li>
+            </ul>
+            <Route path="/friends" component={Friends} />
+            <Route path="/write" component={Compose} />
+            <Route path="/me" component={Me} />
+          </div>
+        </ConnectedRouter>
       </Provider>
     )
   }

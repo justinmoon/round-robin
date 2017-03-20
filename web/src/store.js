@@ -2,6 +2,8 @@ import { compose, createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import rootReducer from './reducers'
 import { queryMiddleware } from 'redux-query'
+import { routerMiddleware as makeRouterMiddleware } from 'react-router-redux'
+import history from './history'
 
 export const getQueries = (state) => state.queries
 export const getEntities = (state) => state.entities
@@ -13,8 +15,14 @@ const composeEnhancers =
       // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
     }) : compose
 
+const routerMiddleware = makeRouterMiddleware(history)
+
 const enhancer = composeEnhancers(
-  applyMiddleware(thunkMiddleware, queryMiddleware(getQueries, getEntities)),
+  applyMiddleware(
+    thunkMiddleware, 
+    queryMiddleware(getQueries, getEntities),
+    routerMiddleware,
+  ),
 )
 
 const store = createStore(
