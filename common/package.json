@@ -12,8 +12,9 @@
   },
   "scripts": {
     "build": "node_modules/.bin/babel src -d lib",
-    "build-web": "node_modules/.bin/babel src -d ../web/node_modules/common",
-    "build-mobile": "node_modules/.bin/babel src -d ../mobile/node_modules/common",
+    "prepublish": "node_modules/.bin/babel src -d lib",
+    "build-web": "node_modules/.bin/babel src -d ../web/node_modules/common/lib",
+    "build-mobile": "node_modules/.bin/babel src -d ../mobile/node_modules/common/lib",
     "watch-web": "fswatch -0  src | xargs -0 -n 1 -I {} yarn build-web",
     "watch-mobile": "fswatch -0  src | xargs -0 -n 1 -I {} yarn build && yarn build-mobile"
   }

@@ -1,4 +1,4 @@
-import config from '../../src/config'  // FIXME: how to inject config into a node module?
+import config from '../../../src/config'  // FIXME: how to inject config into a node module?
 import { mutateAsync } from 'redux-query';
 
 
