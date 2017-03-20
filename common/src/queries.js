@@ -1,17 +1,39 @@
-import config from '../../../../src/config'  // FIXME: how to inject config into a node module?
+import config from '../../src/config'  // FIXME: how to inject config into a node module?
 import { mutateAsync } from 'redux-query';
 
+
+
+/** 
+ * Keep track of initial state b/c redux-query can't initialize state ...
+ */
+export const initialEntities = {
+  entities: {
+    compositions: {
+      myIds: [],
+      friendIds: []
+    },
+    prompts: {},
+    currentUser: undefined,  // replaced by {} if user isn't logged in
+  },
+}
 
 /** 
  * Helpers
  */
 const defaultUpdate = (prev, next) => ({ ...prev, ...next })
 
-
-
 /** 
  * Authentication
  */
+export const fetchCurrentUser = (props) => ({
+  url: config.baseUrl + '/current-user-json',
+  transform: (json, text) => {
+    return { currentUser: json }
+  },
+  update: {
+    currentUser: defaultUpdate,
+  },
+})
 
 const _login = payload => ({
   url: config.baseUrl + '/login',
@@ -93,7 +115,6 @@ const _submitComposition = payload => ({
   },
   entities: {
     compositions: props => {
-      debugger
       return defaultUpdate(props)
     },
   },

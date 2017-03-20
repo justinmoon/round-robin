@@ -18,8 +18,8 @@ class Friends extends React.Component {
   render () {
     const { compositions } = this.props
     return (
-      <CompositionList 
-        compositions={compositions} 
+      <CompositionList
+        compositions={compositions}
         renderTitle={composition => composition.prompt.prompt + ' by ' + composition.author.name}
       />
     )

@@ -1,5 +1,7 @@
 import moment from 'moment'
 import { get, has } from 'lodash'
+import { querySelectors } from 'redux-query'
+
 
 /**
  * Authentication
@@ -10,6 +12,16 @@ export const getCurrentUser = state => {
 
 export const loggedIn = state => {
   return has(state, 'entities.currentUser.id')
+}
+
+export const isFetchingCurrentUser = state => {
+  const url = '/current-user-json'
+  return querySelectors.isPending(url)(state.queries) || false
+}
+
+
+export const redirectToLogin = state => {
+  return getCurrentUser(state) !== undefined && !loggedIn(state)
 }
 
 /**

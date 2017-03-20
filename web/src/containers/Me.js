@@ -18,8 +18,8 @@ class Me extends React.Component {
   render () {
     const { compositions } = this.props
     return (
-      <CompositionList 
-        compositions={compositions} 
+      <CompositionList
+        compositions={compositions}
         renderTitle={composition => composition.prompt.prompt + ' at ' + composition.created_at}
       />
     )

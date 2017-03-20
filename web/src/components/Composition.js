@@ -1,7 +1,7 @@
 import React from 'react'
 
 class Composition extends React.Component {
-  render() {
+  render () {
     const { body, renderTitle } = this.props
     return (
       <div>

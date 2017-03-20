@@ -4,6 +4,7 @@ import rootReducer from './reducers'
 import { queryMiddleware } from 'redux-query'
 import { routerMiddleware as makeRouterMiddleware } from 'react-router-redux'
 import history from './history'
+import { queries } from 'common'
 
 export const getQueries = (state) => state.queries
 export const getEntities = (state) => state.entities
@@ -19,7 +20,7 @@ const routerMiddleware = makeRouterMiddleware(history)
 
 const enhancer = composeEnhancers(
   applyMiddleware(
-    thunkMiddleware, 
+    thunkMiddleware,
     queryMiddleware(getQueries, getEntities),
     routerMiddleware,
   ),
@@ -27,14 +28,8 @@ const enhancer = composeEnhancers(
 
 const store = createStore(
   rootReducer,
-  { 
-    entities: { 
-      compositions: {
-        myIds: [],
-        friendIds: [],
-      }, 
-      prompts: {} 
-    } 
+  {
+    entities: queries.initialEntities
   },
   enhancer,
 )

@@ -63,6 +63,13 @@ def session_():
     return jsonify(current_user)
 
 
+@auth.route('/current-user-json')
+def session_json():
+    if current_user.is_authenticated:
+        return jsonify(current_user)
+    return jsonify({})
+
+
 @auth.route('/logout', methods=['post'])
 def logout():
     logout_user()

@@ -8,7 +8,7 @@ import { selectors, queries } from 'common'
 const mapStateToProps = (state, ownProps) => {
   return {
     prompt: selectors.getPrompt(state),
-    state: state,
+    state: state
   }
 }
 
@@ -27,14 +27,14 @@ class Compose extends React.Component {
     this.state = {editorState: EditorState.createEmpty()}
     this.onChange = (editorState) => this.setState({editorState})
   }
-  onSubmit(e) {
+  onSubmit (e) {
     const contentState = this.state.editorState.getCurrentContent()
     const editorState = convertToRaw(contentState)
     const plainText = contentState.getPlainText()
     const promptId = this.props.prompt.id
     return this.props.submit({
       prompt_id: promptId,
-      body: plainText,
+      body: plainText
     })
   }
   render () {
@@ -44,14 +44,14 @@ class Compose extends React.Component {
         <h1>{prompt && prompt.prompt}</h1>
         <div style={{
           fontFamily: "'Source Sans Pro', sans-serif",
-            backgroundColor: '#eff2f1'
+          backgroundColor: '#eff2f1'
         }}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
           />
         </div>
-        <button onClick={e=>this.onSubmit(e)}>
+        <button onClick={e => this.onSubmit(e)}>
           Submit
         </button>
       </div>
