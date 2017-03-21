@@ -5,6 +5,7 @@
   "dependencies": {
     "common": "file:../common",
     "draft-js": "^0.10.0",
+    "raven-js": "^3.12.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-flexbox-grid": "https://github.com/roylee0704/react-flexbox-grid.git#master",

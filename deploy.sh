@@ -10,4 +10,4 @@ ls ../backend/rr
 cd ..
 
 cd backend
-# gcloud app deploy app.yaml
+gcloud app deploy app.yaml
