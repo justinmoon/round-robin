@@ -1,8 +1,10 @@
 import React from 'react'
 import { Redirect, BrowserRouter, Route, NavLink } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 
 import { Compose, Friends, Me } from '../containers'
 import { Login, Logout } from '../components'
+import history from '../history'
 
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
@@ -49,7 +51,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 class Routes extends React.Component {
   render () {
     return (
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
         <div>
           <ul>
             <li><NavLink to='/friends'>Friends</NavLink></li>
@@ -62,7 +64,7 @@ class Routes extends React.Component {
           <ProtectedRoute {...this.props} path='/me' component={Me} />
           <RedirectHomeRoute exact {...this.props} path='/login' component={Login} />
         </div>
-      </BrowserRouter>
+      </ConnectedRouter>
     )
   }
 }

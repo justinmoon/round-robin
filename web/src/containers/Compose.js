@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 import { convertToRaw } from 'draft-js'
 import { selectors, queries } from 'common'
+import { replace } from 'react-router-redux'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -16,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     submit: (payload) => {
       dispatch(queries.submitComposition(payload))
-      ownProps.updateRoute('me')
+      dispatch(replace('me'))
     }
   }
 }
@@ -59,6 +60,8 @@ class Compose extends React.Component {
   }
 }
 
-const ComposeContainer = connectRequest(queries.fetchPrompts)(Compose)
+const ComposeContainer = connectRequest(() => (
+  [queries.fetchPrompts(), queries.fetchCurrentUserCompositions()]
+))(Compose)
 
 export default connect(mapStateToProps, mapDispatchToProps)(ComposeContainer)
