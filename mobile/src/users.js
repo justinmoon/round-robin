@@ -1,5 +1,4 @@
 import { AsyncStorage } from 'react-native'
-import uuid from 'uuid'
 
 const actionTypes = {
   RECEIVE_CURRENT_USER: 'users/receive-current-user',

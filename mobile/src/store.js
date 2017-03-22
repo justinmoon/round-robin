@@ -3,13 +3,14 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist'
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers'
-import users from './users'
+import { setAnonymousId } from './actions'
 import { queryMiddleware } from 'redux-query';
 
 
 export const getQueries = (state) => state.queries;
 export const getEntities = (state) => state.entities;
 
+// FIXME: What the hell is this for???
 AsyncStorage.clear()
 
 const composeEnhancers =
@@ -37,7 +38,7 @@ persistStore(
     // Set the anonymousId value
     AsyncStorage.getItem('anonymousId', (err, id) => {
       if (!id) {
-        store.dispatch(users.actions.setAnonymousId())
+        store.dispatch(setAnonymousId())
       }
     })
   }

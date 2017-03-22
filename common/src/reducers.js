@@ -51,4 +51,11 @@ export function prompts(state = {
   }
 }
 
-
+export function anonymousId(state = null, action) {
+  switch (action.type) {
+    case actionTypes.SET_ANONYMOUS_ID:
+      return action.anonymousId
+    default:
+      return state
+  }
+}

@@ -14,7 +14,7 @@ export default combineReducers({
   network,
   router,
   currentUser: users.currentUserReducer,
-  anonymousId: users.anonymousIdReducer,
+  anonymousId: commonReducers.anonymousId,
   appState: appState.reducer,
   queries: queriesReducer,
   entities: entitiesReducer,

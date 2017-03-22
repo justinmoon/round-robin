@@ -9,3 +9,5 @@ export const prompts = {
   FETCH: 'prompts/fetch',
   RECEIVE: 'prompts/receive',
 }
+
+export const SET_ANONYMOUS_ID = 'users/set-anonymous-id'
