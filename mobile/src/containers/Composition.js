@@ -2,6 +2,8 @@ import React from 'react'
 import { ScrollView, View, Text } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { List, ListItem } from 'react-native-elements'
+import { connectRequest } from 'redux-query'
+import { queries } from 'common'
 
 import { connect } from 'react-redux'
 import styles from '../styles'
@@ -42,7 +44,7 @@ class Composition extends React.Component {
     const { composition } = this.props
     // FIXME
     if (!composition) {
-      return <View/>
+      return <View><Text>loading</Text></View>
     }
     return (
       <View style={styles.community.container}>
@@ -55,9 +57,10 @@ class Composition extends React.Component {
   }
 }
 
-const ConnectedComposition = connect(
+
+const CompositionContainer = connectRequest(queries.fetchFriendsCompositions)(Composition)
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Composition)
-
-export default ConnectedComposition
+)(CompositionContainer)

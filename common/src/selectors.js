@@ -19,7 +19,14 @@ export const isFetchingCurrentUser = state => {
   return querySelectors.isPending(url)(state.queries) || false
 }
 
+export const isLoggingIn = state => {
+  const url = '/login'
+  // FIXME: doesn't seem to work
+  return querySelectors.isPending(url)(state.queries) || false
+}
 
+
+// FIXME: RENAME!!!
 export const redirectToLogin = state => {
   return getCurrentUser(state) !== undefined && !loggedIn(state)
 }

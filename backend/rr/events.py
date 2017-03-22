@@ -11,9 +11,12 @@ def on_new_composition(user, composition):
 
 
 if __name__ == '__main__':
+    import sys
     from rr.app import app
     from rr.models import db, User
     with app.app_context():
-        user = db.session.query(User).get(3)
+        cli_arg = sys.argv[-1]
+        id_ = int(cli_arg)
+        user = db.session.query(User).get(id_)
         composition = user.compositions[0]
         on_new_composition(user, composition)

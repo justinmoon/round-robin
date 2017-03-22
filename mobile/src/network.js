@@ -22,8 +22,12 @@ export function fetchCurrentUser() {
   return http.get('/current-user')
 }
 
+export function getAccessToken() {
+  return AccessToken.getCurrentAccessToken()
+    .then(data => data.accessToken.toString())
+}
 
-function fbLogin() {
+export function fbLogin() {
   const permissions = ['public_profile', 'user_friends', 'email']
   return LoginManager.logInWithReadPermissions(permissions)
     // TODO: throw specific error message which is caught specifically by the login action
@@ -34,11 +38,7 @@ function fbLogin() {
       }
       return result
     })
-}
-
-export function getAccessToken() {
-  return AccessToken.getCurrentAccessToken()
-    .then(data => data.accessToken.toString())
+    .then(getAccessToken)
 }
 
 function rrLogin(accessToken) {
@@ -48,7 +48,7 @@ function rrLogin(accessToken) {
 export function login() {
   return fbLogin()
     .then(getAccessToken)
-    .then(rrLogin)
+    // .then(rrLogin)
 }
 
 export function logout() {

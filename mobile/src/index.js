@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import { Modal, Router, Reducer, Scene, Actions } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
+import SplashScreen from 'react-native-splash-screen'
 
 import store from './store'
 
@@ -24,7 +25,6 @@ import appState from './appState'
 import connectivity from './connected'
 
 import OneSignal from 'react-native-onesignal';
-import SplashScreen from 'react-native-splash-screen'
 
 import config from './config'
 import Raven from 'raven-js'
@@ -168,13 +168,20 @@ export default class RoundRobin extends Component {
     console.log("Notification received: ", notification);
   }
   onOpened(openResult) {
-    console.log('Message: ', openResult.notification.payload.body)
-    console.log('Data: ', openResult.notification.payload.additionalData)
-    console.log('isActive: ', openResult.notification.isAppInFocus)
-    console.log('openResult: ', openResult);
+    // console.log('Message: ', openResult.notification.payload.body)
+    // console.log('Data: ', openResult.notification.payload.additionalData)
+    // console.log('isActive: ', openResult.notification.isAppInFocus)
+    // console.log('openResult: ', openResult);
 
     const data = openResult.notification.payload.additionalData
     if (data.event === 'new-composition') {
+      // Hack to make sure we have some scene to "go back" to
+      // perhaps it'd be better to just make a default scene to go to when we try to pop last scene off the stack???
+      const state = store.getState()
+      if (state.router.scene.parent === '__root') {
+        Actions.lowerTabs({ type: 'reset' })
+      }
+      SplashScreen.hide()
       Actions.composition({compositionId: data.compositionId})
     }
   }  
@@ -189,7 +196,6 @@ export default class RoundRobin extends Component {
     OneSignal.configure({});
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
-
   }
   componentWillUnmount() {
     AppState.removeEventListener('change', console.log)
@@ -201,9 +207,9 @@ export default class RoundRobin extends Component {
         <Scene key="modal" component={Modal} >
           <Scene key="root" hideNavBar={true}>
 
-            <Scene key="loading" component={login.components.Loading} initial />
+            <Scene key="loading" component={login.components.Loading} />
             
-            <Scene key="login" component={login.components.Container} />
+            <Scene key="login" component={containers.Login} initial />
             <Scene key="compose" direction='vertical' component={containers.Compose} />
             <Scene key="composition" direction='vertical' component={containers.Composition} />
 

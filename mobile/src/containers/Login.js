@@ -6,51 +6,38 @@ import { queries, selectors } from 'common'
 import { connectRequest } from 'redux-query'
 import SplashScreen from 'react-native-splash-screen'
 
-import login from '../index'
-import users from '../../users'
+import login from '../login'
+import users from '../users'
+import { login as loginAction }  from '../actions'
 
 const mapStateToProps = (state) => {
-  const loggingIn = login.selectors.loggingIn(state)
-  const loggedIn = users.selectors.loggedIn(state)
-  const isFetchingCurrentUser = selectors.isFetchingCurrentUser(state)
-  const showSpinner = loggingIn || isFetchingCurrentUser
   return {
-    showSpinner,
-    loggedIn,
-    state,
-    loggingIn: login.selectors.loggingIn(state),
+    loggedIn: selectors.loggedIn(state),
+    isLoggingIn: selectors.isLoggingIn(state),
     currentUser: selectors.getCurrentUser(state),
+    redirectToLogin: selectors.redirectToLogin(state),
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    login: () => dispatch(login.actions.login())
-      .catch(err => {
-        // UI reacts to redux state.
-        // TODO: I wish navigation were same way, instead in this imperative way.
-        // If the smallest promise error goes undetected, we navigate to a view that should require authentication
-        // User will get trapped in the editor view ... very bad
-        // Maybe this navigation should happen within "componentWillReceiveProps"
-        console.log('login failed: ', err)
-      })
+    login: () => dispatch(loginAction()),
   }
 }
 
 class Login extends Component {
-  componentWillReceiveProps(nextProps) {
-    // TODO: if there is a currentUser, redirect somewhere else
-    console.log(nextProps.state.currentUser)
-    if (nextProps.state.currentUser && nextProps.state.currentUser.id) {
+  componentWillReceiveProps({ currentUser, loggedIn, redirectToLogin }) {
+    if (loggedIn) {
       Actions.lowerTabs({type: 'reset'})
       setTimeout(SplashScreen.hide, 250)  // a little breathing room
     }
-    if (nextProps.currentUser === {}) {
+    if (redirectToLogin) {
       SplashScreen.hide()
     }
   }
   render () {
-    const bottomContent = this.props.showSpinner ?
+    const bottomContent = this.props.isLoggingIn ?
+    // const bottomContent = false ?
         <ActivityIndicator size="large" /> :
         <login.components.Button onPress={this.props.login}/>
     return (

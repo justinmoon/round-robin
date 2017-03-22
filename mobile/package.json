@@ -9,7 +9,9 @@
     "run-android-dev": "ENVFILE=.env.dev react-native run-android",
     "run-android-prod": "ENVFILE=.env.prod react-native run-android",
     "ship-ios": "ENVFILE=.env.prod fastlane ios beta",
-    "ship-android": "ENVFILE=.env.prod fastlane android alpha"
+    "ship-android": "ENVFILE=.env.prod fastlane android alpha",
+    "lint": "./node_modules/.bin/standard",
+    "fix": "./node_modules/.bin/standard --fix"
   },
   "dependencies": {
     "analytics-react-native": "https://github.com/superquest/analytics-react-native/archive/latest.1.tar.gz",
@@ -41,6 +43,7 @@
     "redux-query": "superquest/redux-query",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
+    "standard": "^9.0.2",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

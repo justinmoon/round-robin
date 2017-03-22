@@ -60,7 +60,11 @@ const _logout = () => ({
   },
 })
 
+
+
+
 export const logout = payload => mutateAsync(_logout())
+
 
 /**
  * Compositions

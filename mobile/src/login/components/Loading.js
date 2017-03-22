@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import SplashScreen from 'react-native-splash-screen'
+import { queries } from 'common'
 
 import login from '../index'
 import { fetchCurrentUser } from '../actions'
@@ -26,9 +27,10 @@ const mapDispatchToProps = (dispatch, props) => {
 
 class Loading extends Component {
   componentWillMount() {
-    // this.props.dispatch(login.actions.logout())
+    // this.props.dispatch(queries.logout())
     // setTimeout(Actions.login, 1000)
-    this.props.fetchCurrentUser()
+    // setTimeout(Actions.login, 1000)
+    // this.props.fetchCurrentUser()
   }
   render() {
     return <View/>
