@@ -68,7 +68,11 @@ def make_prompt(date=dt.date.today(), prompt='freighter'):
 
 
 def make_user(name='susan', pic_url='http://google.com',
-              fb_access_token=uuid.uuid4(), fb_id=uuid.uuid4()):
+              fb_access_token=None, fb_id=None):
+    if fb_access_token == None:
+        fb_access_token = str(uuid.uuid4())
+    if fb_id == None:
+        fb_id=str(uuid.uuid4())
     return User(name=name, pic_url=pic_url, fb_id=fb_id, fb_access_token=fb_access_token)
 
 

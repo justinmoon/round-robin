@@ -7,7 +7,7 @@ def on_new_composition(user, composition):
         name=user.name, prompt=composition.prompt.prompt
     )
     data = {'event': 'new-composition', 'compositionId': composition.id}
-    res = rr.onesignal.send_to_users(users, contents, data=data)
+    rr.onesignal.send_to_users(users, contents, data=data)
 
 
 if __name__ == '__main__':

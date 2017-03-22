@@ -1,28 +1,13 @@
 from tests.test_fixtures import app, db, session, make_user, make_prompt, make_composition
 import json
 from flask import jsonify
-from datetime import datetime, time, date
-
 
 def test_custom_json_serializer(session, app):
-    u, p = make_user(), make_prompt()
-    c = make_composition(user=u, prompt=p)
-    session.add_all([u, p, c])
+    user, prompt = make_user(), make_prompt()
+    composition = make_composition(user=user, prompt=prompt)
+    session.add_all([user, prompt, composition])
     session.commit()
-    
-    now = datetime.now()
-    input = {
-        'now': now,
-        'user': u,
-        'prompt': p,
-        'composition': c,
-    }
-    expected = {
-        'now': now.isoformat(),
-        'user': u.to_dict(),
-        'prompt': p.to_dict(),
-        'composition': c.to_dict(),
-    }
-    res = jsonify(input)
-    output = json.loads(res.data.decode())
-    assert expected == output
+    jsonified = jsonify(composition)
+    output = json.loads(jsonified.data.decode())
+    assert output['created_at'] == composition.created_at.isoformat()
+    assert output['author'] == composition.user.to_dict()

@@ -29,7 +29,7 @@ def create_app(name, settings_override={}):
     login_manager.init_app(app)
     admin.init_app(app)
 
-    if os.environ['CONFIG_ENV'] == 'prod':
+    if os.environ.get('CONFIG_ENV') == 'prod':
         sentry = Sentry(app, dsn='https://085ef39a06a049a990ff23598bffbf86:dae4cd15384747f5aec4aae8bfc4eb34@sentry.io/124868?timeout=10')
     else:
         sentry = Sentry(app)

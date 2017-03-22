@@ -3,7 +3,7 @@ from tests.test_fixtures import app, db, session, make_user, make_prompt, make_c
 
 
 def test_feed_requires_login(client, db, session, mocker):
-    res = client.get('/feed')
+    res = client.get(flask.url_for('routes.get_feed_route'))
     assert res.status_code == 401
 
 def test_feed_accessible_with_login(client, session):
@@ -13,6 +13,6 @@ def test_feed_accessible_with_login(client, session):
 
     with client.session_transaction() as sess:
         sess['user_id'] = str(u.id)
-    res = client.get('/feed')
+    res = client.get(flask.url_for('routes.get_feed_route'))
     assert res.status_code == 200
 
