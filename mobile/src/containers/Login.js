@@ -6,9 +6,9 @@ import { queries, selectors } from 'common'
 import { connectRequest } from 'redux-query'
 import SplashScreen from 'react-native-splash-screen'
 
-import login from '../login'
-import users from '../users'
+import components from '../components'
 import { login as loginAction }  from '../actions'
+
 
 const mapStateToProps = (state) => {
   return {
@@ -37,13 +37,12 @@ class Login extends Component {
   }
   render () {
     const bottomContent = this.props.isLoggingIn ?
-    // const bottomContent = false ?
         <ActivityIndicator size="large" /> :
-        <login.components.Button onPress={this.props.login}/>
+        <components.LoginButton onPress={this.props.login}/>
     return (
       <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
         <View style={{ flex: 0.80 }}>
-        <login.components.Marketing />
+        <components.Marketing />
         </View>
         <View style={{ flex: 0.20 }}>
           {bottomContent}

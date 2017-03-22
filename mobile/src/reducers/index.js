@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import network from './network';
 import router from './router';
-import users from '../users'
 import appState from '../appState'
 
 import { entitiesReducer, queriesReducer } from 'redux-query'
@@ -13,7 +12,6 @@ export default combineReducers({
   prompts: commonReducers.prompts,
   network,
   router,
-  currentUser: users.currentUserReducer,
   anonymousId: commonReducers.anonymousId,
   appState: appState.reducer,
   queries: queriesReducer,

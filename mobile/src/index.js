@@ -18,8 +18,6 @@ import SplashScreen from 'react-native-splash-screen'
 
 import store from './store'
 
-import login from './login'
-
 import analytics from './analytics'
 import appState from './appState'
 import connectivity from './connected'
@@ -206,9 +204,6 @@ export default class RoundRobin extends Component {
         <RouterWithRedux createReducer={createReducer} >
         <Scene key="modal" component={Modal} >
           <Scene key="root" hideNavBar={true}>
-
-            <Scene key="loading" component={login.components.Loading} />
-            
             <Scene key="login" component={containers.Login} initial />
             <Scene key="compose" direction='vertical' component={containers.Compose} />
             <Scene key="composition" direction='vertical' component={containers.Composition} />
