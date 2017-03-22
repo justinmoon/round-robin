@@ -11,3 +11,4 @@ cd ..
 
 cd backend
 gcloud app deploy app.yaml
+echo "$(date) | $(git rev-parse --short HEAD)" >> deploy-history.txt

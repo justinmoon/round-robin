@@ -7,6 +7,7 @@ tags
 .agignore
 .idea
 .DS_STORE
+mobile/RoundRobin.app.dSYM.zip
 
 # local stuff
 clones
