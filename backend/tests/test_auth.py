@@ -3,7 +3,7 @@ import flask
 import json
 
 from pytest_mock import mocker
-from tests.test_fixtures import app, db, session, make_user, make_prompt, make_composition
+from tests.fixtures import app, db, session, make_user, make_prompt, make_composition
 
 from rr.auth import handle_facebook_login
 from rr.models import User

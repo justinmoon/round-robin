@@ -1,4 +1,4 @@
-from tests.test_fixtures import app, db, session, make_user, make_prompt, make_composition
+from tests.fixtures import app, db, session, make_user, make_prompt, make_composition
 import json
 from flask import jsonify
 

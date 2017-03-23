@@ -2,7 +2,7 @@ import re
 import datetime as dt
 from rr.models import Composition, User, Prompt
 
-from tests.test_fixtures import app, db, session, make_user, make_prompt, make_composition
+from tests.fixtures import app, db, session, make_user, make_prompt, make_composition
 
 
 def test_created_at(app, db, session):

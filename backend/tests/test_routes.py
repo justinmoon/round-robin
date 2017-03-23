@@ -1,5 +1,5 @@
 import flask
-from tests.test_fixtures import app, db, session, make_user, make_prompt, make_composition, client
+from tests.fixtures import app, db, session, make_user, make_prompt, make_composition, client
 
 
 def test_feed_requires_login(client, db, session, mocker):
