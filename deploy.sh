@@ -9,7 +9,7 @@ cp -r build ../backend/rr
 cd ..
 
 cd backend
-PYTHONPATH=. venv/bin/pytest tests
+CONFIG_ENV=test PYTHONPATH=. venv/bin/pytest tests
 if [ $? -eq 0 ]
 then
     gcloud app deploy app.yaml
