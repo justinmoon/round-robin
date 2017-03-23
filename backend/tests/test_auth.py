@@ -22,8 +22,10 @@ class MockResponse:
         self.status_code = status_code
         self.json = lambda: json_
 
+
 def no_existing_user(fb_id):
     return None
+
 
 def existing_user(fb_id):
     return make_user(
@@ -36,14 +38,13 @@ def test_new_user_login(app, db, session, mocker):
     mocker.patch('rr.queries.user_by_fb_id', side_effect=no_existing_user)
 
     requests_get_mock = mocker.patch(
-        'requests.get',
-        side_effect=MockResponse(200, graph_me_with_friends)
-    )
+        'requests.get', side_effect=MockResponse(200, graph_me_with_friends))
 
     access_token = '123'
     res = handle_facebook_login(access_token)
 
-    url = 'https://graph.facebook.com/me?fields=id,name,picture,friends&access_token={}'.format(access_token)
+    url = 'https://graph.facebook.com/me?fields=id,name,picture,friends&access_token={}'.format(
+        access_token)
     requests_get_mock.assert_called_with(url)
 
     u = session.query(User).one()
@@ -64,14 +65,11 @@ def seed_existing_users():
         fb_id=graph_me_with_friends['id'],
         fb_access_token='999',
         name=graph_me_with_friends['name'],
-        pic_url=graph_me_with_friends['picture']['data']['url'],
-    )
+        pic_url=graph_me_with_friends['picture']['data']['url'], )
     friend_one = make_user(
-        fb_id=graph_me_with_friends['friends']['data'][0]['id']
-    )
+        fb_id=graph_me_with_friends['friends']['data'][0]['id'])
     friend_two = make_user(
-        fb_id=graph_me_with_friends['friends']['data'][1]['id']
-    )
+        fb_id=graph_me_with_friends['friends']['data'][1]['id'])
     return u, friend_one, friend_two
 
 
@@ -83,10 +81,7 @@ def test_existing_user_login(app, db, session, mocker):
 
     assert existing.all_friends == []
 
-    mocker.patch(
-        'requests.get',
-        MockResponse(200, graph_me_with_friends)
-    )
+    mocker.patch('requests.get', MockResponse(200, graph_me_with_friends))
     mocker.patch('rr.queries.user_by_fb_id', no_existing_user)
 
     access_token = '123'
@@ -101,11 +96,12 @@ def test_existing_user_login(app, db, session, mocker):
     # friends updated
     assert set(existing.friends) == set([friend_one, friend_two])
 
+
 def test_bad_access_token_user_login(app, db, session, mocker):
-    mocker.patch(
-        'requests.get',
-        MockResponse(401, {'error': {'message': 'oops'}})
-    )
+    mocker.patch('requests.get',
+                 MockResponse(401, {'error': {
+                     'message': 'oops'
+                 }}))
 
     access_token = '123'
     res = handle_facebook_login(access_token)

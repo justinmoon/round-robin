@@ -2,6 +2,7 @@ from tests.test_fixtures import app, db, session, make_user, make_prompt, make_c
 import json
 from flask import jsonify
 
+
 def test_custom_json_serializer(session, app):
     user, prompt = make_user(), make_prompt()
     composition = make_composition(user=user, prompt=prompt)

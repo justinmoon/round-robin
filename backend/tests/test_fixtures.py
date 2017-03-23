@@ -7,8 +7,8 @@ from rr.factory import create_app
 from rr.db import db as _db
 from rr.models import User, Composition, Prompt
 
-
 # FIXME: scope='session'
+
 
 @pytest.fixture(scope='function')
 def db(app, request):
@@ -66,13 +66,19 @@ def make_prompt(date=dt.date.today(), prompt='freighter'):
     return Prompt(date=date, prompt=prompt)
 
 
-def make_user(name='susan', pic_url='http://google.com',
-              fb_access_token=None, fb_id=None):
+def make_user(name='susan',
+              pic_url='http://google.com',
+              fb_access_token=None,
+              fb_id=None):
     if fb_access_token == None:
         fb_access_token = str(uuid.uuid4())
     if fb_id == None:
-        fb_id=str(uuid.uuid4())
-    return User(name=name, pic_url=pic_url, fb_id=fb_id, fb_access_token=fb_access_token)
+        fb_id = str(uuid.uuid4())
+    return User(
+        name=name,
+        pic_url=pic_url,
+        fb_id=fb_id,
+        fb_access_token=fb_access_token)
 
 
 def make_composition(*, user, prompt, body='I went hunting'):

@@ -10,9 +10,9 @@ routes = Blueprint('routes', __name__)
 @routes.route('/prompts')
 def prompt():
     prompts = q.get_prompts()
-    return jsonify({
-        prompt.date.isoformat(): prompt for prompt in prompts.all()
-    })
+    return jsonify(
+        {prompt.date.isoformat(): prompt
+         for prompt in prompts.all()})
 
 
 @routes.route('/compositions', methods=['POST'])
@@ -22,8 +22,7 @@ def create_composition_route():
     composition = q.create_composition(
         prompt_id=payload['prompt_id'],
         user_id=current_user.id,
-        body=payload['body'],
-    )
+        body=payload['body'], )
     e.on_new_composition(current_user, composition)
     return jsonify(composition)
 

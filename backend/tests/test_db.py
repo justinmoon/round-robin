@@ -11,14 +11,14 @@ def test_created_at(app, db, session):
     p2 = make_prompt(date=dt.date.today())
     c1 = make_composition(user=u, prompt=p1)
     c2 = make_composition(user=u, prompt=p2)
-    session.add_all([u, p1, p2, c1,c2])
+    session.add_all([u, p1, p2, c1, c2])
     session.commit()
     assert type(c1.created_at) is dt.datetime
 
 
 def make_users(n):
     return (make_user(name='u{}'.format(i), fb_id='fb{}'.format(i))
-            for i in range(1, n+1))
+            for i in range(1, n + 1))
 
 
 def test_friendships(app, db, session):
@@ -75,5 +75,3 @@ def test_written_by_friend(session):
 
     assert u2.written_by_friend(c) == True
     assert u3.written_by_friend(c) == False
-
-

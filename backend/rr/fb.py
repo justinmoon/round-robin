@@ -1,10 +1,8 @@
 from flask import Flask, redirect, url_for, session, request
 from flask_oauthlib.client import OAuth, OAuthException
 
-
 FACEBOOK_APP_ID = '188477911223606'
 FACEBOOK_APP_SECRET = '621413ddea2bcc5b2e83d42fc40495de'
-
 
 app = Flask(__name__)
 app.debug = True
@@ -20,8 +18,7 @@ facebook = oauth.remote_app(
     request_token_url=None,
     access_token_url='/oauth/access_token',
     access_token_method='GET',
-    authorize_url='https://www.facebook.com/dialog/oauth'
-)
+    authorize_url='https://www.facebook.com/dialog/oauth')
 
 
 @app.route('/')
@@ -34,8 +31,7 @@ def login():
     callback = url_for(
         'facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
-        _external=True
-    )
+        _external=True)
     return facebook.authorize(callback=callback)
 
 
@@ -44,9 +40,7 @@ def facebook_authorized():
     resp = facebook.authorized_response()
     if resp is None:
         return 'Access denied: reason=%s error=%s' % (
-            request.args['error_reason'],
-            request.args['error_description']
-        )
+            request.args['error_reason'], request.args['error_description'])
     if isinstance(resp, OAuthException):
         return 'Access denied: %s' % resp.message
 

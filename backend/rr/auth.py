@@ -6,10 +6,10 @@ from rr.queries import user_by_fb_id
 from rr.models import User
 from rr.db import db
 
-
 auth = Blueprint('auth', __name__)
 
 login_manager = LoginManager()
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -17,7 +17,8 @@ def load_user(user_id):
 
 
 def handle_facebook_login(token):
-    url = 'https://graph.facebook.com/me?fields=id,name,picture,friends&access_token={}'.format(token)
+    url = 'https://graph.facebook.com/me?fields=id,name,picture,friends&access_token={}'.format(
+        token)
     res = requests.get(url)
     print(res.status_code)
 
@@ -33,9 +34,7 @@ def handle_facebook_login(token):
                 fb_id=data['id'],
                 fb_access_token=token,
                 name=data['name'],
-                pic_url=data['picture']['data']['url'],
-            )
-
+                pic_url=data['picture']['data']['url'], )
 
         fb_ids = [f['id'] for f in data['friends']['data']]
         u.update_fb_friends(fb_ids)

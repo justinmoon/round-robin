@@ -1,11 +1,12 @@
 from flask import current_app
 from onesignalsdk import one_signal_sdk
 
+
 def one_signal_client():
     return one_signal_sdk.OneSignalSdk(
         current_app.config.get('ONESIGNAL_API_KEY'),
-        current_app.config.get('ONESIGNAL_APP_ID'),
-    )
+        current_app.config.get('ONESIGNAL_APP_ID'), )
+
 
 OR = {"operator": "OR"}
 
@@ -32,5 +33,4 @@ def send_to_users(users, contents, heading='', data={}):
         heading=heading,
         included_segments=[],
         filters=filters,
-        data=data,
-    )
+        data=data, )

@@ -39,8 +39,7 @@ def create_composition(created_at=None, *, prompt_id, user_id, body):
         user_id=user_id,
         created_at=created_at,
         prompt_id=prompt_id,
-        body=body,
-    )
+        body=body, )
     db.session.add(c)
     db.session.commit()
     return c
@@ -49,8 +48,7 @@ def create_composition(created_at=None, *, prompt_id, user_id, body):
 def create_prompt(*, date, prompt):
     p = Prompt(
         date=date,
-        prompt=prompt,
-    )
+        prompt=prompt, )
     db.session.add(p)
     db.session.commit()
     return p
@@ -63,11 +61,7 @@ def create_user(created_at=None, *, name, pic_url, fb_access_token, fb_id):
         name=name,
         pic_url=pic_url,
         fb_access_token=fb_access_token,
-        fb_id=fb_id,
-    )
+        fb_id=fb_id, )
     db.session.add(u)
     db.session.commit()
     return u
-
-
-

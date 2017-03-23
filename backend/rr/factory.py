@@ -14,6 +14,7 @@ from rr.static import static
 
 migrate = Migrate()
 
+
 def create_app(name, settings_override={}):
     app = Flask(name, static_folder='build/static', static_url_path='/static')
 
@@ -30,7 +31,11 @@ def create_app(name, settings_override={}):
     admin.init_app(app)
 
     if os.environ.get('CONFIG_ENV') == 'prod':
-        sentry = Sentry(app, dsn='https://085ef39a06a049a990ff23598bffbf86:dae4cd15384747f5aec4aae8bfc4eb34@sentry.io/124868?timeout=10')
+        sentry = Sentry(
+            app,
+            dsn=
+            'https://085ef39a06a049a990ff23598bffbf86:dae4cd15384747f5aec4aae8bfc4eb34@sentry.io/124868?timeout=10'
+        )
     else:
         sentry = Sentry(app)
     sentry.init_app(app)

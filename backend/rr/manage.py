@@ -7,7 +7,6 @@ from rr.db import db
 
 from flask import current_app
 
-
 if __name__ == '__main__':
     from rr.app import app
     from rr.db import db
