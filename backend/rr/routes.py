@@ -42,7 +42,15 @@ def get_current_user_compositions():
     return jsonify(feed.all())
 
 
-@routes.route('/cron/hourly')
-def handle_hourly_cron():
-    e.on_hourly_cron()
+@routes.route('/cron/morning-and-evening')
+def handle_morning_and_evening_cron():
+    e.on_morning_and_evening_cron()
     return 'ok', 200
+
+
+@routes.route('/observe-device')
+def observe_device():
+    data = request.get_json()
+    print(data)
+    return ''
+

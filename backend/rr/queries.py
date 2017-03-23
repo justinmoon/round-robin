@@ -1,3 +1,4 @@
+from sqlalchemy.sql import not_
 from datetime import datetime, timedelta
 from rr.db import db
 
@@ -15,12 +16,23 @@ def users_by_fb_ids(fb_ids):
         .filter(User.fb_id.in_(fb_ids))
 
 
+def users_who_have_not_written_yet():
+    one_day_ago = datetime.utcnow() - timedelta(days=1)
+    subquery = db.session.query(Composition.user_id)\
+        .filter(Composition.created_at > one_day_ago)\
+        .distinct()\
+        .subquery()
+    return db.session.query(User)\
+        .filter(not_(User.id.in_(subquery)))\
+        .all()
+
+
 def get_prompts():
     return db.session.query(Prompt)
 
 
 def construct_feed(user):
-    one_day_ago = datetime.now() - timedelta(days=1)
+    one_day_ago = datetime.utcnow() - timedelta(days=1)
     return db.session.query(Composition) \
         .filter(Composition.created_at > one_day_ago)\
         .filter(Composition.user_id != user.id)\

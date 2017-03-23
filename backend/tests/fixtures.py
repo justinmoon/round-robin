@@ -70,9 +70,9 @@ def make_user(name='susan',
               pic_url='http://google.com',
               fb_access_token=None,
               fb_id=None):
-    if fb_access_token == None:
+    if fb_access_token is None:
         fb_access_token = str(uuid.uuid4())
-    if fb_id == None:
+    if fb_id is None:
         fb_id = str(uuid.uuid4())
     return User(
         name=name,
@@ -81,5 +81,8 @@ def make_user(name='susan',
         fb_access_token=fb_access_token)
 
 
-def make_composition(*, user, prompt, body='I went hunting'):
-    return Composition(user=user, prompt=prompt, body=body)
+def make_composition(*, user, prompt, body='I went hunting', created_at=None):
+    #  if created_at is None:
+    #  created_at = datetime.now()
+    return Composition(
+        user=user, prompt=prompt, body=body, created_at=created_at)
