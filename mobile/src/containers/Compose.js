@@ -25,10 +25,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         Actions.pop();
         Actions.mePublished()
       })
-      dispatch(analytics.actions.submitComposition())
+      // dispatch(analytics.actions.submitComposition())
       Keyboard.dismiss()
     },
-    beginComposition: () => dispatch(analytics.actions.beginComposition()),
+    // beginComposition: () => dispatch(analytics.actions.beginComposition()),
+    beginComposition: () => {},
   }
 }
 

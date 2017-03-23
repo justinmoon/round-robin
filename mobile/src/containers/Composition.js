@@ -8,7 +8,6 @@ import { queries } from 'common'
 import { connect } from 'react-redux'
 import styles from '../styles'
 
-import analytics from '../analytics'
 import { selectors } from 'common'
 
 const Header = ({ composition }) => {

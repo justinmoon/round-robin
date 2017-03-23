@@ -1508,7 +1508,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@^1.4.6, concat-stream@^1.4.7, concat-stream@~1.4.5:
+concat-stream@^1.4.6, concat-stream@~1.4.5:
   version "1.4.10"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.4.10.tgz#acc3bbf5602cb8cc980c6ac840fa7d8603e3ef36"
   dependencies:
@@ -1516,7 +1516,7 @@ concat-stream@^1.4.6, concat-stream@^1.4.7, concat-stream@~1.4.5:
     readable-stream "~1.1.9"
     typedarray "~0.0.5"
 
-concat-stream@^1.5.2:
+concat-stream@^1.4.7, concat-stream@^1.5.2:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
@@ -5057,9 +5057,9 @@ react-native-splash-screen@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-1.0.9.tgz#4d0847e43cab297d6f8c3e98909f00a15929cb27"
 
-"react-native-swiper@https://github.com/superquest/react-native-swiper/archive/analytics.tar.gz":
+react-native-swiper@^1.5.4:
   version "1.5.4"
-  resolved "https://github.com/superquest/react-native-swiper/archive/analytics.tar.gz#058b1fabcbc47ee33740d7297b3ccb1d8aaa5da3"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"
 
 react-native-tab-navigator@^0.3.3:
   version "0.3.3"

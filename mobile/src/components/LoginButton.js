@@ -30,11 +30,20 @@ var styles = StyleSheet.create({
  * end={[1, 0]}
  * */
 
+
+      // <LinearGradient
+          // colors={['#4c669f', '#3b5998', '#192f6a']}
+          // style={styles.linearGradient}>
+        // <Text style={styles.buttonText}>
+          // Login with Facebook
+        // </Text>
+      // </LinearGradient>
+
 export default ({onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.view}>
       <LinearGradient
-          colors={['#4c669f', '#3b5998', '#192f6a']}
+          colors={['black', 'black', 'black']}
           style={styles.linearGradient}>
         <Text style={styles.buttonText}>
           Login with Facebook

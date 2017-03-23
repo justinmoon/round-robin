@@ -42,7 +42,7 @@ class Login extends Component {
     return (
       <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
         <View style={{ flex: 0.80 }}>
-        <components.Marketing />
+        <components.Swiper />
         </View>
         <View style={{ flex: 0.20 }}>
           {bottomContent}
@@ -52,7 +52,8 @@ class Login extends Component {
   }
 }
 
-const LoginContainer = connectRequest(queries.fetchCurrentUser)(Login)
+// const LoginContainer = connectRequest(queries.fetchCurrentUser)(Login)
+const LoginContainer = Login
 
 export default connect(
   mapStateToProps,

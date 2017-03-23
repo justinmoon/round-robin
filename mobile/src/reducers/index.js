@@ -12,7 +12,7 @@ export default combineReducers({
   prompts: commonReducers.prompts,
   network,
   router,
-  anonymousId: commonReducers.anonymousId,
+  // anonymousId: commonReducers.anonymousId,
   appState: appState.reducer,
   queries: queriesReducer,
   entities: entitiesReducer,
