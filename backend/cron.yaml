@@ -1,0 +1,6 @@
+cron:
+- description: daily reminder to write
+  url: /api/cron/daily-reminder
+  # schedule: every day 22:00
+  schedule: every minute
+  timezone: America/New_York

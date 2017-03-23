@@ -138,7 +138,6 @@ class WriteIcon extends React.Component {
     }
   }
   darken() {
-    console.log('dark')
     this.setState({ color: 'black' });
   }
   lighten() {
@@ -181,6 +180,16 @@ export default class RoundRobin extends Component {
       }
       SplashScreen.hide()
       Actions.composition({compositionId: data.compositionId})
+    }
+    if (data.event === 'reminder-to-write') {
+      // Hack to make sure we have some scene to "go back" to
+      // perhaps it'd be better to just make a default scene to go to when we try to pop last scene off the stack???
+      const state = store.getState()
+      if (state.router.scene.parent === '__root') {
+        Actions.lowerTabs({ type: 'reset' })
+      }
+      SplashScreen.hide()
+      Actions.compose()
     }
   }  
   listenForConnectivity() {
