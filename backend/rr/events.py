@@ -10,6 +10,10 @@ def on_new_composition(user, composition):
     rr.onesignal.send_to_users(users, contents, data=data)
 
 
+def on_hourly_cron():
+    pass
+
+
 if __name__ == '__main__':
     import sys
     from rr.app import app

@@ -41,3 +41,9 @@ def get_feed_route():
 def get_current_user_compositions():
     feed = q.current_user_compositions(current_user)
     return jsonify(feed.all())
+
+
+@routes.route('/cron/hourly')
+def handle_hourly_cron():
+    e.on_hourly_cron()
+    return 'ok', 200
