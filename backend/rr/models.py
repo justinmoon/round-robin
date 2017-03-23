@@ -1,3 +1,4 @@
+import datetime
 from flask_login import UserMixin
 from rr.db import db
 
@@ -20,7 +21,7 @@ class User(db.Model, UserMixin):
     fb_id = db.Column('fb_id', db.String(1000), unique=True)
     fb_access_token = db.Column(
         'fb_access_token', db.String(1000), nullable=False)
-    created_at = db.Column('created_at', db.DateTime, default=db.func.now())
+    created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow)
     name = db.Column('name', db.String(1000), nullable=False)
     pic_url = db.Column('pic_url', db.String(1000), nullable=False)
     compositions = db.relationship(
@@ -57,7 +58,12 @@ class User(db.Model, UserMixin):
         return "User(%r)" % self.name
 
     def to_dict(self):
-        return {'id': self.id, 'name': self.name, 'avatar_url': self.pic_url}
+        return {
+            'id': self.id, 
+            'name': self.name, 
+            'avatar_url': self.pic_url,
+            'created_at': self.created_at,
+            }
 
 
 friendship_union = db.select([
@@ -80,7 +86,7 @@ views = db.Table('view', db.metadata,
 
 class Composition(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
-    created_at = db.Column('created_at', db.DateTime, default=db.func.now())
+    created_at = db.Column('created_at', db.DateTime, default=datetime.datetime.utcnow())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     prompt_id = db.Column(
         db.Integer, db.ForeignKey('prompt.id'), nullable=False)
