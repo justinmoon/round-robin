@@ -47,8 +47,7 @@ def session(db, request):
 @pytest.yield_fixture(scope='function')
 def app():
     """An application for the tests."""
-    test_config = {
-    }
+    test_config = {}
     _app = create_app('test', test_config)
     ctx = _app.test_request_context()
     ctx.push()

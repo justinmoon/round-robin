@@ -19,21 +19,20 @@ class DevelopmentSecrets:
 
 class TestSecrets:
     SECRET_KEY='5(15ds+i2+%ik6z&!yer+ga9m=e%jcqiz_5wszg)r-z!2--b2d'
-    DB_USER = 'postgres'
-    DB_NAME='postgres'
-    DB_PASS='postgres'
-    DB_SERVICE='postgres'
+    DB_USER = 'user'
+    DB_PASS='password'
+    DB_SERVICE='localhost/round_robin_test'
 
 def get_env():
-    return os.environ.get('CONFIG_ENV', 'dev')
+    return os.environ.get('CONFIG_ENV')
 
 def get_secret(key):
     env = get_env()
-    assert env in ('dev', 'test', 'stage', 'prod')
+    assert env in ('dev', 'test', 'prod')
     secrets = {
         'prod': ProductionSecrets,
         'test': TestSecrets,
         'dev': DevelopmentSecrets,
     }
     thing = secrets.get(env)
-    return getattr(thing, key)
+    return getattr(thing, key) if hasattr(thing, key) else None
