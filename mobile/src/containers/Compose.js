@@ -28,8 +28,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       // dispatch(analytics.actions.submitComposition())
       Keyboard.dismiss()
     },
-    // beginComposition: () => dispatch(analytics.actions.beginComposition()),
-    beginComposition: () => {},
+    beginComposition: () => dispatch(analytics.actions.beginComposition()),
   }
 }
 
@@ -44,7 +43,6 @@ class Compose extends Component {
   }
   handleFirstKeystroke(text) {
     if (!this.state.touched) {
-      this.props.beginComposition()
       this.setState({ touched: true })
     }
   }

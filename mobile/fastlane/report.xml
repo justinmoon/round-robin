@@ -5,32 +5,22 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.001754">
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.000942">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.001666">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000703">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: increment_build_number" time="1.176519">
+      <testcase classname="fastlane.lanes" name="2: increment_build_number" time="0.793051">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: echo '.env.prod' &gt; /tmp/envfile" time="0.00713">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="4: gym" time="112.914647">
-        
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="5: pilot" time="438.661012">
+      <testcase classname="fastlane.lanes" name="3: gradle" time="8.230631">
         
       </testcase>
     

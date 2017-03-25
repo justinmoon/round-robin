@@ -238,13 +238,20 @@ export default class RoundRobin extends Component {
                   icon={WriteIcon}
                   onPress={() => Actions.compose()}
                 />
-                <Scene key="me" title="Me" hideNavBar icon={components.TabIcon} >
+                <Scene 
+                  key="mePublished" 
+                  hideNavBar
+                  title="Me" 
+                  component={containers.Published} 
+                  icon={components.TabIcon}
+                />
+                    {/**<Scene key="me" title="Me" hideNavBar icon={components.TabIcon} >
                   <Scene
                     key="meTabs"
                     tabs
                     tabBarStyle={[styles.tabBarStyle, styles.nestedTabBarOverrides]}
                     tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}
-                  >
+                    >
                     <Scene
                       hideNavBar 
                       key="mePrivate"
@@ -255,13 +262,13 @@ export default class RoundRobin extends Component {
                     <Scene 
                       hideNavBar 
                       initial 
-                      key="mePublished" 
+                      key="Me" 
                       title="Published" 
                       component={containers.Published} 
                       icon={components.TabIcon}
                     />
-                  </Scene>
-                </Scene>
+                    </Scene>
+                  </Scene>**/}
               </Scene>
             </Scene>
 

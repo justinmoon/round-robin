@@ -25,7 +25,8 @@ class Published extends React.Component {
   render() {
     const { compositions } = this.props
     return (
-      <View style={{ flex: 1, marginTop: 40 }}>
+      <View style={{ flex: 1 }}>
+      {/**<View style={{ flex: 1, marginTop: 40 }}>**/}
         <components.CompositionList 
           compositions={compositions}
           renderTitle={composition => composition.prompt.prompt + ' at ' + composition.created_at}
