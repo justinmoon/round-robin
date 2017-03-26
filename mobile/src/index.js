@@ -42,14 +42,6 @@ import containers from './containers';
 
 const RouterWithRedux = connect()(Router)
 
-// global._fetch = fetch;
-// global.fetch = function(uri, options, ...args) {
-//   return global._fetch(uri, options, ...args).then((response) => {
-//     console.log('Fetch <' + uri + '>', { request: { uri, options, ...args }, response });
-//     return response;
-//   });
-// };
-
 const createReducer = params => {
   const defaultReducer = new Reducer(params);
   return (state, action) => {
@@ -127,8 +119,6 @@ const Screen = ({s, title}) => {
     </View>
   );
 }
-
-const Private = () => <Screen title='Private'/>
 
 class WriteIcon extends React.Component {
   constructor(props){

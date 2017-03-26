@@ -68,8 +68,22 @@ const community = StyleSheet.create({
   }
 })
 
+const tinyFontSize = 10
+const mediumFontSize = 12
+// ...
+
+const text = StyleSheet.create({
+  tiny: {
+    fontSize: tinyFontSize,
+    color: 'black',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+  },
+})
+
 export default {
   header,
   editor,
   community,
+  text,
 }

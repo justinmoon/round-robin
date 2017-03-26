@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
+import { default as s } from '../styles'
+import text from './text'
 
 var styles = StyleSheet.create({
   linearGradient: {
@@ -20,7 +22,7 @@ var styles = StyleSheet.create({
   },
   view: {
     height: 44,
-  }
+  },
 })
 
 // some fun gradient experiments ...
@@ -41,6 +43,7 @@ var styles = StyleSheet.create({
 
 export default ({onPress}) => {
   return (
+    <View>
     <TouchableOpacity onPress={onPress} style={styles.view}>
       <LinearGradient
           colors={['black', 'black', 'black']}
@@ -50,5 +53,10 @@ export default ({onPress}) => {
         </Text>
       </LinearGradient>
     </TouchableOpacity>
+    <text.Disclaimer
+      style={{ marginTop: 5, textAlign: 'center' }}
+      text="We don't post anything to Facebook"
+    />
+  </View>
   )
 }
