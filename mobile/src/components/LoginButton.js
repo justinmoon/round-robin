@@ -44,19 +44,18 @@ var styles = StyleSheet.create({
 export default ({onPress}) => {
   return (
     <View>
-    <TouchableOpacity onPress={onPress} style={styles.view}>
-      <LinearGradient
+      <TouchableOpacity onPress={onPress} style={styles.view}>
+        <LinearGradient
           colors={['black', 'black', 'black']}
           style={styles.linearGradient}>
-        <Text style={styles.buttonText}>
-          Login with Facebook
-        </Text>
-      </LinearGradient>
-    </TouchableOpacity>
-    <text.Disclaimer
-      style={{ marginTop: 5, textAlign: 'center' }}
-      text="We don't post anything to Facebook"
-    />
-  </View>
+          <Text style={styles.buttonText}>
+            Login with Facebook
+          </Text>
+        </LinearGradient>
+      </TouchableOpacity>
+      <text.Disclaimer style={{ marginTop: 5, textAlign: 'center' }}>
+        We don't post anything to Facebook
+      </text.Disclaimer>
+    </View>
   )
 }
