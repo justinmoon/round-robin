@@ -2,7 +2,6 @@ import moment from 'moment'
 import { get, has } from 'lodash'
 import { querySelectors } from 'redux-query'
 
-
 /**
  * Authentication
  */
@@ -24,7 +23,6 @@ export const isLoggingIn = state => {
   // FIXME: doesn't seem to work
   return querySelectors.isPending(url)(state.queries) || false
 }
-
 
 // FIXME: RENAME!!!
 export const redirectToLogin = state => {
@@ -50,20 +48,19 @@ export const getCompositionById = (state, compositionId) => {
   return get(state, `entities.compositions.${compositionId}`)
 }
 
-
 /**
  * Prompts
  */
-export function getPrompt(state) {
+export function getPrompt (state) {
   const utcDate = new Date()
-  momentDate = moment(+moment.utc(utcDate))
+  const momentDate = moment(+moment.utc(utcDate))
   const key = momentDate.format('YYYY-MM-DD')
   return get(state, `entities.prompts.${key}`, null)
 }
 
 export default {
-  compositionsByFriends, 
-  currentUserPublishedCompositions, 
+  compositionsByFriends,
+  currentUserPublishedCompositions,
   getCompositionById,
-  getPrompt,
+  getPrompt
 }

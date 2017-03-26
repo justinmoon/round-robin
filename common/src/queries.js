@@ -1,9 +1,7 @@
 import config from '../../../src/config'  // FIXME: how to inject config into a node module?
-import { mutateAsync } from 'redux-query';
+import { mutateAsync } from 'redux-query'
 
-
-
-/** 
+/**
  * Keep track of initial state b/c redux-query can't initialize state ...
  */
 export const initialEntities = {
@@ -13,16 +11,16 @@ export const initialEntities = {
       friendIds: []
     },
     prompts: {},
-    currentUser: undefined,  // replaced by {} if user isn't logged in
-  },
+    currentUser: undefined  // replaced by {} if user isn't logged in
+  }
 }
 
-/** 
+/**
  * Helpers
  */
 const defaultUpdate = (prev, next) => ({ ...prev, ...next })
 
-/** 
+/**
  * Authentication
  */
 export const fetchCurrentUser = (props) => ({
@@ -31,8 +29,8 @@ export const fetchCurrentUser = (props) => ({
     return { currentUser: json }
   },
   update: {
-    currentUser: defaultUpdate,
-  },
+    currentUser: defaultUpdate
+  }
 })
 
 const _login = payload => ({
@@ -43,7 +41,7 @@ const _login = payload => ({
   body: payload,
   update: {
     currentUser: defaultUpdate
-  },
+  }
 })
 
 export const login = payload => mutateAsync(_login(payload))
@@ -57,14 +55,10 @@ const _logout = () => ({
     currentUser: (prev, next) => {
       return { currentUser: next }
     }
-  },
+  }
 })
 
-
-
-
 export const logout = payload => mutateAsync(_logout())
-
 
 /**
  * Compositions
@@ -77,11 +71,11 @@ export const fetchFriendsCompositions = (props) => ({
       acc.friendIds.push(comp.id)
       return acc
     }, { friendIds: [] })
-    return { compositions } 
+    return { compositions }
   },
   update: {
-    compositions: defaultUpdate,
-  },
+    compositions: defaultUpdate
+  }
 })
 
 export const fetchCurrentUserCompositions = (props) => ({
@@ -92,11 +86,11 @@ export const fetchCurrentUserCompositions = (props) => ({
       acc.myIds.push(comp.id)
       return acc
     }, { myIds: [] })
-    return { compositions } 
+    return { compositions }
   },
   update: {
-    compositions: defaultUpdate,
-  },
+    compositions: defaultUpdate
+  }
 })
 
 const _submitComposition = payload => ({
@@ -115,17 +109,16 @@ const _submitComposition = payload => ({
       compositions.myIds = compositions.myIds || []
       compositions.myIds.unshift(composition.id)
       return compositions
-    },
+    }
   },
   entities: {
     compositions: props => {
       return defaultUpdate(props)
-    },
-  },
+    }
+  }
 })
 
 export const submitComposition = payload => mutateAsync(_submitComposition(payload))
-
 
 /**
  * Prompts
@@ -136,6 +129,6 @@ export const fetchPrompts = (props) => ({
     return { prompts: json }
   },
   update: {
-    prompts: defaultUpdate,
-  },
+    prompts: defaultUpdate
+  }
 })
