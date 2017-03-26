@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, BrowserRouter, Route, NavLink } from 'react-router-dom'
+import { Redirect, Route, NavLink } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 
 import { Compose, Friends, Me } from '../containers'

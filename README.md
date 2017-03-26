@@ -1,5 +1,9 @@
 # README
 
+To install the pre-commit hooks:
+
+> $ ln -s pre-commit.sh .git/hooks/pre-commit
+
 ## Running movile app for the first time.
 
 If you don't already have yarn and React Native CLI,:

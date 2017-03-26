@@ -34,5 +34,10 @@
     "netlify": "npm install && npm run build",
     "postinstall": "(cd node_modules/react-flexbox-grid && npm install)",
     "fix": "./node_modules/.bin/standard --fix"
+  },
+  "standard": {
+    "globals": [
+      "it"
+    ]
   }
 }

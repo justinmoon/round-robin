@@ -1,8 +1,7 @@
 import React from 'react'
-import {Editor, EditorState} from 'draft-js'
+import { Editor, EditorState } from 'draft-js'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
-import { convertToRaw } from 'draft-js'
 import { selectors, queries } from 'common'
 import { replace } from 'react-router-redux'
 
@@ -30,7 +29,6 @@ class Compose extends React.Component {
   }
   onSubmit (e) {
     const contentState = this.state.editorState.getCurrentContent()
-    const editorState = convertToRaw(contentState)
     const plainText = contentState.getPlainText()
     const promptId = this.props.prompt.id
     return this.props.submit({
@@ -39,7 +37,7 @@ class Compose extends React.Component {
     })
   }
   render () {
-    const { submit, prompt } = this.props
+    const { prompt } = this.props
     return (
       <div>
         <h1>{prompt && prompt.prompt}</h1>
