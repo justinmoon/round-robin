@@ -16,7 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {}
 }
 
-class Published extends React.Component {
+@connect(mapStateToProps, mapDispatchToProps)
+@connectRequest(queries.fetchCurrentUserCompositions)
+export default class Published extends React.Component {
   truncate (string) {
     return string.substring(0, 100) + ' ...'
   }
@@ -33,12 +35,3 @@ class Published extends React.Component {
     )
   }
 }
-
-const PublishedContainer = connectRequest(queries.fetchCurrentUserCompositions)(Published)
-
-const ConnectedPublished = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PublishedContainer)
-
-export default ConnectedPublished

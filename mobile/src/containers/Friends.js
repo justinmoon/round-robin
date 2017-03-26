@@ -15,7 +15,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {}
 }
 
-class Friends extends React.Component {
+@connect(mapStateToProps, mapDispatchToProps)
+@connectRequest(queries.fetchFriendsCompositions)
+export default class Friends extends React.Component {
   truncate (string) {
     return string.substring(0, 100) + ' ...'
   }
@@ -29,10 +31,3 @@ class Friends extends React.Component {
     )
   }
 }
-
-const FriendsContainer = connectRequest(queries.fetchFriendsCompositions)(Friends)
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(FriendsContainer)

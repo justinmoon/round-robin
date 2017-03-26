@@ -34,7 +34,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-class Composition extends React.Component {
+@connect(mapStateToProps, mapDispatchToProps)
+@connectRequest(queries.fetchFriendsCompositions)
+export default class Composition extends React.Component {
   render () {
     const { composition } = this.props
     // FIXME
@@ -51,10 +53,3 @@ class Composition extends React.Component {
     )
   }
 }
-
-const CompositionContainer = connectRequest(queries.fetchFriendsCompositions)(Composition)
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CompositionContainer)

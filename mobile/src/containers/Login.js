@@ -25,7 +25,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-class Login extends Component {
+@connect(mapStateToProps, mapDispatchToProps)
+@connectRequest(queries.fetchCurrentUser)
+export default class Login extends Component {
   // componentDidMount() {
     // SplashScreen.hide()
   // }
@@ -64,11 +66,3 @@ class Login extends Component {
     )
   }
 }
-
-const LoginContainer = connectRequest(queries.fetchCurrentUser)(Login)
-// const LoginContainer = Login
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginContainer)

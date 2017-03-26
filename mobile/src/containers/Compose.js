@@ -31,7 +31,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-class Compose extends Component {
+@connect(mapStateToProps, mapDispatchToProps)
+@connectRequest(queries.fetchPrompts)
+export default class Compose extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -74,12 +76,3 @@ class Compose extends Component {
     )
   }
 }
-
-const ComposeContainer = connectRequest(queries.fetchPrompts)(Compose)
-
-const ConnectedComposeContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ComposeContainer)
-
-export default ConnectedComposeContainer
