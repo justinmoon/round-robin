@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, ListView, StyleSheet, Text } from 'react-native'
+import { ListView, StyleSheet } from 'react-native'
 
 import { ListItem } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
@@ -33,8 +33,7 @@ class CompositionList extends React.Component {
     }
   }
   componentWillReceiveProps (nextProps) {
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    if (nextProps.compositions != this.props.compositions) {
+    if (nextProps.compositions !== this.props.compositions) {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(nextProps.compositions)
       })

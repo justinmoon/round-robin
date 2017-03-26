@@ -1,14 +1,10 @@
 import React from 'react'
 import { ScrollView, View, Text } from 'react-native'
-import Swiper from 'react-native-swiper'
-import { List, ListItem } from 'react-native-elements'
 import { connectRequest } from 'redux-query'
-import { queries } from 'common'
+import { queries, selectors } from 'common'
 
 import { connect } from 'react-redux'
 import styles from '../styles'
-
-import { selectors } from 'common'
 
 const Header = ({ composition }) => {
   const name = composition.author.name.split(' ')[0]

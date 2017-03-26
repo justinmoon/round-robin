@@ -1,6 +1,4 @@
 import React from 'react'
-import { View } from 'react-native'
-import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 

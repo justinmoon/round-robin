@@ -69,8 +69,6 @@ const community = StyleSheet.create({
 })
 
 const tinyFontSize = 10
-const mediumFontSize = 12
-// ...
 
 const text = StyleSheet.create({
   tiny: {

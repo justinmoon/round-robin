@@ -41,14 +41,9 @@ export function fbLogin () {
     .then(getAccessToken)
 }
 
-function rrLogin (accessToken) {
-  return http.post('/login', { access_token: accessToken })
-}
-
 export function login () {
   return fbLogin()
     .then(getAccessToken)
-    // .then(rrLogin)
 }
 
 export function logout () {

@@ -8,8 +8,6 @@ import {
   AppState,
   AppRegistry,
   StyleSheet,
-  Text,
-  View,
   TouchableWithoutFeedback
 } from 'react-native'
 import { Modal, Router, Reducer, Scene, Actions } from 'react-native-router-flux'
@@ -19,7 +17,6 @@ import SplashScreen from 'react-native-splash-screen'
 import store from './store'
 
 import analytics from './analytics'
-import appState from './appState'
 import connectivity from './connected'
 
 import OneSignal from 'react-native-onesignal'
@@ -35,7 +32,7 @@ if (config.ENABLE_SENTRY) {
     .config(config.SENTRY_URL, { release: 'TODO' })
     .install()
 }
-import { Client } from 'bugsnag-react-native'
+import {Client} from 'bugsnag-react-native'
 
 import components from './components'
 import containers from './containers'
@@ -47,7 +44,7 @@ const createReducer = params => {
   return (state, action) => {
     // FIXME: excluding loading screen because store isn't hydrated yet ..
     const blacklist = ['loading', 'compositions']
-    if (action.type == 'REACT_NATIVE_ROUTER_FLUX_FOCUS' && blacklist.indexOf(action.scene.name) === -1) {
+    if (action.type === 'REACT_NATIVE_ROUTER_FLUX_FOCUS' && blacklist.indexOf(action.scene.name) === -1) {
       store.dispatch(analytics.actions.screen(action.scene.name))
     }
     return defaultReducer(state, action)
@@ -110,16 +107,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#bc2a8d'
   }
 })
-
-const Screen = ({s, title}) => {
-  return (
-    <View style={s}>
-      <Text style={styles.welcome}>
-        {title}
-      </Text>
-    </View>
-  )
-}
 
 class WriteIcon extends React.Component {
   constructor (props) {

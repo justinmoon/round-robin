@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Keyboard } from 'react-native'
+import { View, Keyboard } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 
 import analytics from '../analytics'
 
-import { selectors, actions, queries } from 'common'
+import { selectors, queries } from 'common'
 import components from '../components'
 
 const mapStateToProps = (state) => {
@@ -83,9 +83,3 @@ const ConnectedComposeContainer = connect(
 )(ComposeContainer)
 
 export default ConnectedComposeContainer
-
-const styles = StyleSheet.create({
-  editor: {
-    height: 40, borderColor: 'gray', borderWidth: 1
-  }
-})

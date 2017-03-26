@@ -25,7 +25,7 @@ const enhancer = composeEnhancers(
 
 const store = createStore(
   rootReducer,
-	enhancer,
+  enhancer,
   autoRehydrate(),
 )
 
@@ -35,6 +35,9 @@ persistStore(
   () => {
     // Set the anonymousId value
     AsyncStorage.getItem('anonymousId', (err, id) => {
+      if (err) {
+        console.log('unhandled error')
+      }
       if (!id) {
         store.dispatch(setAnonymousId())
       }

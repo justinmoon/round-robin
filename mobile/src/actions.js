@@ -1,12 +1,11 @@
 import { AsyncStorage } from 'react-native'
 import { fbLogin } from './network'
 import { actions, selectors, queries } from 'common'
-import analytics from './analytics'
 import OneSignal from 'react-native-onesignal'
 import uuid from 'uuid'
 
 export const login = () => (dispatch, getState) => fbLogin()
-  .then(access_token => dispatch(queries.login({ access_token })))
+  .then(accessToken => dispatch(queries.login({ access_token: accessToken })))
   .then(user => {
     const currentUser = selectors.getCurrentUser(getState())
     OneSignal.sendTag('id', String(currentUser.id))

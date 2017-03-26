@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 
-const { width, height } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
 
 const styles = {
   wrapper: {

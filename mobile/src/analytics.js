@@ -1,6 +1,4 @@
 import Analytics from 'analytics-react-native'
-import uuid from 'uuid'
-import { AsyncStorage } from 'react-native'
 import config from './config'
 
 var DeviceInfo = require('react-native').NativeModules.RNDeviceInfo
@@ -90,6 +88,8 @@ const emptyActionCreator = () => {
   return dispatch => {}
 }
 const dev = {actions: {}}
-Object.keys(prod.actions).forEach(key => dev.actions[key] = emptyActionCreator)
+Object.keys(prod.actions).forEach(key => {
+  dev.actions[key] = emptyActionCreator
+})
 
-module.exports = (config.makeSegmentCalls == true) ? prod : dev
+module.exports = (config.makeSegmentCalls === true) ? prod : dev

@@ -1,7 +1,7 @@
 // FIXME: disaster
 
 import React, { Component } from 'react'
-import { View, Text, Animated } from 'react-native'
+import { Animated } from 'react-native'
 
 export default class FadingView extends Component {
   constructor (props) {

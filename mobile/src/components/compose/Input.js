@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dimensions, Keyboard, StyleSheet, View, TextInput, ScrollView } from 'react-native'
+import { Dimensions, Keyboard, View, TextInput, ScrollView } from 'react-native'
 import styles from '../../styles'
 import constants from '../../constants'
 
@@ -29,7 +29,6 @@ export default class Editor extends Component {
   }
 
   _keyboardDidHide (frames) {
-    var keyboardHeight = 0
     var textInputHeight = this.state.screenHeight - constants.NAV_HEIGHT
     this.setState({ textInputHeight })
   }

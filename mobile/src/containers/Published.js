@@ -1,7 +1,5 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Actions } from 'react-native-router-flux'
-import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { connectRequest } from 'redux-query'
 
