@@ -1,10 +1,10 @@
 import connected from '../connected'
 
 const initialState = {
-  connected: false,
+  connected: false
 }
 
-export default function reducer(state = initialState, action) {
+export default function reducer (state = initialState, action) {
   let loginState, logoutState
   switch (action.type) {
     case connected.CONNECTIVITY_CHANGE:

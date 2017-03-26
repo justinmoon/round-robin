@@ -1,6 +1,6 @@
-import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import { AccessToken, LoginManager } from 'react-native-fbsdk'
 
-import config from './config';
+import config from './config'
 
 const http = {
   get: url => {
@@ -9,25 +9,25 @@ const http = {
       .then(res => res.json())
   },
   // TODO: payload should be optional
-  post: (url, payload={}) => {
+  post: (url, payload = {}) => {
     const body = JSON.stringify(payload)
     const headers = { 'Content-type': 'application/json' }
     const credentials = 'same-origin'
     return fetch(config.baseUrl + url, { method: 'post', headers, body, credentials })
       .then(res => res.json())
-  },
+  }
 }
 
-export function fetchCurrentUser() {
+export function fetchCurrentUser () {
   return http.get('/current-user')
 }
 
-export function getAccessToken() {
+export function getAccessToken () {
   return AccessToken.getCurrentAccessToken()
     .then(data => data.accessToken.toString())
 }
 
-export function fbLogin() {
+export function fbLogin () {
   const permissions = ['public_profile', 'user_friends', 'email']
   return LoginManager.logInWithReadPermissions(permissions)
     // TODO: throw specific error message which is caught specifically by the login action
@@ -41,32 +41,31 @@ export function fbLogin() {
     .then(getAccessToken)
 }
 
-function rrLogin(accessToken) {
+function rrLogin (accessToken) {
   return http.post('/login', { access_token: accessToken })
 }
 
-export function login() {
+export function login () {
   return fbLogin()
     .then(getAccessToken)
     // .then(rrLogin)
 }
 
-export function logout() {
+export function logout () {
   return Promise.all([
     http.post('/logout'),
-    LoginManager.logOut(),
+    LoginManager.logOut()
   ])
 }
 
-export function fetchPrompts() {
+export function fetchPrompts () {
   return http.get('/prompts')
 }
 
-
-export function submitComposition(composition) {
+export function submitComposition (composition) {
   return http.post('/compositions', composition)
 }
 
-export function fetchFeed() {
+export function fetchFeed () {
   return http.get('/feed')
 }

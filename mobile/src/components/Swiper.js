@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Text,
   View,
-  Dimensions,
+  Dimensions
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 
@@ -15,18 +15,18 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 30,
+    padding: 30
   },
   text: {
     color: 'black',
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 }
 
-export default () => <Swiper 
-  height={height*(4/5)-10}
+export default () => <Swiper
+  height={height * (4 / 5) - 10}
   style={styles.wrapper}
   activeDotColor='black'
   loop={false}

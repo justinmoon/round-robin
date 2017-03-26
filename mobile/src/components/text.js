@@ -5,7 +5,7 @@ import { default as s } from '../styles'
 var styles = StyleSheet.create({
   base: {
     // fontFamily: 'SourceSansPro',
-  },
+  }
 })
 
 const BaseText = ({ style, children, ...props }) => (
@@ -20,5 +20,5 @@ const Disclaimer = ({ style, children }) => (
 
 export default {
   Disclaimer,
-  BaseText,
+  BaseText
 }

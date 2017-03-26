@@ -4,32 +4,32 @@ import React, { Component } from 'react'
 import { View, Text, Animated } from 'react-native'
 
 export default class FadingView extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      fadeAnim: new Animated.Value(1),
+      fadeAnim: new Animated.Value(1)
     }
   }
-  fadeIn() {
+  fadeIn () {
     Animated.timing(
       this.state.fadeAnim,
-      { toValue: 1, duration: 3000, }
+      { toValue: 1, duration: 3000 }
     ).start()
   }
-  fadeOut() {
+  fadeOut () {
     Animated.timing(
       this.state.fadeAnim,
       { toValue: 0, duration: 3000, delay: 3000 }
     ).start()
   }
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps (props) {
     if (props.fade === 'in' && this.props.fade !== 'in') {
       this.fadeIn()
     } else if (props.fade === 'out' && this.props.fade !== 'out') {
       this.fadeOut()
     }
   }
-  render() {
+  render () {
     return (
       <Animated.View style={{opacity: this.state.fadeAnim}}>
         {this.props.children}

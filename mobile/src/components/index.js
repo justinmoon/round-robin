@@ -7,6 +7,11 @@ import { default as compose } from './compose'
 import { default as text } from './text'
 
 export default {
-  FadingView, TabIcon, CompositionList, compose, LoginButton,
-  Swiper, text,
+  FadingView,
+  TabIcon,
+  CompositionList,
+  compose,
+  LoginButton,
+  Swiper,
+  text
 }

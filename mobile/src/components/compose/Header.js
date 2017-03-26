@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native';
+import React, { Component } from 'react'
+import { View, Text, TouchableOpacity, ActivityIndicator, Keyboard } from 'react-native'
 import styles from '../../styles'
 import components from '..'
 import { Actions } from 'react-native-router-flux'
 
 export default class Header extends Component {
-  renderLeftComponent() {
+  renderLeftComponent () {
     return (
-      <TouchableOpacity onPress={() => { Keyboard.dismiss(); Actions.pop()}} >
+      <TouchableOpacity onPress={() => { Keyboard.dismiss(); Actions.pop() }} >
         <Text style={styles.header.buttonLeft}>Quit</Text>
       </TouchableOpacity>
     )
   }
-  renderRightComponent() {
+  renderRightComponent () {
     if (this.props.submitting) {
       return (
-        <ActivityIndicator style={{ width: 60 }} size="small" />
+        <ActivityIndicator style={{ width: 60 }} size='small' />
       )
     }
     return (
@@ -24,7 +24,7 @@ export default class Header extends Component {
       </TouchableOpacity>
     )
   }
-  render() {
+  render () {
     return (
       <View style={styles.header.container}>
         <View style={{ width: 60 }}>
@@ -35,6 +35,6 @@ export default class Header extends Component {
           {this.renderRightComponent()}
         </View>
       </View>
-    );
+    )
   }
 }

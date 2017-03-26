@@ -19,15 +19,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 class Published extends React.Component {
-  truncate(string) {
+  truncate (string) {
     return string.substring(0, 100) + ' ...'
   }
-  render() {
+  render () {
     const { compositions } = this.props
     return (
       <View style={{ flex: 1 }}>
-      {/**<View style={{ flex: 1, marginTop: 40 }}>**/}
-        <components.CompositionList 
+        {/** <View style={{ flex: 1, marginTop: 40 }}>**/}
+        <components.CompositionList
           compositions={compositions}
           renderTitle={composition => composition.prompt.prompt + ' at ' + composition.created_at}
         />

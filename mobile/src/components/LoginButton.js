@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient'
 import text from './text'
 
 const inline = StyleSheet.create({
@@ -9,17 +9,17 @@ const inline = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 5,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   buttonText: {
     fontSize: 18,
     textAlign: 'center',
     margin: 10,
-    color: '#ffffff',
+    color: '#ffffff'
   },
   view: {
-    height: 44,
-  },
+    height: 44
+  }
 })
 
       // <LinearGradient

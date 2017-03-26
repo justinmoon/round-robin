@@ -1,20 +1,19 @@
-import React from 'react';
-import { View, Image, ListView, StyleSheet, Text } from 'react-native';
+import React from 'react'
+import { View, Image, ListView, StyleSheet, Text } from 'react-native'
 
 import { ListItem } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
 
-
 const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
-    marginTop: 20,
-  },
-});
+    marginTop: 20
+  }
+})
 
 const truncate = string => string.substring(0, 100) + ' ...'
 
-const Row = ({ composition, renderTitle }, i ) => (
+const Row = ({ composition, renderTitle }, i) => (
   <ListItem
     hideChevron
     onPress={() => Actions.composition({ compositionId: composition.id })}
@@ -26,30 +25,30 @@ const Row = ({ composition, renderTitle }, i ) => (
 )
 
 class CompositionList extends React.Component {
-  constructor(props) {
-    super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+  constructor (props) {
+    super(props)
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
-      dataSource: ds.cloneWithRows(props.compositions),
-    };
+      dataSource: ds.cloneWithRows(props.compositions)
+    }
   }
-  componentWillReceiveProps(nextProps) {
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+  componentWillReceiveProps (nextProps) {
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     if (nextProps.compositions != this.props.compositions) {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(nextProps.compositions),
+        dataSource: this.state.dataSource.cloneWithRows(nextProps.compositions)
       })
     }
   }
-  render() {
+  render () {
     return (
       <ListView
         enableEmptySections
         style={styles.listContainer}
         dataSource={this.state.dataSource}
-        renderRow={composition  => <Row composition={composition} renderTitle={this.props.renderTitle} />}
+        renderRow={composition => <Row composition={composition} renderTitle={this.props.renderTitle} />}
       />
-    );
+    )
   }
 }
 

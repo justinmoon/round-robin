@@ -9,5 +9,5 @@ export default {
   Compose,
   Friends,
   Published,
-  Login,
+  Login
 }

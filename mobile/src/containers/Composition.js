@@ -18,18 +18,18 @@ const Header = ({ composition }) => {
       paddingTop: 10,
       flexDirection: 'row',
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center'
     }}>
       <Text style={{ fontSize: 16, fontWeight: '500' }}>{composition.prompt.prompt}</Text>
       <Text style={{ fontSize: 16 }}> by </Text>
       <Text style={{ fontSize: 16, fontWeight: '500' }}>{name}</Text>
     </View>
-  );
+  )
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    composition: selectors.getCompositionById(state, ownProps.compositionId),
+    composition: selectors.getCompositionById(state, ownProps.compositionId)
   }
 }
 
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 class Composition extends React.Component {
-  render() {
+  render () {
     const { composition } = this.props
     // FIXME
     if (!composition) {
@@ -52,10 +52,9 @@ class Composition extends React.Component {
           <Text style={styles.community.content}>{composition.body}</Text>
         </ScrollView>
       </View>
-    );
+    )
   }
 }
-
 
 const CompositionContainer = connectRequest(queries.fetchFriendsCompositions)(Composition)
 

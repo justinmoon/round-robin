@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
-const COMPOSITION_FONT_SIZE = 14;
-const TITLE_FONT_SIZE = 16;
+const COMPOSITION_FONT_SIZE = 14
+const TITLE_FONT_SIZE = 16
 
 const header = StyleSheet.create({
   container: {
@@ -10,25 +10,25 @@ const header = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   buttonLeft: {
     width: 60,
     fontSize: COMPOSITION_FONT_SIZE,
-    textAlign: 'left',
+    textAlign: 'left'
   },
   buttonRight: {
     width: 60,
     fontSize: COMPOSITION_FONT_SIZE,
-    textAlign: 'right',
+    textAlign: 'right'
   },
   title: {
     flex: 1,
     fontSize: TITLE_FONT_SIZE,
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+    textAlign: 'center'
+  }
+})
 
 const editor = StyleSheet.create({
   input: {
@@ -36,18 +36,18 @@ const editor = StyleSheet.create({
     paddingRight: 20,
     fontSize: COMPOSITION_FONT_SIZE,
     fontFamily: 'System',
-    textAlignVertical: 'top',  // Android messed up without this
+    textAlignVertical: 'top'  // Android messed up without this
   },
   page: {
-    flex: 1,
+    flex: 1
   },
   scrollView: {
-    flex: 1,
+    flex: 1
   },
   contentContainerStyle: {
     flex: 1,
-    justifyContent: 'flex-start',
-  },
+    justifyContent: 'flex-start'
+  }
 })
 
 const community = StyleSheet.create({
@@ -56,15 +56,15 @@ const community = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     fontSize: COMPOSITION_FONT_SIZE,
-    fontFamily: 'System',
+    fontFamily: 'System'
   },
   container: {
-    flex: 1,
+    flex: 1
   },
   title: {
   },
   titleBold: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   }
 })
 
@@ -77,13 +77,13 @@ const text = StyleSheet.create({
     fontSize: tinyFontSize,
     color: 'black',
     fontStyle: 'italic',
-    fontWeight: 'bold',
-  },
+    fontWeight: 'bold'
+  }
 })
 
 export default {
   header,
   editor,
   community,
-  text,
+  text
 }

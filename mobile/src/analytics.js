@@ -3,21 +3,21 @@ import uuid from 'uuid'
 import { AsyncStorage } from 'react-native'
 import config from './config'
 
-var DeviceInfo = require('react-native').NativeModules.RNDeviceInfo;
+var DeviceInfo = require('react-native').NativeModules.RNDeviceInfo
 
 const analytics = new Analytics(config.segmentWriteKey)
 
-function signup(user, anonymousId) {
+function signup (user, anonymousId) {
   analytics.identify({
     anonymousId,
     userId: user.id,
     traits: {
-      name: user.name,
+      name: user.name
     }
-  });
+  })
 }
 
-function screen(route, user, anonymousId, properties) {
+function screen (route, user, anonymousId, properties) {
   let payload = { name: route }
   if (properties) {
     payload.properties = properties
@@ -31,47 +31,47 @@ function screen(route, user, anonymousId, properties) {
   // analytics.screen(payload)
 }
 
-function beginCompositionAction() {
+function beginCompositionAction () {
   return (dispatch, getState) => {
     let { currentUser } = getState()
     analytics.track({
       userId: currentUser.id,
-      event: 'begin-composition',
+      event: 'begin-composition'
     })
   }
 }
 
-function submitCompositionAction() {
+function submitCompositionAction () {
   return (dispatch, getState) => {
     let { currentUser } = getState()
     analytics.track({
       userId: currentUser.id,
-      event: 'submit-composition',
+      event: 'submit-composition'
     })
   }
 }
 
-function screenAction(route, payload) {
+function screenAction (route, payload) {
   return (dispatch, getState) => {
     let { currentUser, anonymousId } = getState()
     return screen(route, currentUser, anonymousId, payload)
   }
 }
 
-function signupAction(user) {
+function signupAction (user) {
   return (dispatch, getState) => {
     const { anonymousId, currentUser } = getState()
     return signup(currentUser, anonymousId)
   }
 }
 
-function appStateChangeAction(state) {
+function appStateChangeAction (state) {
   return (dispatch, getState) => {
     const { currentUser } = getState()
     analytics.track({
       userId: currentUser.id,
       event: 'app-state-change',
-      properties: { state: state },
+      properties: { state: state }
     })
   }
 }
@@ -82,7 +82,7 @@ const prod = {
     signup: signupAction,
     beginComposition: beginCompositionAction,
     submitComposition: submitCompositionAction,
-    appStateChange: appStateChangeAction,
+    appStateChange: appStateChangeAction
   }
 }
 

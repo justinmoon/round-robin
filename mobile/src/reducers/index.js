@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux';
-import network from './network';
-import router from './router';
+import { combineReducers } from 'redux'
+import network from './network'
+import router from './router'
 import appState from '../appState'
 
 import { entitiesReducer, queriesReducer } from 'redux-query'
@@ -15,5 +15,5 @@ export default combineReducers({
   // anonymousId: commonReducers.anonymousId,
   appState: appState.reducer,
   queries: queriesReducer,
-  entities: entitiesReducer,
+  entities: entitiesReducer
 })
