@@ -1,10 +1,9 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
-import { default as s } from '../styles'
 import text from './text'
 
-var styles = StyleSheet.create({
+const inline = StyleSheet.create({
   linearGradient: {
     flex: 1,
     paddingLeft: 15,
@@ -14,24 +13,14 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    fontFamily: 'Gill Sans',
     textAlign: 'center',
     margin: 10,
     color: '#ffffff',
-    backgroundColor: 'transparent',
   },
   view: {
     height: 44,
   },
 })
-
-// some fun gradient experiments ...
-
-/* start={[0, 0]}
- * locations={[0,0.5,1]}
- * end={[1, 0]}
- * */
-
 
       // <LinearGradient
           // colors={['#4c669f', '#3b5998', '#192f6a']}
@@ -44,11 +33,11 @@ var styles = StyleSheet.create({
 export default ({onPress}) => {
   return (
     <View>
-      <TouchableOpacity onPress={onPress} style={styles.view}>
+      <TouchableOpacity onPress={onPress} style={inline.view}>
         <LinearGradient
           colors={['black', 'black', 'black']}
-          style={styles.linearGradient}>
-          <Text style={styles.buttonText}>
+          style={inline.linearGradient}>
+          <Text style={inline.buttonText}>
             Login with Facebook
           </Text>
         </LinearGradient>
