@@ -1,6 +1,4 @@
-import sys
 import rr.onesignal
-from rr.models import db, User
 from rr.queries import users_who_have_not_written_yet
 
 
@@ -23,12 +21,13 @@ def on_morning_and_evening_cron():
 if __name__ == '__main__':
     from rr.app import app
     with app.app_context():
-        ### on new composition 
+        # on new composition
+
         #  cli_arg = sys.argv[-1]
         #  id_ = int(cli_arg)
         #  user = db.session.query(User).get(id_)
         #  composition = user.compositions[0]
         #  on_new_composition(user, composition)
 
-        ### on_hourly_cron
-        on_hourly_cron()
+        # on_hourly_cron
+        on_morning_and_evening_cron()

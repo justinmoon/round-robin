@@ -53,4 +53,3 @@ def observe_device():
     data = request.get_json()
     print(data)
     return ''
-

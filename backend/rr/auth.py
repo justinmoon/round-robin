@@ -1,6 +1,8 @@
 import requests
 from flask import jsonify, Blueprint, request
-from flask_login import login_user, LoginManager, login_required, current_user, logout_user
+from flask_login import (
+    login_user, LoginManager, login_required, current_user, logout_user
+)
 
 from rr.queries import user_by_fb_id
 from rr.models import User
@@ -17,7 +19,8 @@ def load_user(user_id):
 
 
 def handle_facebook_login(token):
-    url = 'https://graph.facebook.com/me?fields=id,name,picture,friends&access_token={}'.format(
+    url = 'https://graph.facebook.com/me?fields=id,name,picture,\
+          friends&access_token={}'.format(
         token)
     res = requests.get(url)
     print(res.status_code)

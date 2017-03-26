@@ -1,3 +1,4 @@
+# flake8: noqa
 from datetime import datetime, timedelta
 import random
 
@@ -16,8 +17,7 @@ def read_psalms():
 def create_users():
     claire = q.create_user(
         name='Claire Richardson',
-        pic_url=
-        'https://fb-s-c-a.akamaihd.net/h-ak-xat1/v/t1.0-1/p320x320/11666076_10152860791826787_2281368783831143452_n.jpg?oh=ebadeca895ae75a01fd1d93606309366&oe=58F3BF4D&__gda__=1488797585_edf109bbd1f9715f0c760081b71f78b1',
+        pic_url='https://fb-s-c-a.akamaihd.net/h-ak-xat1/v/t1.0-1/p320x320/11666076_10152860791826787_2281368783831143452_n.jpg?oh=ebadeca895ae75a01fd1d93606309366&oe=58F3BF4D&__gda__=1488797585_edf109bbd1f9715f0c760081b71f78b1',
         fb_access_token='claire',
         fb_id='claire', )
     sam = q.create_user(

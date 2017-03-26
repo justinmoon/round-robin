@@ -1,17 +1,21 @@
 import pytest
 import datetime as dt
 import uuid
-from flask import request
+from flask import request as _request # noqa
 
 from rr.factory import create_app
 from rr.db import db as _db
 from rr.models import User, Composition, Prompt
 
-# FIXME: scope='session'
-
 
 @pytest.fixture(scope='function')
-def db(app, request):
+def request():  # noqa
+    return _request
+
+
+# FIXME: scope='session'
+@pytest.fixture(scope='function')
+def db(app, request):  # noqa
     """Session-wide test database."""
 
     def teardown():
@@ -25,7 +29,7 @@ def db(app, request):
 
 
 @pytest.fixture(scope='function')
-def session(db, request):
+def session(db, request):  # noqa
     """Creates a new database session for a test."""
     connection = db.engine.connect()
     transaction = connection.begin()

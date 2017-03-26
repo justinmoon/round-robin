@@ -1,3 +1,5 @@
+# flake8: noqa
+
 justin_token = 'EAAaMfBAARZA8BAKkPwstAuW7tZCVl334wbONLSORRjllyJOy2aCFhnHIebM7qUhdN70Q6e4ZBINObPiVwdIWsWhqhYfxzbgZA7e3wX0OyF0XwFZBkHSPoa0NPdB9Xd5kdjSyEv966FCwQZAeltgMNnJjYI2RXQtMJZBNKYYrt6yL9myR6L8utfdoQ6i91zY1jeyJtgXk4QFygZDZD'
 
 graph_me_success = {

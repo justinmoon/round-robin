@@ -1,9 +1,9 @@
-from tests.fixtures import app, db, session, make_user, make_prompt, make_composition
+from tests.fixtures import app, db, session, make_user, make_prompt, make_composition  # noqa
 import json
 from flask import jsonify
 
 
-def test_custom_json_serializer(session, app):
+def test_custom_json_serializer(session, app):  # noqa
     user, prompt = make_user(), make_prompt()
     composition = make_composition(user=user, prompt=prompt)
     session.add_all([user, prompt, composition])
