@@ -13,8 +13,8 @@ export default class Editor extends Component {
     }
   }
   componentWillMount () {
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (frames) => this._keyboardDidShow(frames))
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', (frames) => this._keyboardDidHide(frames))
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', ::this._keyboardDidShow)
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', ::this._keyboardDidHide)
   }
 
   componentWillUnmount () {
