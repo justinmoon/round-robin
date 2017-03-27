@@ -23,10 +23,9 @@ export default class Published extends React.Component {
     const { compositions } = this.props
     return (
       <View style={{ flex: 1 }}>
-        {/** <View style={{ flex: 1, marginTop: 40 }}>**/}
         <components.CompositionList
           compositions={compositions}
-          renderTitle={composition => composition.prompt.prompt + ' at ' + selectors.formatTimestamp(composition.created_at)}
+          renderTitle={composition => composition.prompt.prompt + ' - ' + selectors.formatTimestamp(composition.created_at)}
         />
       </View>
     )

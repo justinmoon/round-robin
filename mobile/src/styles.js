@@ -1,13 +1,20 @@
-import { StyleSheet } from 'react-native'
+import { Platform, StyleSheet } from 'react-native'
 
 const COMPOSITION_FONT_SIZE = 14
 const TITLE_FONT_SIZE = 16
+const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 15 : 0
+
+const general = StyleSheet.create({
+  row: {
+    flexDirection: 'row'
+  }
+})
 
 const header = StyleSheet.create({
   container: {
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 10,
+    marginTop: STATUS_BAR_HEIGHT + 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end'
@@ -96,11 +103,20 @@ const text = StyleSheet.create({
     color: 'black',
     fontStyle: 'italic',
     fontWeight: 'bold'
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '500'
+  },
+  titleSmall: {
+    fontSize: 16,
+    fontWeight: 'normal'
   }
 })
 
 export default {
   header,
+  general,
   editor,
   buttons,
   community,

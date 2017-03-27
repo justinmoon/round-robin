@@ -18,9 +18,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 @connect(mapStateToProps, mapDispatchToProps)
 @connectRequest(queries.fetchFriendsCompositions)
 export default class Friends extends React.Component {
-  truncate (string) {
-    return string.substring(0, 100) + ' ...'
-  }
   render () {
     const { compositions } = this.props
     return (

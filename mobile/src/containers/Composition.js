@@ -2,6 +2,7 @@ import React from 'react'
 import { ScrollView, View, Text } from 'react-native'
 import { connectRequest } from 'redux-query'
 import { queries, selectors } from 'common'
+import components from '../components'
 
 import { connect } from 'react-redux'
 import styles from '../styles'
@@ -43,9 +44,17 @@ export default class Composition extends React.Component {
     if (!composition) {
       return <View><Text>loading</Text></View>
     }
+    const name = composition.author.name.split(' ')[0]
+    const title = (
+      <View style={styles.general.row}>
+        <Text style={styles.text.title}>{composition.prompt.prompt}</Text>
+        <Text style={styles.text.titleSmall}> by </Text>
+        <Text style={styles.text.title}>{name}</Text>
+      </View>
+    )
     return (
       <View style={styles.community.container}>
-        <Header composition={composition} />
+        <components.compose.Header title={title} />
         <ScrollView>
           <Text style={styles.community.content}>{composition.body}</Text>
         </ScrollView>

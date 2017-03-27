@@ -3,6 +3,7 @@ import { ListView, StyleSheet } from 'react-native'
 
 import { ListItem } from 'react-native-elements'
 import { Actions } from 'react-native-router-flux'
+import { selectors } from 'common'
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -11,8 +12,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const truncate = string => string.substring(0, 100) + ' ...'
-
 const Row = ({ composition, renderTitle }, i) => (
   <ListItem
     hideChevron
@@ -20,7 +19,7 @@ const Row = ({ composition, renderTitle }, i) => (
     avatar={{ uri: composition.author.avatar_url }}
     key={i}
     title={renderTitle(composition)}
-    subtitle={truncate(composition.body)}
+    subtitle={selectors.truncateComposition(composition.body)}
   />
 )
 
