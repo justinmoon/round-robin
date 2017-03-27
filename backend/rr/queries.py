@@ -46,7 +46,7 @@ def current_user_compositions(user):
 
 
 def create_composition(created_at=None, *, prompt_id, user_id, body):
-    created_at = created_at if created_at is not None else datetime.now()
+    created_at = created_at if created_at is not None else datetime.utcnow()
     c = Composition(
         user_id=user_id,
         created_at=created_at,
