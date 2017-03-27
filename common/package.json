@@ -13,6 +13,8 @@
   "scripts": {
     "build": "node_modules/.bin/babel src -d lib",
     "prepublish": "node_modules/.bin/babel src -d lib",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "build-web": "node_modules/.bin/babel src -d ../web/node_modules/common/lib",
     "build-mobile": "node_modules/.bin/babel src -d ../mobile/node_modules/common/lib",
     "watch-web": "fswatch -0  src | xargs -0 -n 1 -I {} yarn build-web",
@@ -20,7 +22,11 @@
     "lint": "./node_modules/.bin/standard",
     "fix": "./node_modules/.bin/standard --fix"
   },
+  "jest": {
+    "testMatch": [ "**/tests/**/*.js?(x)", "**/?(*.)(spec|test).js?(x)" ]
+  },
   "devDependencies": {
+    "babel-jest": "^19.0.0",
     "standard": "^9.0.2"
   }
 }

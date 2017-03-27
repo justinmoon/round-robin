@@ -1,3 +1,9 @@
+export const login = {
+  ATTEMPT: 'login/attempt',
+  SUCCESS: 'login/success',
+  FAILURE: 'login/success',
+}
+
 export const compositions = {
   FETCH: 'compositions/fetch',
   RECEIVE: 'compositions/receive',

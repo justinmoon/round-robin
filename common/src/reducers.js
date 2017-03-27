@@ -50,6 +50,21 @@ export function prompts (state = {
   }
 }
 
+export function asyncReducer (state = {
+  loggingIn: false
+}, action) {
+  switch (action.type) {
+    case actionTypes.login.ATTEMPT:
+      return Object.assign({}, state, { loggingIn: true })
+    case actionTypes.login.SUCCESS:
+      return Object.assign({}, state, { loggingIn: false })
+    case actionTypes.login.FAILURE:
+      return Object.assign({}, state, { loggingIn: false })
+    default:
+      return state
+  }
+}
+
 export function anonymousId (state = null, action) {
   switch (action.type) {
     case actionTypes.SET_ANONYMOUS_ID:

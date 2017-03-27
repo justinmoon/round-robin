@@ -13,9 +13,8 @@ import { login as loginAction } from '../actions'
 const mapStateToProps = (state) => {
   return {
     loggedIn: selectors.loggedIn(state),
-    isLoggingIn: selectors.isLoggingIn(state),
-    currentUser: selectors.getCurrentUser(state),
-    redirectToLogin: selectors.redirectToLogin(state)
+    isLoggingIn: state.async.loggingIn,
+    currentUser: selectors.getCurrentUser(state)
   }
 }
 
@@ -26,25 +25,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-@connectRequest(queries.fetchCurrentUser)
+// @connectRequest(queries.fetchCurrentUser)
 export default class Login extends Component {
-  componentWillReceiveProps ({ currentUser, loggedIn, redirectToLogin }) {
+  componentWillReceiveProps ({ currentUser, loggedIn }) {
     if (loggedIn) {
       // No matter what, we leave login and enter the tabbed view
       Actions.lowerTabs({type: 'reset'})
 
-      // If user was created within the last 5 minutes, send them to the editor
-      const createdAt = moment.utc(currentUser.created_at)
-      const now = moment.utc()
-      const freshAccount = now.diff(createdAt, 'seconds') < 60 * 5
-      if (freshAccount) {
+      // If they're new, have them write first
+      if (currentUser.needs_onboarding) {
         Actions.compose()
       }
 
       setTimeout(SplashScreen.hide, 250)  // a little breathing room
-    }
-    if (redirectToLogin) {
-      SplashScreen.hide()
     }
   }
   render () {

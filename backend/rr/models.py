@@ -64,6 +64,7 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'avatar_url': self.pic_url,
             'created_at': self.created_at,
+            'needs_onboarding': self.compositions.count() == 0
             }
 
 
