@@ -68,6 +68,26 @@ const community = StyleSheet.create({
   }
 })
 
+const buttons = StyleSheet.create({
+  loginView: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    backgroundColor: 'black',
+    justifyContent: 'center'
+  },
+  loginText: {
+    fontSize: 18,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff'
+  },
+  loginTouchableOpacity: {
+    height: 44
+  }
+})
+
 const tinyFontSize = 10
 
 const text = StyleSheet.create({
@@ -82,6 +102,7 @@ const text = StyleSheet.create({
 export default {
   header,
   editor,
+  buttons,
   community,
   text
 }

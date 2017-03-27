@@ -1,46 +1,25 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
 import text from './text'
+import styles from '../styles'
 
-const inline = StyleSheet.create({
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5,
-    justifyContent: 'center'
-  },
-  buttonText: {
-    fontSize: 18,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff'
-  },
-  view: {
-    height: 44
-  }
-})
-
-      // <LinearGradient
-          // colors={['#4c669f', '#3b5998', '#192f6a']}
-          // style={styles.linearGradient}>
-        // <Text style={styles.buttonText}>
-          // Login with Facebook
-        // </Text>
-      // </LinearGradient>
+// <LinearGradient
+// colors={['#4c669f', '#3b5998', '#192f6a']}
+// style={styles.linearGradient}>
+// <Text style={styles.buttonText}>
+// Login with Facebook
+// </Text>
+// </LinearGradient>
 
 export default ({onPress}) => {
   return (
     <View>
-      <TouchableOpacity onPress={onPress} style={inline.view}>
-        <LinearGradient
-          colors={['black', 'black', 'black']}
-          style={inline.linearGradient}>
-          <Text style={inline.buttonText}>
+      <TouchableOpacity onPress={onPress} style={styles.buttons.loginTouchableOpacity}>
+        <View style={styles.buttons.loginView}>
+          <Text style={styles.buttons.loginText}>
             Login with Facebook
           </Text>
-        </LinearGradient>
+        </View>
       </TouchableOpacity>
       <text.Disclaimer style={{ marginTop: 5, textAlign: 'center' }}>
         We don't post anything to Facebook

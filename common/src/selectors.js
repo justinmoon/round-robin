@@ -48,6 +48,14 @@ export const getCompositionById = (state, compositionId) => {
   return get(state, `entities.compositions.${compositionId}`)
 }
 
+export const truncateComposition = composition => {
+  return composition.substring(0, 100) + ' ...'
+}
+
+export const formatTimestamp = timestamp => {
+  return moment.utc(timestamp).fromNow()
+}
+
 /**
  * Prompts
  */
