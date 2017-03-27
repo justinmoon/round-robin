@@ -28,9 +28,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 @connect(mapStateToProps, mapDispatchToProps)
 @connectRequest(queries.fetchCurrentUser)
 export default class Login extends Component {
-  // componentDidMount() {
-    // SplashScreen.hide()
-  // }
   componentWillReceiveProps ({ currentUser, loggedIn, redirectToLogin }) {
     if (loggedIn) {
       // No matter what, we leave login and enter the tabbed view

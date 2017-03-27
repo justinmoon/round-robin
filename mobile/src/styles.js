@@ -10,6 +10,21 @@ const general = StyleSheet.create({
   }
 })
 
+const swiper = StyleSheet.create({
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 30
+  },
+  text: {
+    color: 'black',
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  }
+})
+
 const header = StyleSheet.create({
   container: {
     marginLeft: 20,
@@ -116,6 +131,7 @@ const text = StyleSheet.create({
 
 export default {
   header,
+  swiper,
   general,
   editor,
   buttons,
