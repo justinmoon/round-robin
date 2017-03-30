@@ -13,21 +13,3 @@ def cancel_onesignal_reminders(user):
         db.session.commit()
 
 
-
-if __name__ == '__main__':
-    from rr.app import app
-    with app.app_context():
-        # on new composition
-
-        #  cli_arg = sys.argv[-1]
-        #  id_ = int(cli_arg)
-        #  user = db.session.query(User).get(id_)
-        #  composition = user.compositions[0]
-        #  on_new_composition(user, composition)
-
-        #  from rr.db import db
-        #  from rr.models import User
-        #  user = db.session.query(User).first()
-        #  schedule_onesignal_reminders()
-        #  cancel_onesignal_reminders(user)
-

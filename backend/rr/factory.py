@@ -11,6 +11,8 @@ from rr.auth import auth, login_manager
 from rr.custom_json_encoder import CustomJSONEncoder
 from rr.admin import admin
 from rr.static import static
+from rr.jobs import rq
+
 
 migrate = Migrate()
 
@@ -29,6 +31,7 @@ def create_app(name, settings_override={}):
     db.init_app(app)
     login_manager.init_app(app)
     admin.init_app(app)
+    rq.init_app(app)
 
     if os.environ.get('CONFIG_ENV') == 'prod':
         sentry = Sentry(
