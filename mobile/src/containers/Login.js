@@ -39,6 +39,9 @@ export default class Login extends Component {
 
       setTimeout(SplashScreen.hide, 250)  // a little breathing room
     }
+    else {
+      SplashScreen.hide()
+    }
   }
   render () {
     const bottomContent = this.props.isLoggingIn

@@ -73,15 +73,19 @@ def make_prompt(date=dt.date.today(), prompt='freighter'):
 def make_user(name='susan',
               pic_url='http://google.com',
               fb_access_token=None,
+              timezone=None,
               fb_id=None):
     if fb_access_token is None:
         fb_access_token = str(uuid.uuid4())
     if fb_id is None:
         fb_id = str(uuid.uuid4())
+    if timezone is None:
+        timezone = dt.time(hour=9)
     return User(
         name=name,
         pic_url=pic_url,
         fb_id=fb_id,
+        timezone=timezone,
         fb_access_token=fb_access_token)
 
 

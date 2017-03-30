@@ -2,6 +2,7 @@ import React from 'react'
 import { get } from 'lodash'
 import { connect } from 'react-redux'
 import { queries } from 'common'
+import moment from 'moment-timezone'
 
 const mapStateToProps = (state, ownProps) => {
   return {}
@@ -12,7 +13,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     login: () => {
       window.FB.login(function (response) {
         if (response.authResponse) {
-          dispatch(queries.login({ access_token: get(response, 'authResponse.accessToken') }))
+          const timezone = moment.tz.guess()
+          dispatch(queries.login({ 
+            access_token: get(response, 'authResponse.accessToken'), timezone
+          }))
         } else {
           console.log('User cancelled login or did not fully authorize.')
         }

@@ -18,10 +18,11 @@ def load_user(user_id):
     return db.session.query(User).get(user_id)
 
 
-def handle_facebook_login(token):
-    url = 'https://graph.facebook.com/me?fields=id,name,picture,\
-          friends&access_token={}'.format(
-        token)
+@auth.route('/login', methods=['POST'])
+def login():
+    token = request.json['access_token']
+    url = ('https://graph.facebook.com/me?fields=id,name,picture,'
+          'friends&access_token={}').format(token)
     res = requests.get(url)
     print(res.status_code)
 
@@ -33,9 +34,11 @@ def handle_facebook_login(token):
         # check if user already exists
         u = user_by_fb_id(data['id'])
         if not u:
+            timezone = request.json['timezone']
             u = User(
                 fb_id=data['id'],
                 fb_access_token=token,
+                timezone=timezone,
                 name=data['name'],
                 pic_url=data['picture']['data']['url'], )
 
@@ -51,12 +54,6 @@ def handle_facebook_login(token):
         return jsonify(u)
     else:
         return jsonify({'error': data['error']['message']}), 401
-
-
-@auth.route('/login', methods=['POST'])
-def login():
-    fb_access_token = request.json['access_token']
-    return handle_facebook_login(fb_access_token)
 
 
 @auth.route('/current-user')

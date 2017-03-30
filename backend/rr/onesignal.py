@@ -26,11 +26,35 @@ def construct_filters(users):
     return filters
 
 
-def send_to_users(users, contents, heading='', data={}):
+def schedule_daily_reminders_for_user(user):
+    contents = 'It\'s time to write!'
+    heading = ''
+    data = {'event': 'reminder-to-write'}
+    filters = [construct_filter(user)]
+    res = one_signal_client().create_notification(
+        contents=contents,
+        heading=heading,
+        included_segments=[],
+        data=data,
+        filters=filters,
+        #  include_player_ids=[
+            #  '86a6617e-97c7-47c0-84f4-1ad0d03467a0', 
+            #  'fffa7734-d387-479e-a166-3de11d8ca540'
+        #  ],
+        delayed_option='timezone',
+        delivery_time_of_day=user.reminder_time.isoformat(),
+    )
+    onesignal_id = res.json()['id']
+    user.append_scheduled_onesignal_notifications(onesignal_id)
+
+
+def send_to_users(users, contents, heading='', data={}, onesignal_args={}):
     filters = construct_filters(users)
     return one_signal_client().create_notification(
         contents=contents,
         heading=heading,
         included_segments=[],
         filters=filters,
-        data=data, )
+        data=data, 
+        **onesignal_args,
+   )

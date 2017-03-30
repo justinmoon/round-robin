@@ -2,7 +2,7 @@ from flask import jsonify, Blueprint, request
 from flask_login import login_required, current_user
 
 import rr.queries as q
-import rr.events as e
+import rr.events as tasks
 
 routes = Blueprint('routes', __name__)
 
@@ -42,14 +42,13 @@ def get_current_user_compositions():
     return jsonify(feed.all())
 
 
-@routes.route('/cron/morning-and-evening')
-def handle_morning_and_evening_cron():
-    e.on_morning_and_evening_cron()
+@routes.route('/cron/midnight')
+def handle_midnight_cron():
+    tasks.schedule_onesignal_reminders()
     return 'ok', 200
 
 
 @routes.route('/observe-device')
 def observe_device():
     data = request.get_json()
-    print(data)
     return ''

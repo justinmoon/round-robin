@@ -5,6 +5,10 @@ from rr.db import db
 from rr.models import User, Prompt, Composition
 
 
+def all_users():
+    return db.session.query(User).all()
+
+
 def user_by_fb_id(fb_id):
     return db.session.query(User)\
         .filter_by(fb_id=fb_id)\
@@ -77,3 +81,8 @@ def create_user(created_at=None, *, name, pic_url, fb_access_token, fb_id):
     db.session.add(u)
     db.session.commit()
     return u
+
+
+#  def local_time_for_user(user):
+    #  query = select([User.id, convert_tz(func.now(), 'UTC', User.timezone)])
+    #  return db.session.execute(query)

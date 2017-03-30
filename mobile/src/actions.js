@@ -1,13 +1,15 @@
 import { AsyncStorage } from 'react-native'
 import { fbLogin } from './network'
 import { actions, selectors, queries } from 'common'
+import DeviceInfo from 'react-native-device-info'
 import OneSignal from 'react-native-onesignal'
 import uuid from 'uuid'
 
 export const login = () => (dispatch, getState) => {
   dispatch(actions.loginAttempt())
+  const timezone = DeviceInfo.getTimezone()
   return fbLogin()
-    .then(accessToken => dispatch(queries.login({ access_token: accessToken })))
+    .then(accessToken => dispatch(queries.login({ access_token: accessToken, timezone })))
     .then(user => {
       // for now, don't dispatch a success b/c it would cause jittery disappearance of spinner
       // dispatch(actions.successfulLogin())

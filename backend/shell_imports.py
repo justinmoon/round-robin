@@ -7,6 +7,6 @@ from rr.events import *
 from rr.models import *
 import rr.queries as q
 from rr.db import *
-import utils as u
 
 s = db.session
+osc = one_signal_client()
