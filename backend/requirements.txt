@@ -1,5 +1,5 @@
--e git+https://github.com/nvie/rq.git@684281fbf795852ce23ba4785225aee30c6ac422#egg=rq
--e git+https://github.com/superquest/one-signal-python-sdk.git@f1490e843b2acec94a24eab09956364c86c55f5d#egg=OneSignalPythonSDK
+git+https://github.com/nvie/rq.git@684281fbf795852ce23ba4785225aee30c6ac422
+git+https://github.com/superquest/one-signal-python-sdk.git@f1490e843b2acec94a24eab09956364c86c55f5d
 Flask-Admin==1.4.2
 Flask-Login==0.4.0
 Flask-Migrate==2.0.1
