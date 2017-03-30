@@ -1,3 +1,5 @@
+-e git+https://github.com/nvie/rq.git@684281fbf795852ce23ba4785225aee30c6ac422#egg=rq
+-e git+https://github.com/superquest/one-signal-python-sdk.git@f1490e843b2acec94a24eab09956364c86c55f5d#egg=OneSignalPythonSDK
 Flask-Admin==1.4.2
 Flask-Login==0.4.0
 Flask-Migrate==2.0.1
@@ -8,7 +10,6 @@ Flask==0.11.1
 Jinja2==2.7.3
 Mako==1.0.6
 MarkupSafe==0.23
-git+https://github.com/superquest/one-signal-python-sdk.git
 PyMySQL==0.7.10
 Pygments==2.2.0
 SQLAlchemy==1.1.0
@@ -48,7 +49,6 @@ raven==5.32.0
 redis==2.10.5
 requests==2.12.3
 rq-scheduler==0.7.0
-rq==0.6.0
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.3.2
