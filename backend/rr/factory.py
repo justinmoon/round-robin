@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from raven.contrib.flask import Sentry
 
 from rr.db import db
-from rr.config import BaseConfig
+from rr.config import configure
 from rr.routes import routes
 from rr.auth import auth, login_manager
 from rr.custom_json_encoder import CustomJSONEncoder
@@ -20,8 +20,8 @@ migrate = Migrate()
 def create_app(name, settings_override={}):
     app = Flask(name, static_folder='build/static', static_url_path='/static')
 
+    configure(app)
     app.json_encoder = CustomJSONEncoder
-    app.config.from_object(BaseConfig)
     app.config.update(settings_override)
     app.register_blueprint(routes, url_prefix='/api')
     app.register_blueprint(auth, url_prefix='/api')
