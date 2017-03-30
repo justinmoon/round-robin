@@ -9,11 +9,10 @@ rq = RQ()
 
 
 @rq.job
-def schedule_onesignal_reminders():
+def schedule_onesignal_reminders(user):
     from rr.app import app
     with app.app_context():
-        for user in all_users():
-            rr.onesignal.schedule_daily_reminders_for_user(user)
+        rr.onesignal.schedule_daily_reminders_for_user(user)
 
 
 @rq.job

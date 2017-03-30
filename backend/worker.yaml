@@ -1,0 +1,6 @@
+service: worker
+runtime: python27
+entrypoint: python rr/scheduler.py
+env_variables:
+  CONFIG_ENV: prod
+  PYTHONPATH: .

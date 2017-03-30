@@ -6,4 +6,4 @@ if __name__ == '__main__':
     with app.app_context():
         user = db.session.query(User).first()
         cancel_onesignal_reminders.queue(user)
-        schedule_onesignal_reminders.queue()
+        schedule_onesignal_reminders.queue(user)

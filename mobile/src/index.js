@@ -13,6 +13,7 @@ import {
 import { Modal, Router, Reducer, Scene, Actions } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
 import SplashScreen from 'react-native-splash-screen'
+SplashScreen.hide()
 
 import store from './store'
 

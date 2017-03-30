@@ -2,7 +2,7 @@ from flask import jsonify, Blueprint, request
 from flask_login import login_required, current_user
 
 import rr.queries as q
-import rr.events as tasks
+import rr.jobs as jobs
 
 routes = Blueprint('routes', __name__)
 
@@ -44,7 +44,11 @@ def get_current_user_compositions():
 
 @routes.route('/cron/midnight')
 def handle_midnight_cron():
-    tasks.schedule_onesignal_reminders()
+    for user in q.all_users():
+        # Delete records of yesterday's scheduled notifications
+        q.purge_scheduled_notifcations(user)
+        # Schedule today's notifications
+        jobs.schedule_onesignal_reminders.queue(user)
     return 'ok', 200
 
 

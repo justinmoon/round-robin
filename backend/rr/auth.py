@@ -7,6 +7,7 @@ from flask_login import (
 from rr.queries import user_by_fb_id
 from rr.models import User
 from rr.db import db
+import rr.events as events
 
 auth = Blueprint('auth', __name__)
 
@@ -50,6 +51,7 @@ def login():
         db.session.commit()
 
         login_user(u, remember=True)
+        events.on_new_user(u)
 
         return jsonify(u)
     else:
