@@ -8,7 +8,6 @@ import { selectors } from 'common'
 const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
-    marginTop: 20
   }
 })
 

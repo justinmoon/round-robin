@@ -10,7 +10,7 @@ const general = StyleSheet.create({
   },
   scene: {
     flex: 1,
-    paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight + 20
+    paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight + STATUS_BAR_HEIGHT + 10
   }
 })
 
@@ -111,6 +111,25 @@ const buttons = StyleSheet.create({
   },
   loginTouchableOpacity: {
     height: 44
+  },
+  bannerView: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    backgroundColor: '#4c5fd7',
+    justifyContent: 'center'
+  },
+  bannerText: {
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    margin: 10,
+    color: 'white'
+  },
+  bannerTouchableOpacity: {
+    height: 40
+    
   }
 })
 
@@ -124,13 +143,18 @@ const text = StyleSheet.create({
     fontWeight: 'bold'
   },
   title: {
+    color: 'black',
     fontSize: 16,
     fontWeight: '500'
   },
   titleSmall: {
+    color: 'black',
     fontSize: 16,
     fontWeight: 'normal'
-  }
+  },
+  centered: {
+    textAlign: 'center',
+  },
 })
 
 export default {
