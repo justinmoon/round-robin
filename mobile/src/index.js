@@ -9,6 +9,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  View,
   Navigator,
   TouchableWithoutFeedback
 } from 'react-native'
@@ -191,6 +192,8 @@ export default class RoundRobin extends Component {
                     key='me'
                     hideNavBar={false}
                     icon={components.TabIcon}
+                    rightTitle='settings'
+                    onRight={() => Actions.settings()}
                   >
                   <Scene
                     key='mePublished'
@@ -200,6 +203,14 @@ export default class RoundRobin extends Component {
                   <Scene
                     key='writingSchedule'
                     component={() => <Text>Writing Schedule</Text>}
+                    rightTitle=''
+                    onRight={() => {}}
+                  />
+                  <Scene
+                    key='settings'
+                    component={containers.Settings}
+                    rightTitle=''
+                    onRight={() => {}}
                   />
                 </Scene>
                   {/** <Scene key="me" title="Me" hideNavBar icon={components.TabIcon} >
