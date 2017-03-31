@@ -3,7 +3,8 @@ import os
 
 class BaseConfig(object):
     SQLALCHEMY_ECHO = False
-    RQ_REDIS_URL = 'redis://localhost:6379/0'
+    REDIS_URL = RQ_REDIS_URL = 'redis://localhost:6379/0'
+    RQ_POLL_INTERVAL = 2500  #: RQ web interface poll period for updates in ms
 
 
 class DevConfig(BaseConfig):
