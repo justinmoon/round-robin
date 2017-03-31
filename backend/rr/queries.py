@@ -1,6 +1,7 @@
 from sqlalchemy.sql import not_
-from datetime import datetime, timedelta
-from rr.db import db
+from sqlalchemy import func, TIME
+from datetime import datetime, timedelta, time
+from rr.db import db, convert_tz
 
 from rr.models import User, Prompt, Composition
 
@@ -86,3 +87,9 @@ def create_user(created_at=None, *, name, pic_url, fb_access_token, fb_id):
 #  def local_time_for_user(user):
     #  query = select([User.id, convert_tz(func.now(), 'UTC', User.timezone)])
     #  return db.session.execute(query)
+
+def get_midnight_users():
+    return db.session.query(User)\
+            .filter(
+                    func.cast(convert_tz(func.now(), 'UTC', User.timezone), TIME) 
+                    < time(hour=4)).all()

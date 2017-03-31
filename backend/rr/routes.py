@@ -43,13 +43,9 @@ def get_current_user_compositions():
     return jsonify(feed.all())
 
 
-@routes.route('/cron/midnight')
-def handle_midnight_cron():
-    for user in q.all_users():
-        # Delete records of yesterday's scheduled notifications
-        q.purge_scheduled_notifcations(user)
-        # Schedule today's notifications
-        jobs.schedule_onesignal_reminders.queue(user)
+@routes.route('/cron/hourly')
+def handle_hourly_cron():
+    jobs.hourly_cron.queue()
     return 'ok', 200
 
 

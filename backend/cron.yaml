@@ -1,5 +1,4 @@
 cron:
-- description: daily reminder to write
-  url: /api/cron/morning-and-evening
-  schedule: every 12 hours from 10:00 to 22:00
-  timezone: America/New_York
+- description: hourly cron
+  url: /api/cron/hourly
+  schedule: every 1 minutes
