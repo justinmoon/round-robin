@@ -1,4 +1,5 @@
 import os
+import rq_dashboard
 
 from flask import Flask
 from flask_migrate import Migrate
@@ -26,6 +27,9 @@ def create_app(name, settings_override={}):
     app.register_blueprint(routes, url_prefix='/api')
     app.register_blueprint(auth, url_prefix='/api')
     app.register_blueprint(static)
+
+    app.config.from_object(rq_dashboard.default_settings)
+    app.register_blueprint(rq_dashboard.blueprint, url_prefix="/rq")
 
     migrate.init_app(app, db)
     db.init_app(app)

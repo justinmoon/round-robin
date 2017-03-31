@@ -1,6 +1,12 @@
+runtime: python
 service: worker
-runtime: python27
-entrypoint: python rr/scheduler.py
+env: flex
+entrypoint: honcho start worker
+runtime_config:
+  python_version: 3
 env_variables:
   CONFIG_ENV: prod
   PYTHONPATH: .
+  FLASK_APP: rr/app.py
+beta_settings:
+  cloud_sql_instances: round-robin-prod:us-central1:app-engine
