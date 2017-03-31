@@ -202,7 +202,7 @@ export default class RoundRobin extends Component {
                   />
                   <Scene
                     key='writingSchedule'
-                    component={() => <Text>Writing Schedule</Text>}
+                    component={components.WritingSchedule}
                     rightTitle=''
                     onRight={() => {}}
                   />
