@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 
 import rr.queries as q
 import rr.jobs as jobs
+import rr.events as e
 
 routes = Blueprint('routes', __name__)
 
