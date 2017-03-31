@@ -6,6 +6,10 @@ from rr.db import db, convert_tz
 from rr.models import User, Prompt, Composition
 
 
+def get_user(current_user):
+    return db.session.query(User).get(current_user.id)
+
+
 def all_users():
     return db.session.query(User).all()
 

@@ -1,4 +1,4 @@
-import { Platform, StyleSheet } from 'react-native'
+import { Navigator, Platform, StyleSheet } from 'react-native'
 
 const COMPOSITION_FONT_SIZE = 14
 const TITLE_FONT_SIZE = 16
@@ -7,6 +7,10 @@ const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 15 : 0
 const general = StyleSheet.create({
   row: {
     flexDirection: 'row'
+  },
+  scene: {
+    flex: 1,
+    paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight + 20
   }
 })
 

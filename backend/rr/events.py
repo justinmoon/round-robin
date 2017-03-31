@@ -1,7 +1,7 @@
 from datetime import timedelta, datetime
 import rr.onesignal
 import rr.jobs as jobs
-from rr.queries import all_users
+from rr.queries import get_midnight_users
 
 
 def on_new_composition(user, composition):
@@ -19,6 +19,13 @@ def on_new_composition(user, composition):
 def on_new_user(user):
     # Schedule reminders (delay is to allow client time to register user id)
     jobs.schedule_onesignal_reminders.schedule(timedelta(seconds=5), user)
+
+
+def on_midnight_cron():
+    for user in get_midnight_users():
+        # Reschedule all onesignal reminders
+        jobs.cancel_onesignal_reminders.queue(user)
+        jobs.schedule_onesignal_reminders.queue(user)
 
 
 def on_writing_schedule_update(user):

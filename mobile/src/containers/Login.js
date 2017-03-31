@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-// @connectRequest(queries.fetchCurrentUser)
+@connectRequest(queries.fetchCurrentUser)
 export default class Login extends Component {
   componentWillReceiveProps ({ currentUser, loggedIn }) {
     if (loggedIn) {

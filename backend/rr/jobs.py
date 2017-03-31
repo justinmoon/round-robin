@@ -24,14 +24,3 @@ def cancel_onesignal_reminders(user):
             rr.onesignal.one_signal_client().delete_notification(noti.onesignal_id)
             db.session.delete(noti)
             db.session.commit()
-
-
-@rq.job
-def hourly_cron():
-    from rr.app import app
-    with app.app_context():
-        for user in get_midnight_users():
-            try:
-                rr.onesignal.schedule_daily_reminders_for_user(user)
-            except:
-                logging.error('Failed to schedule notifications for user {}'.format(user))

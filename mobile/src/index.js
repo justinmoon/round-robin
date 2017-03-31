@@ -8,6 +8,8 @@ import {
   AppState,
   AppRegistry,
   StyleSheet,
+  Text,
+  Navigator,
   TouchableWithoutFeedback
 } from 'react-native'
 import { Modal, Router, Reducer, Scene, Actions } from 'react-native-router-flux'
@@ -58,6 +60,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  titleStyle: {
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  navBarStyle: {
+    backgroundColor: '#f9f9f9',
+    // iOS "shadows"
+    shadowColor: '#acacac',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowRadius: 1,
+    shadowOpacity: 1.0
+    // Android "shadows"
+    // elevation: 5, // invisible for lower tab bar ...
+  },
   tabBarStyle: {
     backgroundColor: '#f9f9f9',
     padding: 10,
@@ -77,63 +96,7 @@ const styles = StyleSheet.create({
   },
   tabBarSelectedItemStyle: {
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff'
-  },
-  purpleContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#8a3ab9'
-  },
-  yellowContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fccc63'
-  },
-  redContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#e95950'
-  },
-  redVioletContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#bc2a8d'
-  }
 })
-
-class WriteIcon extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      color: '#a9a9a9'
-    }
-  }
-  darken () {
-    this.setState({ color: 'black' })
-  }
-  lighten () {
-    this.setState({ color: '#a9a9a9' })
-  }
-  render () {
-    return (
-      <TouchableWithoutFeedback
-        onPressIn={() => this.darken()}
-        onPressOut={() => this.lighten()}
-        onPress={this.props.onPress}
-      >
-        <Icon name='plus-square' color={this.state.color} size={35} />
-      </TouchableWithoutFeedback>
-    )
-  }
-}
 
 export default class RoundRobin extends Component {
   constructor (opts) {
@@ -189,14 +152,14 @@ export default class RoundRobin extends Component {
   render () {
     return (
       <Provider store={store}>
-        <RouterWithRedux createReducer={createReducer} >
+        <RouterWithRedux titleStyle={styles.titleStyle} navigationBarStyle={styles.navBarStyle} createReducer={createReducer} >
           <Scene key='modal' component={Modal} >
             <Scene key='root' hideNavBar>
               <Scene key='login' component={containers.Login} initial />
               <Scene key='compose' direction='vertical' component={containers.Compose} />
               <Scene key='composition' direction='vertical' component={containers.Composition} />
 
-              <Scene key='lowerTabs' >
+              <Scene key='lowerTabs'>
                 <Scene
                   key='lowerTabsMain'
                   tabs
@@ -207,23 +170,38 @@ export default class RoundRobin extends Component {
                     initial
                     key='friends'
                     component={containers.Friends}
-                    hideNavBar
                     title='Friends'
                     icon={components.TabIcon}
                 />
                   <Scene
                     key='write'
                     title='Write'
-                    icon={WriteIcon}
+                    icon={components.WriteIcon}
                     onPress={() => Actions.compose()}
                 />
-                  <Scene
+                {/**<Scene
                     key='mePublished'
                     hideNavBar
                     title='Me'
                     component={containers.Published}
                     icon={components.TabIcon}
-                />
+                  />**/}
+                  <Scene
+                    title='Me'
+                    key='me'
+                    hideNavBar={false}
+                    icon={components.TabIcon}
+                  >
+                  <Scene
+                    key='mePublished'
+                    hideNavBar={false}
+                    component={containers.Published}
+                  />
+                  <Scene
+                    key='writingSchedule'
+                    component={() => <Text>Writing Schedule</Text>}
+                  />
+                </Scene>
                   {/** <Scene key="me" title="Me" hideNavBar icon={components.TabIcon} >
                   <Scene
                     key="meTabs"

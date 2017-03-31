@@ -49,7 +49,7 @@ class WriteIcon extends React.Component {
     )
   }
 }
-export default {
+export {
   TabIcon,
   WriteIcon,
   // XIcon,

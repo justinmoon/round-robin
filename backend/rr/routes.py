@@ -24,7 +24,7 @@ def create_composition_route():
         prompt_id=payload['prompt_id'],
         user_id=current_user.id,
         body=payload['body'], )
-    e.on_new_composition(current_user, composition)
+    e.on_new_composition(q.get_user(current_user), composition)
     return jsonify(composition)
 
 
@@ -45,7 +45,7 @@ def get_current_user_compositions():
 
 @routes.route('/cron/hourly')
 def handle_hourly_cron():
-    jobs.hourly_cron.queue()
+    e.on_hourly_cron()
     return 'ok', 200
 
 
