@@ -1,4 +1,4 @@
 cron:
 - description: hourly cron
   url: /api/cron/hourly
-  schedule: every 1 minutes
+  schedule: every 1 hours

@@ -1,6 +1,10 @@
+import iso8601
+from datetime import datetime
+
 from flask import jsonify, Blueprint, request
 from flask_login import login_required, current_user
 
+from rr.db import db
 import rr.queries as q
 import rr.jobs as jobs
 import rr.events as e
@@ -49,7 +53,18 @@ def handle_hourly_cron():
     return 'ok', 200
 
 
-@routes.route('/observe-device')
-def observe_device():
-    data = request.get_json()
-    return ''
+@routes.route('/update-user', methods=['POST'])
+@login_required
+def update_user():
+    timezone = request.json.get('timezone')
+    reminder_time = request.json.get('reminder_time')
+
+    if timezone:
+        current_user.timezone = timezone
+    if reminder_time:
+        reminder_time = datetime.strptime(reminder_time, '%H:%M:%S').time()
+        current_user.reminder_time = reminder_time
+        e.on_writing_schedule_update(q.get_user(current_user))
+
+    db.session.commit()
+    return jsonify(current_user)

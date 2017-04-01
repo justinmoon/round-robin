@@ -10,6 +10,10 @@ def get_user(current_user):
     return db.session.query(User).get(current_user.id)
 
 
+def get_user_by_id(user_id):
+    return db.session.query(User).get(user_id)
+
+
 def all_users():
     return db.session.query(User).all()
 
@@ -94,6 +98,5 @@ def create_user(created_at=None, *, name, pic_url, fb_access_token, fb_id):
 
 def get_midnight_users():
     return db.session.query(User)\
-            .filter(
-                    func.cast(convert_tz(func.now(), 'UTC', User.timezone), TIME) 
-                    < time(hour=4)).all()
+            .filter(func.cast(convert_tz(func.now(), 'UTC', User.timezone), TIME) < time(hour=1))\
+            .all()

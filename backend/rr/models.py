@@ -86,6 +86,7 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'avatar_url': self.pic_url,
             'created_at': self.created_at,
+            'reminder_time': self.reminder_time,
             'needs_onboarding': self.compositions.count() == 0
             }
 

@@ -8,6 +8,7 @@ import uuid from 'uuid'
 export const login = () => (dispatch, getState) => {
   dispatch(actions.loginAttempt())
   const timezone = DeviceInfo.getTimezone()
+  dispatch(queries.updateUser({timezone}))
   return fbLogin()
     .then(accessToken => dispatch(queries.login({ access_token: accessToken, timezone })))
     .then(user => {

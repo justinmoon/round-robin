@@ -13,7 +13,7 @@ def on_new_composition(user, composition):
     rr.onesignal.send_to_users(users, contents, data=data)
 
     # Delete pending reminders that day
-    jobs.cancel_onesignal_reminders.queue(user)
+    jobs.cancel_onesignal_reminders.queue(user.id)
 
 
 def on_new_user(user):
@@ -21,14 +21,14 @@ def on_new_user(user):
     jobs.schedule_onesignal_reminders.schedule(timedelta(seconds=5), user)
 
 
-def on_midnight_cron():
+def on_hourly_cron():
     for user in get_midnight_users():
         # Reschedule all onesignal reminders
-        jobs.cancel_onesignal_reminders.queue(user)
+        jobs.cancel_onesignal_reminders.queue(user.id)
         jobs.schedule_onesignal_reminders.queue(user)
 
 
 def on_writing_schedule_update(user):
     # Reschedule all onesignal reminders
-    jobs.cancel_onesignal_reminders.queue(user)
+    jobs.cancel_onesignal_reminders.queue(user.id)
     jobs.schedule_onesignal_reminders.queue(user)

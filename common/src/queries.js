@@ -132,3 +132,17 @@ export const fetchPrompts = (props) => ({
     prompts: defaultUpdate
   }
 })
+
+/**
+ * User
+ */
+
+const _updateUser = payload => ({
+  url: config.baseUrl + '/update-user',
+  body: payload,
+  update: {
+    currentUser: defaultUpdate
+  }
+})
+
+export const updateUser = payload => mutateAsync(_updateUser(payload))

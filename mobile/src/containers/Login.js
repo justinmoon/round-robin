@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { queries, selectors } from 'common'
 import { connectRequest } from 'redux-query'
 import SplashScreen from 'react-native-splash-screen'
-import moment from 'moment'
+import DeviceInfo from 'react-native-device-info'
 
 import components from '../components'
 import { login as loginAction } from '../actions'
@@ -20,7 +20,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    login: () => dispatch(loginAction())
+    login: () => dispatch(loginAction()),
+    observeDevice: () => {
+      const timezone = DeviceInfo.getTimezone()
+      dispatch(queries.updateUser({timezone}))
+    }
   }
 }
 
@@ -36,6 +40,8 @@ export default class Login extends Component {
       if (currentUser.needs_onboarding) {
         Actions.compose()
       }
+
+      this.props.observeDevice()
 
       setTimeout(SplashScreen.hide, 250)  // a little breathing room
     }
