@@ -1251,7 +1251,7 @@
 				CODE_SIGN_ENTITLEMENTS = RoundRobin/RoundRobin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 90;
+				CURRENT_PROJECT_VERSION = 94;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = W6VF934SEW;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
@@ -1290,7 +1290,7 @@
 				CODE_SIGN_ENTITLEMENTS = RoundRobin/RoundRobin.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 90;
+				CURRENT_PROJECT_VERSION = 94;
 				DEVELOPMENT_TEAM = W6VF934SEW;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
