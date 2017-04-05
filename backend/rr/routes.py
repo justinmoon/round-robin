@@ -3,14 +3,19 @@ from datetime import datetime
 
 from flask import jsonify, Blueprint, request
 from flask_login import login_required, current_user
+from flask_graphql import GraphQLView
 
 from rr.db import db
 import rr.queries as q
 import rr.jobs as jobs
 import rr.events as e
+from rr.schema import schema
 
 routes = Blueprint('routes', __name__)
 
+
+    # Optional, for adding batch query support (used in Apollo-Client)
+routes.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql', schema=schema, graphiql=True))
 
 @routes.route('/prompts')
 def prompt():

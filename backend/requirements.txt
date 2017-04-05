@@ -7,6 +7,9 @@ Flask-RQ2==17.0
 Flask-SQLAlchemy==2.0
 Flask-Script==2.0.5
 Flask==0.11.1
+graphene==1.2
+graphql-core==1.0.1
+graphql-relay==0.4.5
 Jinja2==2.7.3
 Mako==1.0.6
 MarkupSafe==0.23

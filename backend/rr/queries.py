@@ -44,6 +44,10 @@ def get_prompts():
     return db.session.query(Prompt)
 
 
+def get_prompt_by_date(date):
+    return db.session.query(Prompt).filter_by(date=date).one()
+
+
 def construct_feed(user):
     one_day_ago = datetime.utcnow() - timedelta(days=1)
     return db.session.query(Composition) \
