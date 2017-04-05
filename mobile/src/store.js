@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk'
 import rootReducer from './reducers'
 import { setAnonymousId } from './actions'
 import { queryMiddleware } from 'redux-query'
+import apollo from './apollo'
 
 export const getQueries = (state) => state.queries
 export const getEntities = (state) => state.entities
@@ -20,7 +21,11 @@ const composeEnhancers =
     }) : compose
 
 const enhancer = composeEnhancers(
-  applyMiddleware(thunkMiddleware, queryMiddleware(getQueries, getEntities)),
+  applyMiddleware(
+    thunkMiddleware,
+    queryMiddleware(getQueries, getEntities),
+    apollo.middleware()
+  )
 )
 
 const store = createStore(
@@ -28,6 +33,7 @@ const store = createStore(
   enhancer,
   autoRehydrate(),
 )
+export default store
 
 persistStore(
   store,
@@ -44,5 +50,3 @@ persistStore(
     })
   }
 )
-
-export default store

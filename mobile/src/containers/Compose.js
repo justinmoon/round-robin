@@ -1,39 +1,30 @@
 import React, { Component } from 'react'
 import { Text, ActivityIndicator, TouchableOpacity, View, Keyboard } from 'react-native'
 import { Actions } from 'react-native-router-flux'
-import { connect } from 'react-redux'
-import { connectRequest } from 'redux-query'
+import { graphql } from 'react-apollo';
+import moment from 'moment'
 
 import analytics from '../analytics'
 
-import { selectors, queries } from 'common'
+import { apollo, queries } from 'common'
 import components from '../components'
 import styles from '../styles'
 
-const mapStateToProps = (state) => {
-  return {
-    prompt: selectors.getPrompt(state),
-    submitting: false  // FIXME
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
+@graphql(apollo.fetchPrompt, {
+  options: { variables: { date: moment().format('YYYY-MM-DD') } },
+  props: ({ data, ownProps }) => ({
+    promptId: data.prompt && data.prompt.id,
+    title: data.prompt ? data.prompt.prompt : '',
     submitComposition: (payload) => {
-      dispatch(queries.submitComposition(payload)).then(() => {
+      ownProps.dispatch(queries.submitComposition(payload)).then(() => {
         // FIXME: HACK!
         Actions.pop()
-        Actions.mePublished()
+        Actions.me()  // for some reason, mePublished doesn't work ...
       })
-      // dispatch(analytics.actions.submitComposition())
       Keyboard.dismiss()
     },
-    beginComposition: () => dispatch(analytics.actions.beginComposition())
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
-@connectRequest(queries.fetchPrompts)
+  })
+})
 export default class Compose extends Component {
   constructor (props) {
     super(props)
@@ -72,18 +63,18 @@ export default class Compose extends Component {
     this.setState({ text })
   }
   handleSubmit () {
-    const payload = { prompt_id: this.props.prompt.id, body: this.state.text }
+    const payload = { prompt_id: this.props.promptId, body: this.state.text }
+    this.setState({ submitting: true })
     this.props.submitComposition(payload)
   }
   render () {
-    const { prompt } = this.props
-    const titleText = prompt ? prompt.prompt : ''
-    const title = <Text style={styles.header.title}>{titleText}</Text>
+    const { title } = this.props
+    const titleComponent = <Text style={styles.header.title}>{title}</Text>
     return (
       <View style={{ flex: 1 }}>
         <components.compose.Header
           style={{ flex: 1 }}
-          title={title}
+          title={titleComponent}
           left={::this.renderLeftHeader()}
           right={::this.renderRightHeader()}
         />

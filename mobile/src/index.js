@@ -8,10 +8,6 @@ import {
   AppState,
   AppRegistry,
   StyleSheet,
-  Text,
-  View,
-  Navigator,
-  TouchableWithoutFeedback
 } from 'react-native'
 import { Modal, Router, Reducer, Scene, Actions } from 'react-native-router-flux'
 import { Provider, connect } from 'react-redux'
@@ -19,6 +15,7 @@ import SplashScreen from 'react-native-splash-screen'
 SplashScreen.hide()
 
 import store from './store'
+import apollo from './apollo.js'
 
 import analytics from './analytics'
 import connectivity from './connected'
@@ -27,7 +24,6 @@ import OneSignal from 'react-native-onesignal'
 
 import config from './config'
 import Raven from 'raven-js'
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 require('raven-js/plugins/react-native')(Raven)
 
@@ -55,16 +51,7 @@ const createReducer = params => {
   }
 }
 
-
-import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
-import gql from 'graphql-tag';
-
-const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: 'http://round-robin-api.ngrok.io/api/graphql'
-  })
-})
-
+import { ApolloProvider } from 'react-apollo'
 
 const styles = StyleSheet.create({
   container: { flex: 1,
@@ -157,27 +144,13 @@ export default class RoundRobin extends Component {
     OneSignal.configure({})
     OneSignal.addEventListener('received', this.onReceived)
     OneSignal.addEventListener('opened', this.onOpened)
-    client.query({
-      query: gql`
-      {
-        prompt(date:"2017-04-01") {
-          date,
-          id,
-          prompt
-        }
-      }
-      `,
-    })
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
   }
   componentWillUnmount () {
     AppState.removeEventListener('change', console.log)
   }
   render () {
     return (
-      <ApolloProvider client={client}>
-      <Provider store={store}>
+      <ApolloProvider store={store} client={apollo}>
         <RouterWithRedux titleStyle={styles.titleStyle} navigationBarStyle={styles.navBarStyle} createReducer={createReducer} >
           <Scene key='modal' component={Modal} >
             <Scene key='root' hideNavBar>
@@ -265,52 +238,12 @@ export default class RoundRobin extends Component {
                   </Scene>**/}
                 </Scene>
               </Scene>
-
             </Scene>
           </Scene>
         </RouterWithRedux>
-      </Provider>
       </ApolloProvider>
     )
   }
 }
-
-// class App extends React.Component {
-  // componentDidMount() {
-    // // client.query({
-      // // query: gql`
-      // // {
-        // // todos {
-          // // id
-          // // text
-          // // completed
-        // // }
-      // // }
-      // // `,
-    // // })
-      // // .then(data => console.log(data))
-      // // .catch(error => console.error(error));
-    // client.query({
-      // query: gql`
-      // {
-        // prompt(date:"2017-04-01") {
-          // date,
-          // id,
-          // prompt
-        // }
-      // }
-      // `,
-    // })
-      // .then(data => console.log(data))
-      // .catch(error => console.error(error));
-  // }
-  // render() {
-    // return (
-      // <ApolloProvider client={client}>
-        // <Text>hi</Text>
-      // </ApolloProvider>
-    // )
-  // }
-// }
 
 AppRegistry.registerComponent('RoundRobin', () => RoundRobin)

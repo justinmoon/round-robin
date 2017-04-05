@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-// @connectRequest(queries.fetchCurrentUserCompositions)
 export default class Settings extends React.Component {
   render () {
     return (
