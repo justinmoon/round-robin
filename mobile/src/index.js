@@ -55,6 +55,17 @@ const createReducer = params => {
   }
 }
 
+
+import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
+import gql from 'graphql-tag';
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: 'http://round-robin-api.ngrok.io/api/graphql'
+  })
+})
+
+
 const styles = StyleSheet.create({
   container: { flex: 1,
     backgroundColor: 'transparent',
@@ -146,12 +157,26 @@ export default class RoundRobin extends Component {
     OneSignal.configure({})
     OneSignal.addEventListener('received', this.onReceived)
     OneSignal.addEventListener('opened', this.onOpened)
+    client.query({
+      query: gql`
+      {
+        prompt(date:"2017-04-01") {
+          date,
+          id,
+          prompt
+        }
+      }
+      `,
+    })
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
   }
   componentWillUnmount () {
     AppState.removeEventListener('change', console.log)
   }
   render () {
     return (
+      <ApolloProvider client={client}>
       <Provider store={store}>
         <RouterWithRedux titleStyle={styles.titleStyle} navigationBarStyle={styles.navBarStyle} createReducer={createReducer} >
           <Scene key='modal' component={Modal} >
@@ -245,8 +270,47 @@ export default class RoundRobin extends Component {
           </Scene>
         </RouterWithRedux>
       </Provider>
+      </ApolloProvider>
     )
   }
 }
+
+// class App extends React.Component {
+  // componentDidMount() {
+    // // client.query({
+      // // query: gql`
+      // // {
+        // // todos {
+          // // id
+          // // text
+          // // completed
+        // // }
+      // // }
+      // // `,
+    // // })
+      // // .then(data => console.log(data))
+      // // .catch(error => console.error(error));
+    // client.query({
+      // query: gql`
+      // {
+        // prompt(date:"2017-04-01") {
+          // date,
+          // id,
+          // prompt
+        // }
+      // }
+      // `,
+    // })
+      // .then(data => console.log(data))
+      // .catch(error => console.error(error));
+  // }
+  // render() {
+    // return (
+      // <ApolloProvider client={client}>
+        // <Text>hi</Text>
+      // </ApolloProvider>
+    // )
+  // }
+// }
 
 AppRegistry.registerComponent('RoundRobin', () => RoundRobin)
